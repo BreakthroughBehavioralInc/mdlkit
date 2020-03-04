@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "build-storybook": "build-storybook -c .storybook -o .out",
     "lint": "eslint --ext .jsx,.ts,.tsx,.ts .",
     "pretty": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,md}\"",
     "precommit": "lint-staged",
@@ -19,8 +19,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",
+    "@storybook/addon-a11y": "^5.3.14",
     "@storybook/addon-actions": "^5.3.7",
-    "@storybook/addon-docs": "^5.3.14",
     "@storybook/addon-info": "^5.3.14",
     "@storybook/addon-knobs": "^5.3.14",
     "@storybook/addon-links": "^5.3.7",
