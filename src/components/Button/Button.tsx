@@ -1,32 +1,33 @@
-import styled from 'styled-components';
+import styled, { DefaultTheme } from 'styled-components';
 import { themeGet, space, SpaceProps } from 'styled-system';
 
-const size = props => {
-  switch (props.size) {
+const size = ({ size, theme }: { size: string; theme: DefaultTheme }) => {
+  switch (size) {
     case 'small':
       return {
-        fontSize: `${props.theme.fontSizes[0]}px`,
+        fontSize: `${theme.fontSizes[0]}px`,
         padding: '7px 12px',
       };
     case 'medium':
       return {
-        fontSize: `${props.theme.fontSizes[1]}px`,
+        fontSize: `${theme.fontSizes[1]}px`,
         padding: '9.5px 18px',
       };
     case 'large':
       return {
-        fontSize: `${props.theme.fontSizes[2]}px`,
+        fontSize: `${theme.fontSizes[2]}px`,
         padding: '12px 22px',
       };
     default:
       return {
-        fontSize: `${props.theme.fontSizes[1]}px`,
+        fontSize: `${theme.fontSizes[1]}px`,
         padding: '9.5px 18px',
       };
   }
 };
 
-const width = props => (props.fullWidth ? { width: '100%' } : undefined);
+const width = ({ fullWidth }: { fullWidth?: boolean }) =>
+  fullWidth ? { width: '100%' } : undefined;
 
 export type ButtonProps = {
   size: 'small' | 'medium' | 'large';
