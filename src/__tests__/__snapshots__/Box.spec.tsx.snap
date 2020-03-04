@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Box renders 1`] = `
-<div
-  className="Box-tpr2hz-0 bCZjfP"
-/>
-`;
