@@ -11,7 +11,7 @@ export default {
 export const Knobs = () => (
   <Button
     fullWidth={boolean('fullWidth', false)}
-    size={select('Size', ['small', 'medium', 'large'])}
+    size={select('Size', ['small', 'medium', 'large'], 'large')}
   >
     Button
   </Button>
@@ -32,7 +32,7 @@ export const Sizes = () => (
 );
 
 export const FullWidth = () => (
-  <Button onClick={action('Full-Width button clicked')} fullWidth>
+  <Button onClick={action('Full-Width button clicked')} fullWidth size="large">
     Full-Width Button
   </Button>
 );

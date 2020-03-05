@@ -1,6 +1,6 @@
 // layout components
-export { default as Box } from './components/Box/Box.tsx';
-// export { default as Card } from "./Card";
+export { default as Box } from './components/Box/Box';
+export { default as Card } from './components/Card/Card';
 // export { default as Container } from "./Container";
 // export { default as Flex } from "./Flex";
 //
@@ -14,7 +14,7 @@ export { default as Box } from './components/Box/Box.tsx';
 // export { default as ListGroup } from "./ListGroup";
 
 // button components
-export { default as Button } from './components/Button/Button.tsx';
+export { default as Button } from './components/Button/Button';
 // export { default as OutlineButton } from "./OutlineButton";
 // export { default as TransparentButton } from "./TransparentButton";
 

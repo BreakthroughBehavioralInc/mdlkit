@@ -30,6 +30,16 @@
       { "accessibility": "no-public" }
     ], // don't force public or private methods in TS
     "@typescript-eslint/no-explicit-any": "off",
+    "import/extensions": [
+      "error",
+      "always",
+      {
+        "ts": "never",
+        "tsx": "never",
+        "js": "never",
+        "jsx": "never"
+      }
+    ],
     "import/no-extraneous-dependencies": [
       "error",
       {
@@ -37,6 +47,7 @@
           "**/*.spec.tsx",
           "**/*.spec.jsx",
           "**/*.spec.ts",
+          "**/*.stories.tsx",
           "utils/test-utils.tsx"
         ]
       }

@@ -1,7 +1,7 @@
 import styled, { DefaultTheme } from 'styled-components';
 import { themeGet, space, SpaceProps } from 'styled-system';
 
-const size = ({ size, theme }: { size: string; theme: DefaultTheme }) => {
+const buttonSize = ({ size, theme }: { size: string; theme: DefaultTheme }) => {
   switch (size) {
     case 'small':
       return {
@@ -62,7 +62,7 @@ const Button = styled.button<ButtonProps>`
   }
 
   ${width}
-  ${size}
+  ${buttonSize}
 
   ${space}
 `;
