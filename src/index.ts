@@ -1,34 +1,34 @@
-// // layout components
-// export { default as Box } from "./Box";
+// layout components
+export { default as Box } from './components/Box/Box.tsx';
 // export { default as Card } from "./Card";
 // export { default as Container } from "./Container";
 // export { default as Flex } from "./Flex";
 //
-// // text components
+// text components
 // export { default as Heading } from "./Heading";
 // export { default as SubHeading } from "./SubHeading";
 // export { default as Markdown } from "./Markdown";
 // export { default as Text } from "./Text";
-//
-// // list components
+
+// list components
 // export { default as ListGroup } from "./ListGroup";
-//
-// // button components
-// export { default as Button } from "./components/Button/Button";
+
+// button components
+export { default as Button } from './components/Button/Button.tsx';
 // export { default as OutlineButton } from "./OutlineButton";
 // export { default as TransparentButton } from "./TransparentButton";
-//
-// // link components
+
+// link components
 // export { default as Hyperlink } from "./Hyperlink";
-//
-// // image components
+
+// image components
 // export { default as Icon } from "./Icon";
 // export { default as Image } from "./Image";
-//
-// // loading components
+
+// loading components
 // export { default as LoadingCircle } from "./LoadingCircle";
-//
-// // form components
+
+// form components
 // export { default as FormField } from "./FormField";
 // export { default as FieldError } from "./FieldError";
 // export { default as Input } from "./Input";
@@ -42,6 +42,6 @@
 // export { default as CheckboxField } from "./forms/CheckboxField";
 // export { default as RadioButtonField } from "./forms/RadioButtonField";
 // export { default as AutocompleteInput } from "./forms/AutocompleteInput";
-//
-// // form hocs
+
+// form hocs
 // export { default as withError } from "./forms/withError";
