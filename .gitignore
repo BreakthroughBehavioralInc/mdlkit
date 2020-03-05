@@ -2,3 +2,5 @@ node_modules
 *.log
 .out
 build
+storybook-static
+dist

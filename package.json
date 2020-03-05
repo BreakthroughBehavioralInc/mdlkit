@@ -7,6 +7,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "build": "cross-env BABEL_ENV=production babel src -d dist --extensions \".ts\"",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -c .storybook -o .out",
     "lint": "eslint --ext .jsx,.ts,.tsx,.ts .",
@@ -18,7 +19,9 @@
     "styled-system": "^4.2.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
     "@babel/core": "^7.8.3",
+    "@babel/preset-typescript": "^7.8.3",
     "@storybook/addon-a11y": "^5.3.14",
     "@storybook/addon-actions": "^5.3.7",
     "@storybook/addon-info": "^5.3.14",
@@ -35,6 +38,7 @@
     "@typescript-eslint/eslint-plugin": "^1.9.0",
     "@typescript-eslint/parser": "^1.9.0",
     "babel-loader": "^8.0.6",
+    "cross-env": "^7.0.1",
     "downshift": "^3.2.10",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
