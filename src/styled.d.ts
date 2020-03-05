@@ -2,7 +2,7 @@ import 'styled-components';
 
 declare module 'styled-components' {
   // eslint-disable-next-line import/prefer-default-export
-  export interface DefaultTheme extends Theme {
+  export interface DefaultTheme {
     light?: boolean;
     dark?: boolean;
     breakpoints: any;
@@ -26,7 +26,6 @@ declare module 'styled-components' {
       caps: string;
     };
     colors: {
-      alertRed: string;
       alertBlue: string;
       alertBlueText: string;
       alertGreen: string;

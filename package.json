@@ -13,7 +13,8 @@
     "lint": "eslint --ext .jsx,.ts,.tsx,.ts .",
     "pretty": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,md}\"",
     "precommit": "lint-staged",
-    "type-check": "tsc"
+    "type-check": "tsc --skipLibCheck",
+    "ci": "yarn lint && yarn type-check"
   },
   "dependencies": {
     "styled-system": "^4.2.2"

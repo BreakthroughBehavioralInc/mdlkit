@@ -1,13 +1,13 @@
 import React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
-import Box from './Box';
+import Card from './Card';
 
 export default {
-  title: 'Box',
-  component: Box,
+  title: 'Card',
+  component: Card,
 };
 
-export const Knobs = () => <Box>Box</Box>;
+export const Knobs = () => <Card>Card</Card>;
 
 Knobs.story = {
   decorators: [withKnobs],
