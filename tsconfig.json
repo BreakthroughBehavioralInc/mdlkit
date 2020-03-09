@@ -8,8 +8,6 @@
     "allowJs": true,
     "jsx": "react",
     "moduleResolution": "node",
-    "rootDir": "src",
-    "baseUrl": "src",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -22,6 +20,6 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "include": ["src/**/*"],
+  "include": ["src"],
   "exclude": ["node_modules", "build", "dist"]
 }
