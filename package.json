@@ -52,6 +52,7 @@
     "husky": "^2.3.0",
     "jest": "^25.1.0",
     "lint-staged": "^8.1.7",
+    "match-sorter": "^3.1.1",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-docgen-typescript-loader": "^3.6.0",
@@ -65,6 +66,7 @@
   },
   "peerDependencies": {
     "downshift": "^3.2.10",
+    "match-sorter": "^3.1.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-final-form": "^5.1.2",
