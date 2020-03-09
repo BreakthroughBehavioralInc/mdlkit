@@ -4,6 +4,8 @@
   "description": "React component kit for MDLIVE design system",
   "main": "index.js",
   "author": "Ashley Ginsberg",
+  "main": "dist/index.js",
+  "repository": "https://github.com/BreakthroughBehavioralInc/mdlkit.git",
   "license": "MIT",
   "private": true,
   "scripts": {
