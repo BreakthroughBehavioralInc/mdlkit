@@ -5,10 +5,7 @@ import Box from './Box';
 export default {
   title: 'Box',
   component: Box,
-};
-
-export const Knobs = () => <Box>Box</Box>;
-
-Knobs.story = {
   decorators: [withKnobs],
 };
+
+export const DefaultBox = () => <Box>This is text in the Box component.</Box>;

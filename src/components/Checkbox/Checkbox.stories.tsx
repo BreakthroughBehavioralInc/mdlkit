@@ -5,6 +5,7 @@ import Checkbox from './Checkbox';
 export default {
   title: 'Checkbox',
   component: Checkbox,
+  decorators: [withKnobs],
 };
 
 export const Knobs = () => (
@@ -14,7 +15,3 @@ export const Knobs = () => (
     disabled={boolean('disabled', false)}
   />
 );
-
-Knobs.story = {
-  decorators: [withKnobs],
-};

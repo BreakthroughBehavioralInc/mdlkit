@@ -6,6 +6,7 @@ const maxWidth = props =>
     : { maxWidth: props.theme.maxContainerWidth };
 
 export interface ContainerProps {
+  /** set the maximum width of the container */
   maxWidth?: number;
 }
 
