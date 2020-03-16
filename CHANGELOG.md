@@ -1,17 +1,11 @@
 # v1.0.1 (Mon Mar 16 2020)
 
-#### 🐛 Bug Fix
-
-- Fix typescript config to not use src as rootDir [#1](https://github.com/BreakthroughBehavioralInc/mdlkit/pull/1) ([@aginz](https://github.com/aginz))
-- Add components [#1](https://github.com/BreakthroughBehavioralInc/mdlkit/pull/1) ([@aginz](https://github.com/aginz))
-- Fix type script and linters, Add Checkbox, Card [#1](https://github.com/BreakthroughBehavioralInc/mdlkit/pull/1) ([@aginz](https://github.com/aginz))
-- Add babel config to build code [#1](https://github.com/BreakthroughBehavioralInc/mdlkit/pull/1) ([@aginz](https://github.com/aginz))
-- Add A11y and Box story [#1](https://github.com/BreakthroughBehavioralInc/mdlkit/pull/1) ([@aginz](https://github.com/aginz))
-- Storybook setup - Add Button Story [#1](https://github.com/BreakthroughBehavioralInc/mdlkit/pull/1) ([@aginz](https://github.com/aginz))
-
-#### ⚠️  Pushed to `master`
-
-- Prepare mdlkit to publish ([@aginz](https://github.com/aginz))
+- Created first version of the mdlkit design system with core components:
+`AutoCompleteInput`, `Box`, `Button`, `Card`, `Checkbox`, `CheckboxField`,
+`Container`, `FieldError`, `Flex`, `FormField`, `Heading`, `Hyperlink`, `Icon`,
+`IconField`, `Label`, `ListGroup`, `LoadingCircle`, `OutlineButton`,
+`RadioButton`, `RadioButtonField`, `RadioGroup`, `Select`, `SelectField`,
+`Subheading`, `Text`, `Tooltip`, and `TransparentButton` ([@aginz](https://github.com/aginz))
 
 #### Authors: 1
 
