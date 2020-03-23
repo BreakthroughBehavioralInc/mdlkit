@@ -8,7 +8,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "cross-env BABEL_ENV=production babel src -d dist --extensions \".ts\"",
+    "build": "cross-env BABEL_ENV=production babel src -d dist --extensions \".ts\" --ignore src/components/**/*.stories.tsx",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -c .storybook -o .out",
     "lint": "eslint --ext .jsx,.ts,.tsx,.ts .",
@@ -61,7 +61,7 @@
     "react-dom": "^16.12.0",
     "react-final-form": "^5.1.2",
     "react-test-renderer": "^16.8.6",
-    "styled-components": "^4.2.0",
+    "styled-components": "^4.4.1",
     "ts-jest": "^25.2.1",
     "ts-loader": "^6.2.1",
     "typescript": "^3.8.2"
@@ -72,7 +72,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-final-form": "^5.1.2",
-    "styled-components": "^5.0.0"
+    "styled-components": "^4.4.1"
   },
   "husky": {
     "hooks": {
