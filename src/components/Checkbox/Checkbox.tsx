@@ -6,9 +6,13 @@ import { hiddenInput, inputWrapper } from '../../shared/Styles';
 import { CheckActive, CheckEmpty } from '../../icons';
 
 export interface CheckboxProps {
+  /** The id of a checkbox */
   id: string;
+  /** Checkbox can be disabled (optional) */
   disabled?: boolean;
+  /** Checkbox can be checked (optional) */
   checked?: boolean;
+  /** The color of the checkbox, defaults to primary */
   color?: string | null;
 }
 
