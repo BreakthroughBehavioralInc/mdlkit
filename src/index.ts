@@ -33,12 +33,14 @@ export { default as FieldError } from './components/FieldError/FieldError';
 export { default as Input } from './components/Input/Input';
 export { default as Label } from './components/Label/Label';
 export { default as Checkbox } from './components/Checkbox/Checkbox';
+export { default as Radio } from './components/Radio/Radio';
 export { default as RadioGroup } from './components/RadioGroup/RadioGroup';
 export { default as RadioButton } from './components/RadioButton/RadioButton';
 export { default as IconTooltip } from './components/IconTooltip/IconTooltip';
 export { default as InputField } from './components/InputField/InputField';
 export { default as SelectField } from './components/SelectField/SelectField';
 export { default as CheckboxField } from './components/CheckboxField/CheckboxField';
+export { default as RadioField } from './components/RadioField/RadioField';
 export { default as RadioButtonField } from './components/RadioButtonField/RadioButtonField';
 export { default as AutocompleteInput } from './components/AutocompleteInput/AutocompleteInput';
 

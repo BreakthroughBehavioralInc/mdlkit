@@ -35,6 +35,7 @@ declare module 'styled-components' {
       alertYellow: string;
       alertYellowText: string;
       white: string;
+      black: string;
       blue: string;
       lightGray: string;
       borderGray: string;
