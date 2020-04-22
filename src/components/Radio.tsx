@@ -18,6 +18,7 @@ const Radio = ({ checked, disabled, size, ...rest }: RadioProps) => {
     <RadioWrap checked={checked} disabled={disabled}>
       <RadioInput
         type="radio"
+        role="radio"
         {...rest}
         checked={checked}
         disabled={disabled}

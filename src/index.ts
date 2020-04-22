@@ -34,7 +34,7 @@ export { default as Input } from './components/Input';
 export { default as Label } from './components/Label';
 export { default as Checkbox } from './components/Checkbox';
 export { default as Radio } from './components/Radio';
-export { default as RadioGroup } from './components/RadioGroup';
+export { default as RadioButtonGroup } from './components/RadioButtonGroup';
 export { default as RadioButton } from './components/RadioButton';
 export { default as IconTooltip } from './components/IconTooltip';
 export { default as InputField } from './components/InputField';
