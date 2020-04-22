@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Box, { BoxProps } from './Box';
 
-const RadioGroup = styled(Box)<BoxProps>`
+const RadioButtonGroup = styled(Box)<BoxProps>`
   display: flex;
   flex-direction: row;
   align-items: stretch;
@@ -19,9 +19,9 @@ const RadioGroup = styled(Box)<BoxProps>`
   }
 `;
 
-RadioGroup.displayName = 'RadioGroup';
-RadioGroup.defaultProps = {
+RadioButtonGroup.displayName = 'RadioButtonGroup';
+RadioButtonGroup.defaultProps = {
   width: 1,
 };
 
-export default RadioGroup;
+export default RadioButtonGroup;
