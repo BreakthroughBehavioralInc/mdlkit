@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import Box from './Box';
-import { RadioChecked, RadioEmpty } from '../icons';
+import { RadioChecked, RadioEmpty } from './icons';
 
 interface RadioProps {
   id: string;
@@ -18,6 +18,7 @@ const Radio = ({ checked, disabled, size, ...rest }: RadioProps) => {
     <RadioWrap checked={checked} disabled={disabled}>
       <RadioInput
         type="radio"
+        role="radio"
         {...rest}
         checked={checked}
         disabled={disabled}

@@ -1,6 +1,6 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { FunctionComponent, ReactNode, useState } from 'react';
 import { themeGet } from 'styled-system';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Box, { BoxProps } from './Box';
 import Icon, { IconName } from './Icon';
 import Tooltip from './Tooltip';
@@ -8,6 +8,7 @@ import Tooltip from './Tooltip';
 interface IconTooltipInterface {
   icon?: IconName;
   size?: number;
+  ariaLabel: string;
   position?: 'center' | 'right' | 'left';
   children: ReactNode;
 }
@@ -31,6 +32,12 @@ const StyledIconTooltip = styled(Box)<any>`
     position: absolute;
     top: 20px;
     margin-left: -5px;
+
+    ${({ active }) =>
+      active &&
+      css`
+        display: block;
+      `}
   }
 
   &:hover ${StyledTooltip} {
@@ -38,28 +45,54 @@ const StyledIconTooltip = styled(Box)<any>`
   }
 `;
 
+const TransparentButton = styled.button<{ size?: number }>`
+  color: ${({ theme }) => theme.colors.transparent};
+  background-color: ${({ theme }) => theme.colors.transparent};
+  border: none;
+  cursor: pointer;
+  height: ${({ size }) => size || 24}px;
+  width: ${({ size }) => size || 24}px;
+  padding: 0;
+  margin: auto;
+`;
+
+const ClickableIcon = styled(Icon)`
+  pointer-events: none;
+`;
+
 const IconTooltip: FunctionComponent<IconTooltipProps> = ({
   children,
   width,
   size,
   position,
+  ariaLabel,
   icon = 'information',
   ...rest
-}: IconTooltipProps) => (
-  <StyledIconTooltip {...rest}>
-    <Icon name={icon} size={size} data-testid="tooltipIcon" />
-    <StyledTooltip
-      center={position === 'center'}
-      right={position === 'right'}
-      left={position === 'left'}
-      width={width}
-      zIndex={100}
-      data-testid="tooltipBox"
-    >
-      <Box>{children}</Box>
-    </StyledTooltip>
-  </StyledIconTooltip>
-);
+}: IconTooltipProps) => {
+  const [active, setActive] = useState<boolean>(false);
+  return (
+    <StyledIconTooltip active={active} {...rest}>
+      <TransparentButton
+        onClick={() => setActive(!active)}
+        size={size}
+        type="button"
+        aria-label={ariaLabel}
+      >
+        <ClickableIcon name={icon} size={size} data-testid="tooltipIcon" />
+      </TransparentButton>
+      <StyledTooltip
+        center={position === 'center'}
+        right={position === 'right'}
+        left={position === 'left'}
+        width={width}
+        zIndex={100}
+        data-testid="tooltipBox"
+      >
+        <Box>{children}</Box>
+      </StyledTooltip>
+    </StyledIconTooltip>
+  );
+};
 
 IconTooltip.displayName = 'IconTooltip';
 IconTooltip.defaultProps = {
