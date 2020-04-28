@@ -40,24 +40,24 @@ export type TextProps = {
 
 const Text = styled.p<TextProps>`
   font-family: ${themeGet('textFont')};
-  ${align} 
+  ${align}
   ${bold}
-  ${caps} 
+  ${caps}
 
 
   ${({ small, theme }) =>
     small &&
     css`
-      font-size: ${theme.fontSizes[0]};
+      font-size: ${theme.fontSizes[0]}px;
 
       ${theme.mediaQueries.md} {
-        font-size: ${theme.fontSizes[1]};
+        font-size: ${theme.fontSizes[1]}px;
       }
     `}
 
   ${color}
   ${fontSize}
-  ${fontWeight} 
+  ${fontWeight}
   ${lineHeight}
   ${space}
 `;
