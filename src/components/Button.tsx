@@ -1,4 +1,4 @@
-import styled, { DefaultTheme } from 'styled-components';
+import styled, { css, DefaultTheme } from 'styled-components';
 import { themeGet, space, SpaceProps } from 'styled-system';
 
 const buttonSize = ({ size, theme }: { size: string; theme: DefaultTheme }) => {
@@ -30,6 +30,8 @@ const width = ({ fullWidth }: { fullWidth?: boolean }) =>
   fullWidth ? { width: '100%' } : undefined;
 
 export type ButtonProps = {
+  caps?: boolean;
+  href?: string;
   size: 'small' | 'medium' | 'large';
   fullWidth?: boolean;
 } & SpaceProps;
@@ -51,6 +53,12 @@ const Button = styled.button<ButtonProps>`
   border-style: solid;
   transition: background-color ${themeGet('duration.slow')}
     ${themeGet('timingFunctions.easeOut')} 0ms;
+
+  ${({ caps }) =>
+    caps &&
+    css`
+      text-transform: uppercase;
+    `}
 
   &:disabled {
     opacity: 0.5;
