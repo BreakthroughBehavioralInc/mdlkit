@@ -15,6 +15,13 @@ To install and publish a package, you will need a Github personal access token.
 ## Installing
 Packages are available *[here](https://github.com/BreakthroughBehavioralInc/mdlkit/packages)
 
+1. Add the following to the `.npmrc` in the root of your project
+```sh
+@breakthroughbehavioralinc:registry=https://npm.pkg.github.com
+```
+
+2. Install the package
+
 ```sh
 npm install @breakthroughbehavioralinc/mdlkit
 ```
@@ -31,10 +38,8 @@ yarn add @breakthroughbehavioralinc/mdlkit
 ```sh
 npm login --registry=https://npm.pkg.github.com
 ```
-
-Your username is your github username
-Your password is your github personal access token.
-
+- Your username is your github username.
+- Your password is your github personal access token.
 
 
 2. Publish!
