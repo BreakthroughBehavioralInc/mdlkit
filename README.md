@@ -47,7 +47,13 @@ npm login --registry=https://npm.pkg.github.com
 - Your username is your github username.
 - Your password is your github personal access token.
 
-2. Publish!
+2. Build the package
+
+```sh
+yarn build
+```
+
+3. Publish!
 
 ```sh
 npm publish

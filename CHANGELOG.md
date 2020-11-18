@@ -1,3 +1,7 @@
+# v0.0.4 (Tue Nov 17 2020)
+
+- Bump version ([@aginz](https://github.com/aginz))
+
 # v0.0.3 (Tue Nov 17 2020)
 
 - Fix compile errors ([@aginz](https://github.com/aginz))
