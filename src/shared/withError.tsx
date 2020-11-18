@@ -14,6 +14,8 @@ export type FieldProps = {
   id?: string;
   label?: string | ReactNode;
   pt?: string;
+  mr?: string;
+  ml?: string;
   icon?: ReactNode;
   errorMessage?: string;
   showInitialError?: boolean;
@@ -33,6 +35,8 @@ const withError = FieldComponent => {
         input,
         meta,
         pt,
+        mr,
+        ml,
         errorMessage,
         showInitialError,
         ...rest
@@ -48,7 +52,7 @@ const withError = FieldComponent => {
         : Boolean(meta.touched && hasError);
 
       return (
-        <StyledBox pt={pt}>
+        <StyledBox pt={pt} mr={mr} ml={ml}>
           <FormField>
             {typeof label === 'object' ? label : null}
             {typeof label === 'string' ? <Label>{label}</Label> : null}
