@@ -1,39 +1,22 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { space, SpaceProps } from 'styled-system';
-import { borders, field } from '../shared/Styles';
+import { borders, field, disabled } from './forms/Styles';
 
 export type InputProps = {
   id: string;
   name: string;
   type?: string;
   placeholder?: string;
-  active?: boolean;
+  disabled?: boolean;
 } & SpaceProps;
 
 const Input = styled.input<InputProps>`
   ${borders}
   ${field}
 
-  ${space};
+  ${space}
 
-  ${({ disabled, theme }) =>
-    disabled &&
-    css`
-      background: ${theme.colors.lightGray};
-      cursor: not-allowed;
-    `}
-
-  ${({ placeholder, active, theme }) =>
-    (placeholder || !active) &&
-    css`
-      padding-top: 12px;
-      padding-bottom: 12px;
-
-      ${theme.mediaQueries.sm} {
-        padding-top: 13px;
-        padding-bottom: 13px;
-      }
-    `}
+  ${disabled}
 `;
 
 Input.displayName = 'Input';

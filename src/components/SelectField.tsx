@@ -1,10 +1,10 @@
 import React, { StatelessComponent } from 'react';
 import styled from 'styled-components';
 import { FieldRenderProps } from 'react-final-form';
-import FormField from './FormField';
-import Label from './Label';
-import FieldError, { error } from './FieldError';
-import Select, { SelectProps } from './Select';
+import FormField from '../FormField';
+import Label from '../Label';
+import FieldError, { error } from '../FieldError';
+import Select, { SelectProps } from '../Select';
 
 const StyledField = styled(Select)<SelectProps & { error: boolean }>`
   ${error}
@@ -15,24 +15,35 @@ interface Option {
   name: string;
 }
 
-type InputFieldProps = {
+type SelectFieldProps = {
+  id: string;
   label?: string;
   options: Option[];
   blank?: boolean;
+  disabled?: boolean;
 } & FieldRenderProps<any>;
 
-const InputField: StatelessComponent<InputFieldProps> = ({
+const SelectField: StatelessComponent<SelectFieldProps> = ({
+  id,
   label,
   options,
   blank,
   input,
   meta,
-}: InputFieldProps) => {
+  className,
+  disabled,
+}: SelectFieldProps) => {
   const hasError = meta.touched && meta.error;
   return (
     <FormField>
-      {label ? <Label smallLabel={!blank}>{label}</Label> : null}
-      <StyledField {...input} error={hasError}>
+      {label ? <Label>{label}</Label> : null}
+      <StyledField
+        id={id}
+        {...input}
+        error={hasError}
+        disabled={disabled}
+        className={className}
+      >
         {blank ? <option value="" /> : null}
         {options.map(option => (
           <option key={option.name} value={option.value}>
@@ -45,4 +56,4 @@ const InputField: StatelessComponent<InputFieldProps> = ({
   );
 };
 
-export default InputField;
+export default SelectField;

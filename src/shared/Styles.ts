@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import { css, DefaultTheme } from 'styled-components';
 import { themeGet } from 'styled-system';
 
 export const borders = ({
@@ -31,18 +31,15 @@ export const field = css`
   border-width: 1px;
   border-style: solid;
   border-color: ${themeGet('colors.borderGray')};
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 20px;
-  padding-bottom: ${themeGet('space.xxs')}px;
+  padding: 12px;
   margin: 0;
 
   ${themeGet('mediaQueries.sm')} {
-    padding-top: 22px;
+    padding: 10px;
     font-size: ${themeGet('fontSizes.2')}px;
   }
 
-  ::placeholder {
+  &::placeholder {
     color: ${themeGet('colors.gray')};
   }
 `;
@@ -62,3 +59,18 @@ export const inputWrapper = css`
   vertical-align: middle;
   cursor: pointer;
 `;
+
+export const disabled = ({
+  disabled: disabledField,
+  theme,
+}: {
+  disabled?: boolean;
+  theme: DefaultTheme;
+}) =>
+  disabledField
+    ? {
+        background: `${theme.colors.lightGray}`,
+        cursor: 'not-allowed',
+        opacity: 1,
+      }
+    : null;

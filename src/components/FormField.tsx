@@ -17,37 +17,23 @@ const FormField = ({ children }: { children: any }) => {
   // @ts-ignore
   const [icon] = childrenArray.filter(child => child.type.isIcon);
   // @ts-ignore
-  const smallLabel =
-    label &&
-    ((field && !!field.props.value) ||
-      (field && !field.props.value && label.props.smallLabel));
-  const id = field && (field.props.id || field.props.name);
+  const [error] = childrenArray.filter(child => child.type.isError);
 
+  const id = field && (field.props.id || field.props.name);
   const styledLabel =
     label &&
     React.cloneElement(label, {
       htmlFor: id,
-      smallLabel,
-      style: {
-        ...label.props.style,
-        position: 'absolute',
-        top: smallLabel ? 0 : 14,
-      },
-    });
-
-  const styledField =
-    field &&
-    React.cloneElement(field, {
-      active: smallLabel,
     });
 
   return (
     <StyledFlex column>
       {styledLabel}
       <IconField>
-        {styledField}
+        {field}
         {icon}
       </IconField>
+      {error}
     </StyledFlex>
   );
 };

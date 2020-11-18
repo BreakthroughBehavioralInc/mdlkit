@@ -1,4 +1,4 @@
-# v1.0.1 (Mon Mar 16 2020)
+# v0.0.1 (Mon Mar 16 2020)
 
 - Created first version of the mdlkit design system with core components:
   `AutoCompleteInput`, `Box`, `Button`, `Card`, `Checkbox`, `CheckboxField`,
