@@ -15,7 +15,6 @@ const RadioField: StatelessComponent<RadioFieldProps> = ({
   label,
   disabled,
   input,
-  meta,
   ...rest
 }: RadioFieldProps) => {
   const radioId = id || input.value;

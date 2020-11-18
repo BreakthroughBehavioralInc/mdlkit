@@ -10,7 +10,7 @@ const ClickableIcon = styled(Icon)<IconProps>`
   pointer-events: none;
 `;
 
-export type SelectProps = SpaceProps;
+export type SelectProps = SpaceProps & { className?: string };
 
 const SelectBase = styled.select<SelectProps>`
   ${borders}

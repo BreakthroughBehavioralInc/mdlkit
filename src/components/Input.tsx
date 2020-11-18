@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { space, SpaceProps } from 'styled-system';
-import { borders, field, disabled } from './forms/Styles';
+import { borders, field, disabled } from '../shared/Styles';
 
 export type InputProps = {
   id: string;

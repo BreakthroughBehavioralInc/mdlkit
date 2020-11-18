@@ -17,7 +17,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -c .storybook -o .out",
     "lint": "eslint --ext .jsx,.ts,.tsx,.ts .",
-    "pretty": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,md}\"",
+    "pretty": "prettier --write",
     "precommit": "lint-staged",
     "type-check": "tsc --skipLibCheck",
     "ci": "yarn lint && yarn type-check"
