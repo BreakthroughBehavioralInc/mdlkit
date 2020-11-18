@@ -1,3 +1,10 @@
+# v0.0.2 (Mon Mar 16 2020)
+
+- Change form fields to place label outside of input ([@aginz](https://github.com/aginz))
+
+#### Authors: 1
+
+- Ashley Ginsberg ([@aginz](https://github.com/aginz))
 # v0.0.1 (Mon Mar 16 2020)
 
 - Created first version of the mdlkit design system with core components:
