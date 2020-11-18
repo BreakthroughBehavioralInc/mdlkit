@@ -1,4 +1,11 @@
-# v0.0.2 (Mon Mar 16 2020)
+# v0.0.3 (Tue Nov 17 2020)
+
+- Fix compile errors ([@aginz](https://github.com/aginz))
+
+#### Authors: 1
+
+- Ashley Ginsberg ([@aginz](https://github.com/aginz))
+# v0.0.2 (Tue Nov 17 2020)
 
 - Change form fields to place label outside of input ([@aginz](https://github.com/aginz))
 
