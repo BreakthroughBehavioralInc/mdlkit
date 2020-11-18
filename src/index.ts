@@ -42,7 +42,6 @@ export { default as SelectField } from './components/SelectField';
 export { default as CheckboxField } from './components/CheckboxField';
 export { default as RadioField } from './components/RadioField';
 export { default as RadioButtonField } from './components/RadioButtonField';
-export { default as AutocompleteInput } from './components/AutocompleteInput';
 
 // form hocs
 export { default as withError } from './shared/withError';

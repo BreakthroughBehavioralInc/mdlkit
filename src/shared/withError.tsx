@@ -1,4 +1,4 @@
-import React, { PureComponent, ReactNode, FocusEvent } from 'react';
+import React, { PureComponent, ReactNode } from 'react';
 import { FieldRenderProps } from 'react-final-form';
 import styled from 'styled-components';
 import FormField from '../components/FormField';
@@ -8,12 +8,6 @@ import FieldError, { error as errorStyle } from '../components/FieldError';
 
 const StyledBox = styled(Box)`
   width: 100%;
-  position: relative;
-`;
-
-const StyledError = styled(FieldError)`
-  position: absolute;
-  top: 100%;
 `;
 
 export type FieldProps = {
@@ -22,7 +16,7 @@ export type FieldProps = {
   pt?: string;
   icon?: ReactNode;
   errorMessage?: string;
-  onBlur?: (event: FocusEvent) => any;
+  showInitialError?: boolean;
 } & FieldRenderProps<any>;
 
 const withError = FieldComponent => {
@@ -40,15 +34,18 @@ const withError = FieldComponent => {
         meta,
         pt,
         errorMessage,
+        showInitialError,
         ...rest
       } = this.props;
       const hasError =
         Boolean(errorMessage) ||
         Boolean(
-          meta.touched &&
-            (meta.error || (meta.submitError && !meta.dirtySinceLastSubmit)) &&
+          (meta.error || (meta.submitError && !meta.dirtySinceLastSubmit)) &&
             !meta.submitting
         );
+      const showError = showInitialError
+        ? hasError
+        : Boolean(meta.touched && hasError);
 
       return (
         <StyledBox pt={pt}>
@@ -56,13 +53,13 @@ const withError = FieldComponent => {
             {typeof label === 'object' ? label : null}
             {typeof label === 'string' ? <Label>{label}</Label> : null}
 
-            <StyledField {...input} error={hasError} id={id} {...rest} />
+            <StyledField {...input} error={showError} id={id} {...rest} />
             {icon || null}
           </FormField>
-          {hasError ? (
-            <StyledError id={`${id}Error`}>
+          {showError ? (
+            <FieldError id={`${id}Error`}>
               {errorMessage || meta.error || meta.submitError}
-            </StyledError>
+            </FieldError>
           ) : null}
         </StyledBox>
       );
