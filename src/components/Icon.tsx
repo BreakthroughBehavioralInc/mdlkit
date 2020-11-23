@@ -24,10 +24,8 @@ export type IconName =
   | 'checkEmpty'
   | 'chevronDown'
   | 'chevronUp'
-  | 'hide'
   | 'information'
-  | 'search'
-  | 'show';
+  | 'search';
 
 export interface IconInterface {
   name: IconName;
@@ -40,7 +38,12 @@ const Icon: FunctionComponent<IconProps> = ({
   size,
   ...rest
 }: IconProps) => (
-  <Img src={`../static/svg/${name}.svg`} alt={name} size={size} {...rest} />
+  <Img
+    src={`https://mdlive.blob.core.windows.net/affiliations-prod/static_asset/${name}.svg`}
+    alt={name}
+    size={size}
+    {...rest}
+  />
 );
 
 // @ts-ignore
