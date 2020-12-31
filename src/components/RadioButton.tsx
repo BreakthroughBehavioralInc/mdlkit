@@ -1,7 +1,7 @@
 import React, { StatelessComponent } from 'react';
 import styled from 'styled-components';
 import { themeGet } from 'styled-system';
-import { hiddenInput } from '../shared/Styles';
+import { hiddenInput } from './forms/Styles';
 import Box from './Box';
 
 const RadioButtonStyle = styled(Box)`

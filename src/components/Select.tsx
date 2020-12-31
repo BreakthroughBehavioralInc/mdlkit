@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { space, SpaceProps } from 'styled-system';
-import { borders, field } from '../shared/Styles';
+import { borders, field } from './forms/Styles';
 
 import Flex from './Flex';
 import Icon, { IconProps } from './Icon';

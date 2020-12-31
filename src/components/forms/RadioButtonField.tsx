@@ -1,7 +1,7 @@
 import React, { StatelessComponent } from 'react';
 import styled from 'styled-components';
 import { FieldRenderProps } from 'react-final-form';
-import RadioButton from './RadioButton';
+import RadioButton from '../RadioButton';
 
 type RadioFieldProps = {
   id?: string;

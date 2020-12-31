@@ -1,8 +1,8 @@
 import React, { StatelessComponent } from 'react';
 import styled from 'styled-components';
 import { FieldRenderProps } from 'react-final-form';
-import Label from './Label';
-import Radio from './Radio';
+import Label from '../Label';
+import Radio from '../Radio';
 
 type RadioFieldProps = {
   id: string;
