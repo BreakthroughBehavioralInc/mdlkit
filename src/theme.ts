@@ -237,13 +237,5 @@ const darkTheme: DefaultTheme = {
   background: primary,
 };
 
-export const ALPHA_10_TRANSPARENCY = '1a';
-export const ALPHA_25_TRANSPARENCY = '40';
-export const ALPHA_50_TRANSPARENCY = '80';
-export const ALPHA_80_TRANSPARENCY = 'CC';
-export const ALPHA_85_TRANSPARENCY = 'd9';
-export const ALPHA_90_TRANSPARENCY = 'e6';
-export const ALPHA_95_TRANSPARENCY = 'f2';
-
 export { lightTheme, darkTheme };
 export default lightTheme;
