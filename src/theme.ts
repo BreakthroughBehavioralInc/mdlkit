@@ -1,6 +1,8 @@
 import { DefaultTheme } from 'styled-components';
+import gridTheme from './gridTheme';
 
-const createMediaQuery = (n: number) => `@media screen and (min-width:${n}px)`;
+export const createMediaQuery = (n: number) =>
+  `@media screen and (min-width:${n}px)`;
 
 const addAliases = (arr: string[] | number[], aliases: string[]) =>
   aliases.forEach((key, i) =>
@@ -12,11 +14,24 @@ const addAliases = (arr: string[] | number[], aliases: string[]) =>
     })
   );
 
-export const breakpoints = [480, 768, 992];
+export const breakpoints = [
+  gridTheme.breakpoints.sm,
+  gridTheme.breakpoints.md,
+  gridTheme.breakpoints.lg,
+  gridTheme.breakpoints.xl,
+  gridTheme.breakpoints.xxl,
+];
 
 export const mediaQueries = breakpoints.map(createMediaQuery);
 
-const aliases = ['sm', 'md', 'lg'];
+// breakpoints
+const aliases = [
+  'sm', // 576
+  'md', // 768
+  'lg', // 1024
+  'xl', // 1200
+  'xxl', // 1440
+];
 
 addAliases(breakpoints, aliases);
 addAliases(mediaQueries, aliases);
@@ -34,10 +49,10 @@ const spaceAliases = [
 
 addAliases(space, spaceAliases);
 
-export const headingFont = `'Noto Sans',sans-serif`;
-export const textFont = `'Montserrat',sans-serif`;
+export const headingFont = `'Encode Sans',sans-serif`;
+export const textFont = `'Encode Sans',sans-serif`;
 
-export const fontSizes = [12, 14, 16, 20, 24, 32, 40, 56, 72];
+export const fontSizes = [12, 14, 16, 20, 24, 32, 38, 40, 48, 56, 72];
 
 export const light = 300;
 export const normal = 400;
@@ -65,27 +80,34 @@ const letterSpacings = {
 // color palette
 const alertBlue = '#cce5ff';
 const alertBlueText = '#004085';
-const alertGreen = '#d4edda';
-const alertGreenText = '#155724';
-const alertRed = '#f8d7da';
-const alertRedText = '#721c24';
+const alertGreen = '#e3fcef';
+const alertGreenText = '#177f4b';
+const alertRed = '#ffebe6';
+const alertRedText = '#cb023c';
 const alertYellow = '#fff3cd';
 const alertYellowText = '#856404';
 const black = '#070707';
 const white = '#fff';
-const blue = '#158ae0';
-const darkBlue = '#063567';
-const lightGray = '#f4f7ff';
+const lighterBlue = '#f9fdff';
+const lightBlue = '#158AE0';
+const blue = '#0379CE';
+const darkBlue = '#03275B';
+const steelBlue = '#527B89';
+const orange = '#f26522';
+const lightGray = '#f3f3f3';
 const borderGray = '#d5dfe6';
-const gray = '#747474';
-const darkGray = '#373A3C';
-const green = '#28a745';
-const red = '#dc3545';
+const gray = '#626568';
+const darkGray = '#404041';
+const green = '#0A8562';
+const red = '#EB003B';
+const yellow = '#F8E71C';
+const purple = '#8A60CD';
 const transparent = '#00000000';
 
 // color alias
 const primary = blue;
-const secondary = darkBlue;
+const primaryDark = darkBlue;
+const secondary = orange;
 const text = black;
 
 export const colors = {
@@ -99,7 +121,12 @@ export const colors = {
   alertYellowText,
   black,
   white,
+  lighterBlue,
+  lightBlue,
   blue,
+  darkBlue,
+  steelBlue,
+  orange,
   lightGray,
   borderGray,
   gray,
@@ -107,9 +134,12 @@ export const colors = {
   green,
   red,
   primary,
+  primaryDark,
   secondary,
   text,
   transparent,
+  yellow,
+  purple,
 };
 
 // styled-system's `borderRadius` function can hook into the `radii` object/array
@@ -153,6 +183,19 @@ const transitionDelays = {
   xLarge: `360ms`,
 };
 
+const padding = {
+  small: '5px',
+  medium: '15px',
+  large: '25px',
+  xLarge: '45px',
+};
+
+const margin = {
+  small: '5px',
+  medium: '15px',
+  large: '25px',
+};
+
 const shared = {
   breakpoints,
   mediaQueries,
@@ -165,6 +208,7 @@ const shared = {
   letterSpacings,
   colors,
   primary,
+  secondary,
   text,
   radii,
   radius,
@@ -173,8 +217,11 @@ const shared = {
   timingFunctions,
   duration,
   transitionDelays,
+  padding,
+  margin,
 };
 
+// @ts-ignore
 const lightTheme: DefaultTheme = {
   light: true,
   ...shared,
@@ -182,12 +229,21 @@ const lightTheme: DefaultTheme = {
   background: white,
 };
 
+// @ts-ignore
 const darkTheme: DefaultTheme = {
   dark: true,
   ...shared,
   foreground: white,
   background: primary,
 };
+
+export const ALPHA_10_TRANSPARENCY = '1a';
+export const ALPHA_25_TRANSPARENCY = '40';
+export const ALPHA_50_TRANSPARENCY = '80';
+export const ALPHA_80_TRANSPARENCY = 'CC';
+export const ALPHA_85_TRANSPARENCY = 'd9';
+export const ALPHA_90_TRANSPARENCY = 'e6';
+export const ALPHA_95_TRANSPARENCY = 'f2';
 
 export { lightTheme, darkTheme };
 export default lightTheme;

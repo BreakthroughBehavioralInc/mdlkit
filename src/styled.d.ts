@@ -34,9 +34,13 @@ declare module 'styled-components' {
       alertRedText: string;
       alertYellow: string;
       alertYellowText: string;
-      white: string;
       black: string;
+      white: string;
       blue: string;
+      lighterBlue: string;
+      lightBlue: string;
+      darkBlue: string;
+      steelBlue: string;
       lightGray: string;
       borderGray: string;
       gray: string;
@@ -44,9 +48,13 @@ declare module 'styled-components' {
       green: string;
       red: string;
       primary: string;
+      primaryDark: string;
       secondary: string;
+      orange: string;
       text: string;
       transparent: string;
+      yellow: string;
+      purple: string;
     };
     primary: string;
     foreground: string;
@@ -68,6 +76,12 @@ declare module 'styled-components' {
       slowest: string;
     };
     transitionDelays: {
+      small: string;
+      medium: string;
+      large: string;
+      xLarge: string;
+    };
+    padding: {
       small: string;
       medium: string;
       large: string;

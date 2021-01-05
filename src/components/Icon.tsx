@@ -11,10 +11,14 @@ interface ImgInterface {
   alt: string;
 }
 
+interface TabInterface {
+  tabIndex?: number;
+}
+
 export type ImgProps = SpaceProps & SizeProps & ImgInterface;
 
 const Img = styled.img<ImgProps>`
-  ${space}
+  ${space};
 
   width: ${({ size }) => size}px;
 `;
@@ -24,14 +28,16 @@ export type IconName =
   | 'checkEmpty'
   | 'chevronDown'
   | 'chevronUp'
+  | 'hide'
   | 'information'
-  | 'search';
+  | 'search'
+  | 'show';
 
 export interface IconInterface {
   name: IconName;
 }
 
-export type IconProps = IconInterface & SpaceProps & SizeProps;
+export type IconProps = IconInterface & SpaceProps & SizeProps & TabInterface;
 
 const Icon: FunctionComponent<IconProps> = ({
   name,
@@ -52,4 +58,5 @@ Icon.defaultProps = {
   size: 24,
 };
 
+// @ts-ignore
 export default Icon;

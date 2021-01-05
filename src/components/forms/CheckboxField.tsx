@@ -39,7 +39,9 @@ const CheckboxField: StatelessComponent<CheckboxFieldProps> = ({
         {label}
       </StyledLabel>
 
-      {hasError ? <FieldError>{meta.error}</FieldError> : null}
+      {hasError ? (
+        <FieldError id={`${checkboxId}Error`}>{meta.error}</FieldError>
+      ) : null}
     </Flex>
   );
 };

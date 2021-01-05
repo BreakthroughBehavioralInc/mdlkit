@@ -4,7 +4,7 @@ import { space, SpaceProps } from 'styled-system';
 
 export type ImageProps = {
   src: string;
-  alt: string;
+  alt?: string;
 } & SpaceProps;
 
 const Image: FunctionComponent<ImageProps> = ({

@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 import { themeGet } from 'styled-system';
 
 const GlobalStyle = createGlobalStyle`
- /* http://meyerweb.com/eric/tools/css/reset/ 
+ /* http://meyerweb.com/eric/tools/css/reset/
     v2.0 | 20110126
     License: none (public domain)
   */
@@ -15,21 +15,20 @@ const GlobalStyle = createGlobalStyle`
   dl, dt, dd, ol, ul, li,
   fieldset, form, label, legend,
   table, caption, tbody, tfoot, thead, tr, th, td,
-  article, aside, canvas, details, embed, 
-  figure, figcaption, footer, header, hgroup, 
+  article, aside, canvas, details, embed,
+  figure, figcaption, footer, header, hgroup,
   menu, nav, output, ruby, section, summary,
-  time, mark, audio, video {
+  time, mark, audio, video, button {
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
     font-family: ${({ theme }) => theme.headingFont};
     vertical-align: baseline;
     -webkit-font-smoothing: antialiased;
   }
 
   /* HTML5 display-role reset for older browsers */
-  article, aside, details, figcaption, figure, 
+  article, aside, details, figcaption, figure,
   footer, header, hgroup, menu, nav, section {
     display: block;
   }
@@ -47,7 +46,7 @@ const GlobalStyle = createGlobalStyle`
     content: '';
     content: none;
   }
-  
+
   table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -69,6 +68,10 @@ const GlobalStyle = createGlobalStyle`
   }
   html, body, #__next {
     height: 100%
+  }
+  /* For Modal */
+  [data-reach-dialog-overlay] {
+    z-index: 2;
   }
 `;
 

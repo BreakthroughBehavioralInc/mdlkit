@@ -47,5 +47,5 @@ export { default as RadioButtonField } from './components/forms/RadioButtonField
 export { default as withError } from './components/forms/withError';
 
 // shared
-export { default as GlobalStyle } from './components/GlobalStyle';
 export { default as theme } from './theme';
+export { default as gridTheme } from './gridTheme';
