@@ -1,6 +1,6 @@
 {
   "name": "@BreakthroughBehavioralInc/mdlkit",
-  "version": "0.0.8",
+  "version": "0.0.9-alpha.0",
   "description": "React component kit for MDLIVE design system",
   "main": "dist/index.js",
   "author": "Ashley Ginsberg",
@@ -20,7 +20,9 @@
     "pretty": "prettier --write",
     "precommit": "lint-staged",
     "type-check": "tsc --skipLibCheck",
-    "ci": "yarn lint && yarn type-check"
+    "updateSnapshot": "jest --updateSnapshot",
+    "test": "jest",
+    "ci": "yarn lint && yarn type-check && yarn test"
   },
   "dependencies": {
     "styled-system": "^4.2.2"
@@ -57,6 +59,7 @@
     "eslint-plugin-jest": "^22.6.4",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
+    "facepaint": "^1.2.1",
     "husky": "^2.3.0",
     "jest": "^25.1.0",
     "lint-staged": "^8.1.7",
@@ -74,6 +77,7 @@
   },
   "peerDependencies": {
     "downshift": "^3.2.10",
+    "facepaint": "^1.2.1",
     "match-sorter": "^3.1.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",

@@ -37,15 +37,15 @@ export { default as Radio } from './components/Radio';
 export { default as RadioButtonGroup } from './components/RadioButtonGroup';
 export { default as RadioButton } from './components/RadioButton';
 export { default as IconTooltip } from './components/IconTooltip';
-export { default as InputField } from './components/InputField';
-export { default as SelectField } from './components/SelectField';
-export { default as CheckboxField } from './components/CheckboxField';
-export { default as RadioField } from './components/RadioField';
-export { default as RadioButtonField } from './components/RadioButtonField';
+export { default as InputField } from './components/forms/InputField';
+export { default as SelectField } from './components/forms/SelectField';
+export { default as CheckboxField } from './components/forms/CheckboxField';
+export { default as RadioField } from './components/forms/RadioField';
+export { default as RadioButtonField } from './components/forms/RadioButtonField';
 
 // form hocs
-export { default as withError } from './shared/withError';
+export { default as withError } from './components/forms/withError';
 
 // shared
-export { default as GlobalStyle } from './shared/GlobalStyle';
 export { default as theme } from './theme';
+export { default as gridTheme } from './gridTheme';

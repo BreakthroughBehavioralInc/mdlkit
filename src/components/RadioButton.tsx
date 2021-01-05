@@ -1,7 +1,7 @@
 import React, { StatelessComponent } from 'react';
 import styled from 'styled-components';
 import { themeGet } from 'styled-system';
-import { hiddenInput } from '../shared/Styles';
+import { hiddenInput } from './forms/Styles';
 import Box from './Box';
 
 const RadioButtonStyle = styled(Box)`
@@ -16,7 +16,7 @@ const RadioWrap = styled.div<{ checked?: boolean; disabled?: boolean }>`
   width: 100%;
   height: 100%;
   display: inline-block;
-  color: ${props => props.theme.colors.gray};
+  color: ${({ theme }) => theme.colors.gray};
   > ${RadioButtonStyle} {
     border-color: ${themeGet('colors.borderGray')};
   }

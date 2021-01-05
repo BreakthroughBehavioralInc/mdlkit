@@ -1,10 +1,10 @@
 import React, { StatelessComponent, ReactNode } from 'react';
 import styled from 'styled-components';
 import { FieldRenderProps } from 'react-final-form';
-import Flex from './Flex';
-import Label from './Label';
-import FieldError from './FieldError';
-import Checkbox from './Checkbox';
+import Flex from '../Flex';
+import Label from '../Label';
+import FieldError from '../FieldError';
+import Checkbox from '../Checkbox';
 
 type CheckboxFieldProps = {
   label?: string | ReactNode;
@@ -39,7 +39,9 @@ const CheckboxField: StatelessComponent<CheckboxFieldProps> = ({
         {label}
       </StyledLabel>
 
-      {hasError ? <FieldError>{meta.error}</FieldError> : null}
+      {hasError ? (
+        <FieldError id={`${checkboxId}Error`}>{meta.error}</FieldError>
+      ) : null}
     </Flex>
   );
 };

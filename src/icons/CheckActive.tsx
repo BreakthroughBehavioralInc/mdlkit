@@ -3,7 +3,7 @@ import Svg from './Svg';
 import { useTheme } from '../hooks';
 
 interface Props {
-  id: string;
+  id?: string;
   color?: string | null;
 }
 

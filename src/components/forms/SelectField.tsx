@@ -1,10 +1,10 @@
 import React, { StatelessComponent } from 'react';
 import styled from 'styled-components';
 import { FieldRenderProps } from 'react-final-form';
-import FormField from './FormField';
-import Label from './Label';
-import FieldError, { error } from './FieldError';
-import Select, { SelectProps } from './Select';
+import FormField from '../FormField';
+import Label from '../Label';
+import FieldError, { error } from '../FieldError';
+import Select, { SelectProps } from '../Select';
 
 const StyledField = styled(Select)<SelectProps & { error: boolean }>`
   ${error}

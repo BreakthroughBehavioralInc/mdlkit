@@ -1,10 +1,10 @@
 import React, { PureComponent, ReactNode } from 'react';
 import { FieldRenderProps } from 'react-final-form';
 import styled from 'styled-components';
-import FormField from '../components/FormField';
-import Label from '../components/Label';
-import Box from '../components/Box';
-import FieldError, { error as errorStyle } from '../components/FieldError';
+import FormField from '../FormField';
+import Label from '../Label';
+import Box from '../Box';
+import FieldError, { error as errorStyle } from '../FieldError';
 
 const StyledBox = styled(Box)`
   width: 100%;

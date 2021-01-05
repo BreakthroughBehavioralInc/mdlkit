@@ -5,3 +5,4 @@ build
 storybook-static
 dist
 .env
+coverage

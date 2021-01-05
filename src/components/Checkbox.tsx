@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { themeGet } from 'styled-system';
 import Box from './Box';
-import { hiddenInput, inputWrapper } from '../shared/Styles';
+import { hiddenInput, inputWrapper } from './forms/Styles';
 import { CheckActive, CheckEmpty } from '../icons';
 
 export interface CheckboxProps {
