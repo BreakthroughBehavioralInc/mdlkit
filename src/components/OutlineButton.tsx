@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Button from './Button';
 
 const OutlineButton = styled(Button)`
@@ -6,10 +6,12 @@ const OutlineButton = styled(Button)`
   background-color: transparent;
   position: relative;
 
-  &:hover {
-    color: ${props => (props.disabled ? null : props.theme.colors.primary)};
-    background-color: ${({ theme }) => theme.colors.lightGray};
-  }
+  ${({ theme, disabled }) => css`
+    &:hover {
+      color: ${disabled ? null : theme.colors.primary};
+      background-color: ${theme.colors.lightGray};
+    }
+  `}
 
   &:after {
     content: ' ';
@@ -24,6 +26,7 @@ const OutlineButton = styled(Button)`
     border-radius: ${({ theme }) => theme.radius};
   }
 `;
+
 OutlineButton.displayName = 'OutlineButton';
 
 export default OutlineButton;
