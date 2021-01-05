@@ -7,8 +7,8 @@ type SizeType =
   | 'small'
   | 'medium'
   | 'large'
-  | 'xl'
-  | ('small' | 'medium' | 'large' | 'xl')[];
+  | 'xLarge'
+  | ('small' | 'medium' | 'large' | 'xLarge')[];
 
 const sizeFn = (props: { theme: { fontSizes: number[] }; size: SizeType }) => {
   const finalSize: { fontSize: string[]; padding: string[] } = {
@@ -29,7 +29,7 @@ const sizeFn = (props: { theme: { fontSizes: number[] }; size: SizeType }) => {
       fontSize: `${props.theme.fontSizes[2]}px`,
       padding: '12px 22px',
     },
-    xl: {
+    xLarge: {
       fontSize: `${props.theme.fontSizes[4]}px`,
       padding: '9.5px 38px',
     },
