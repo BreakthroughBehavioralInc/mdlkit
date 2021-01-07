@@ -50,7 +50,7 @@ npm login --registry=https://npm.pkg.github.com
 2. Build the package
 
 ```sh
-yarn build
+yarn prepare
 ```
 
 3. Publish!
