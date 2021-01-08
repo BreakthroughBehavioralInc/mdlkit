@@ -1,19 +1,25 @@
 {
   "name": "@BreakthroughBehavioralInc/mdlkit",
-  "version": "0.0.9-alpha.0",
+  "version": "0.0.9-alpha.1",
   "description": "React component kit for MDLIVE design system",
   "main": "dist/index.js",
+  "sideEffects": false,
+  "files": [
+    "dist/"
+  ],
   "author": "Ashley Ginsberg",
-  "repository": "https://github.com/BreakthroughBehavioralInc/mdlkit.git",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:BreakthroughBehavioralInc/mdlkit.git"
+  },
   "license": "MIT",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
-  "repository": {
-    "url": "git@github.com:BreakthroughBehavioralInc/mdlkit.git"
-  },
   "scripts": {
-    "build": "cross-env BABEL_ENV=production babel src -d dist --extensions \".ts,.tsx\"",
+    "prepare": "run-s clean build",
+    "build": "cross-env BABEL_ENV=production babel src -d dist --ignore '**/*.stories.tsx,**/**/*.spec.ts,**/**/*.spec.tsx' --extensions \".ts,.tsx\"",
+    "clean": "rimraf dist",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -c .storybook -o .out",
     "lint": "eslint --ext .jsx,.ts,.tsx,.ts .",
@@ -64,12 +70,14 @@
     "jest": "^25.1.0",
     "lint-staged": "^8.1.7",
     "match-sorter": "^3.1.1",
+    "npm-run-all": "^4.1.5",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-docgen-typescript-loader": "^3.6.0",
     "react-dom": "^16.12.0",
     "react-final-form": "^5.1.2",
     "react-test-renderer": "^16.8.6",
+    "rimraf": "^3.0.2",
     "styled-components": "^4.4.1",
     "ts-jest": "^25.2.1",
     "ts-loader": "^6.2.1",
