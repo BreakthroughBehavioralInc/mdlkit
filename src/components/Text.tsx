@@ -5,12 +5,14 @@ import {
   lineHeight,
   space,
   color,
+  maxWidth,
   themeGet,
   ColorProps,
   FontSizeProps,
   FontWeightProps,
   LineHeightProps,
   SpaceProps,
+  MaxWidthProps,
 } from 'styled-system';
 
 export const align = props => (props.align ? { textAlign: props.align } : null);
@@ -43,7 +45,8 @@ export type TextProps = {
   FontSizeProps &
   FontWeightProps &
   LineHeightProps &
-  SpaceProps;
+  SpaceProps &
+  MaxWidthProps;
 
 const Text = styled.p<TextProps>`
   font-family: ${themeGet('textFont')};
@@ -61,13 +64,14 @@ const Text = styled.p<TextProps>`
         font-size: ${theme.fontSizes[1]}px;
       }
     `}
-
+  
   ${fullWidth}
   ${color}
   ${fontSize}
   ${fontWeight}
   ${lineHeight}
   ${space}
+  ${maxWidth}
 `;
 
 Text.defaultProps = {
