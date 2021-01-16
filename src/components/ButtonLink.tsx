@@ -1,16 +1,15 @@
 import styled from 'styled-components';
-import { space, SpaceProps } from 'styled-system';
+import { space, color, SpaceProps, ColorProps } from 'styled-system';
 import { bold, align } from './Text';
-import { hyperlink } from './Hyperlink';
 
 export type ButtonLinkProps = {
   bold?: boolean;
   id?: string;
   align?: 'center' | 'left' | 'right';
-  textColor?: string;
   type?: string;
   onClick?: (e: any) => any;
-} & SpaceProps;
+} & SpaceProps &
+  ColorProps;
 
 export const ButtonLink = styled.button<ButtonLinkProps>`
   background-color: ${({ theme }) => theme.colors.transparent};
@@ -19,6 +18,7 @@ export const ButtonLink = styled.button<ButtonLinkProps>`
   padding: 0;
 
   cursor: pointer;
+  text-decoration: none;
 
   &:hover {
     text-decoration: underline;
@@ -27,14 +27,14 @@ export const ButtonLink = styled.button<ButtonLinkProps>`
   ${bold}
   ${align}
 
-  ${hyperlink}
-
+  ${color}
   ${space}
 `;
 
 ButtonLink.displayName = 'ButtonLink';
 ButtonLink.defaultProps = {
   bold: true,
+  color: 'primary',
 };
 
 export default ButtonLink;

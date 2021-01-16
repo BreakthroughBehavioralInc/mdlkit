@@ -16,8 +16,8 @@ export { default as ListGroup } from './components/ListGroup';
 export { default as Button } from './components/Button';
 export { default as OutlineButton } from './components/OutlineButton';
 export { default as TransparentButton } from './components/TransparentButton';
-export { default as ButtonLink } from './ButtonLink';
-export { default as CloseButton } from './CloseButton';
+export { default as ButtonLink } from './components/ButtonLink';
+export { default as CloseButton } from './components/CloseButton';
 
 // link components
 export { default as Hyperlink } from './components/Hyperlink';
@@ -46,7 +46,7 @@ export { default as RadioButtonField } from './components/forms/RadioButtonField
 
 // tooltips
 export { default as IconTooltip } from './components/IconTooltip';
-export { default as Tooltip } from './Tooltip';
+export { default as Tooltip } from './components/Tooltip';
 
 // form hocs
 export { default as withError } from './components/forms/withError';

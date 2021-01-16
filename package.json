@@ -18,14 +18,16 @@
   },
   "scripts": {
     "prepare": "run-s clean build",
-    "build": "cross-env BABEL_ENV=production babel src -d dist --ignore '**/*.stories.tsx,**/**/*.spec.ts,**/**/*.spec.tsx' --extensions \".ts,.tsx\"",
+    "build": "run-s build:js build:types",
+    "build:js": "cross-env BABEL_ENV=production babel src -d dist --ignore '**/*.stories.tsx,**/**/*.spec.ts,**/**/*.spec.tsx' --extensions \".ts,.tsx\"",
+    "build:types": "run-s type-check",
     "clean": "rimraf dist",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -c .storybook -o .out",
     "lint": "eslint --ext .jsx,.ts,.tsx,.ts .",
     "pretty": "prettier --write",
     "precommit": "lint-staged",
-    "type-check": "tsc --skipLibCheck",
+    "type-check": "tsc",
     "updateSnapshot": "jest --updateSnapshot",
     "test": "jest",
     "ci": "yarn lint && yarn type-check && yarn test"
