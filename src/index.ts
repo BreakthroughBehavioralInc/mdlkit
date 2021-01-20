@@ -1,4 +1,5 @@
 // layout components
+export { default as ResponsiveBox } from './components/ResponsiveBox';
 export { default as Box } from './components/Box';
 export { default as Card } from './components/Card';
 export { default as Container } from './components/Container';
