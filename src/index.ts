@@ -55,3 +55,4 @@ export { default as withError } from './components/forms/withError';
 // shared
 export { default as theme } from './theme';
 export { default as gridTheme } from './gridTheme';
+export { default as mq } from './utils/mq';
