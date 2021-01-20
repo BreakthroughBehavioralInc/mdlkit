@@ -3,7 +3,7 @@
   "version": "0.0.9-alpha.5",
   "description": "React component kit for MDLIVE design system",
   "main": "dist/index.js",
-  "types": "dist/types/index.d.ts",
+  "types": "dist/index.d.ts",
   "sideEffects": false,
   "files": [
     "dist/"
@@ -21,7 +21,8 @@
     "prepare": "run-s clean build",
     "build": "run-s build:js build:types",
     "build:js": "cross-env BABEL_ENV=production babel src -d dist --ignore '**/*.stories.tsx,**/**/*.spec.ts,**/**/*.spec.tsx' --extensions \".ts,.tsx\"",
-    "build:types": "mkdir -p dist/types && yarn type-check && cp src/styled.d.ts dist/types",
+    "build:types": "yarn type-check",
+    "build:types:debug": "tsc --traceResolution",
     "clean": "rimraf dist",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -c .storybook -o .out",

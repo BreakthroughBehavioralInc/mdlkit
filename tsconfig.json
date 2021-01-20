@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "outDir": "dist/types",
+    "rootDir": "./src",
+    "outDir": "./dist",
     "module": "esnext",
     "target": "esnext",
     "lib": ["es2017", "dom"],
@@ -8,6 +9,8 @@
     "allowJs": true,
     "jsx": "react",
     "moduleResolution": "node",
+    "declaration": true,
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -16,8 +19,6 @@
     "suppressImplicitAnyIndexErrors": true,
     "skipLibCheck": true,
     "noUnusedLocals": true,
-    "declaration": true,
-    "emitDeclarationOnly": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
