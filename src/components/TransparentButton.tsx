@@ -5,7 +5,10 @@ import { space, SpaceProps } from 'styled-system';
 export type TransparentButtonProps = {
   onClick?(event: MouseEvent<HTMLButtonElement>): void;
   ariaLabel?: string;
+  fullWidth?: boolean;
 } & SpaceProps;
+
+const fullWidth = props => (props.fullWidth ? { width: '100%' } : undefined);
 
 const TransparentButton = styled.button<TransparentButtonProps>`
   background-color: ${({ theme }) => theme.colors.transparent};
@@ -14,6 +17,7 @@ const TransparentButton = styled.button<TransparentButtonProps>`
   padding: 0;
   color: inherit;
 
+  ${fullWidth}
   ${space}
 `;
 
