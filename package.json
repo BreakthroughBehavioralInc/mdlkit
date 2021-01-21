@@ -1,8 +1,9 @@
 {
   "name": "@BreakthroughBehavioralInc/mdlkit",
-  "version": "0.0.9-alpha.3",
+  "version": "0.0.9-alpha.8",
   "description": "React component kit for MDLIVE design system",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "sideEffects": false,
   "files": [
     "dist/"
@@ -20,7 +21,8 @@
     "prepare": "run-s clean build",
     "build": "run-s build:js build:types",
     "build:js": "cross-env BABEL_ENV=production babel src -d dist --ignore '**/*.stories.tsx,**/**/*.spec.ts,**/**/*.spec.tsx' --extensions \".ts,.tsx\"",
-    "build:types": "run-s type-check",
+    "build:types": "yarn type-check",
+    "build:types:debug": "tsc --traceResolution",
     "clean": "rimraf dist",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -c .storybook -o .out",
@@ -71,7 +73,6 @@
     "husky": "^2.3.0",
     "jest": "^25.1.0",
     "lint-staged": "^8.1.7",
-    "match-sorter": "^3.1.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.19.1",
     "react": "^16.12.0",

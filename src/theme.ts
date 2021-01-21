@@ -221,7 +221,6 @@ const shared = {
   margin,
 };
 
-// @ts-ignore
 const lightTheme: DefaultTheme = {
   light: true,
   ...shared,
@@ -229,13 +228,6 @@ const lightTheme: DefaultTheme = {
   background: white,
 };
 
-// @ts-ignore
-const darkTheme: DefaultTheme = {
-  dark: true,
-  ...shared,
-  foreground: white,
-  background: primary,
-};
+export type ThemeType = typeof lightTheme;
 
-export { lightTheme, darkTheme };
 export default lightTheme;

@@ -1,5 +1,6 @@
 // layout components
-export { default as Box } from './components/Box';
+export { default as ResponsiveBox } from './components/ResponsiveBox';
+export { default as Box, BoxProps } from './components/Box';
 export { default as Card } from './components/Card';
 export { default as Container } from './components/Container';
 export { default as Flex } from './components/Flex';
@@ -13,14 +14,14 @@ export { default as Text } from './components/Text';
 export { default as ListGroup } from './components/ListGroup';
 
 // button components
-export { default as Button } from './components/Button';
+export { default as Button, ButtonProps } from './components/Button';
 export { default as OutlineButton } from './components/OutlineButton';
 export { default as TransparentButton } from './components/TransparentButton';
 export { default as ButtonLink } from './components/ButtonLink';
 export { default as CloseButton } from './components/CloseButton';
 
 // link components
-export { default as Hyperlink } from './components/Hyperlink';
+export { default as Hyperlink, HyperlinkProps } from './components/Hyperlink';
 
 // image components
 export { default as Icon } from './components/Icon';
@@ -32,7 +33,7 @@ export { default as LoadingCircle } from './components/LoadingCircle';
 // form components
 export { default as FormField } from './components/FormField';
 export { default as FieldError } from './components/FieldError';
-export { default as Input } from './components/Input';
+export { default as Input, InputProps } from './components/Input';
 export { default as Label } from './components/Label';
 export { default as Checkbox } from './components/Checkbox';
 export { default as Radio } from './components/Radio';
@@ -54,3 +55,4 @@ export { default as withError } from './components/forms/withError';
 // shared
 export { default as theme } from './theme';
 export { default as gridTheme } from './gridTheme';
+export { default as mq } from './utils/mq';
