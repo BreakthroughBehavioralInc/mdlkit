@@ -11,7 +11,7 @@ const StyledBox = styled(Box)`
 `;
 
 export type FieldProps = {
-  id?: string;
+  id: string;
   label?: string | ReactNode;
   pt?: string;
   mr?: string;
@@ -61,7 +61,7 @@ const withError = FieldComponent => {
             {icon || null}
           </FormField>
           {showError ? (
-            <FieldError id={`${id}Error`}>
+            <FieldError id={`${id}Error`} aria-describedby={id}>
               {errorMessage || meta.error || meta.submitError}
             </FieldError>
           ) : null}
