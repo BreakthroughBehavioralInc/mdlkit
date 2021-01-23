@@ -11,7 +11,8 @@ export default {
 export const Knobs = () => (
   <Button
     fullWidth={boolean('fullWidth', false)}
-    size={select('Size', ['small', 'medium', 'large'], 'large')}
+    size={select('size', ['small', 'medium', 'large'], 'large')}
+    raised={select('raised', [1, 2, 3], 2)}
   >
     Button
   </Button>
