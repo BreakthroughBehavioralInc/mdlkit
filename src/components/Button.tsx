@@ -54,11 +54,12 @@ const raised = props => {
       return { boxShadow: 'none' };
     case 1:
       return { boxShadow: '0px 5px 5px -2px rgba(0,0,0,0.15)' };
-    default:
     case 2:
       return { boxShadow: '0px 9px 8px -4px rgba(0,0,0,0.15)' };
     case 3:
       return { boxShadow: '0px 12px 11px -2px rgba(0,0,0,0.1)' };
+    default:
+      return { boxShadow: '0px 5px 5px -2px rgba(0,0,0,0.15)' };
   }
 };
 
