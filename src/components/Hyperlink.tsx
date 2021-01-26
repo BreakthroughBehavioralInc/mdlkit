@@ -1,20 +1,24 @@
-import styled from 'styled-components';
-import { space, color, SpaceProps, ColorProps } from 'styled-system';
+import styled, { css } from 'styled-components';
+import { themeGet, space, SpaceProps } from 'styled-system';
 import { bold, align } from './Text';
+
+export const hyperlink = css<{ textColor?: string }>`
+  color: ${({ textColor }) => textColor || themeGet('colors.primary')};
+  text-decoration: none;
+`;
 
 export type HyperlinkProps = {
   bold?: boolean;
   id?: string;
   align?: 'center' | 'left' | 'right';
+  textColor?: string;
   href?: string;
   tabIndex?: number;
   onClick?: (e: any) => any;
-} & SpaceProps &
-  ColorProps;
+} & SpaceProps;
 
 export const Hyperlink = styled.a<HyperlinkProps>`
   cursor: pointer;
-  text-decoration: none;
 
   &:hover {
     text-decoration: underline;
@@ -22,14 +26,15 @@ export const Hyperlink = styled.a<HyperlinkProps>`
 
   ${bold}
   ${align}
+
+  ${hyperlink}
+
   ${space}
-  ${color}
 `;
 
 Hyperlink.displayName = 'Hyperlink';
 Hyperlink.defaultProps = {
   bold: true,
-  color: 'primary',
 };
 
 export default Hyperlink;
