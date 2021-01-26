@@ -36,7 +36,7 @@ const sizeFn = (props: { theme: { fontSizes: number[] }; size: SizeType }) => {
   };
 
   const parsedSize = Array.isArray(props.size) ? props.size : [props.size];
-  parsedSize.forEach((size: string) => {
+  parsedSize.map((size: string) => {
     finalSize.fontSize.push(sizes[size].fontSize);
     finalSize.padding.push(sizes[size].padding);
   });

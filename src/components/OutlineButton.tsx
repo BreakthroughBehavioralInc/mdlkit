@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import Button from './Button';
 
 const OutlineButton = styled(Button)`
@@ -6,12 +6,10 @@ const OutlineButton = styled(Button)`
   background-color: transparent;
   position: relative;
 
-  ${({ theme, disabled }) => css`
-    &:hover {
-      color: ${disabled ? null : theme.colors.primary};
-      background-color: ${theme.colors.lightGray};
-    }
-  `}
+  &:hover {
+    color: ${props => (props.disabled ? null : props.theme.colors.primary)};
+    background-color: ${({ theme }) => theme.colors.lightGray};
+  }
 
   &:after {
     content: ' ';

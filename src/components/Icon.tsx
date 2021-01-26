@@ -18,7 +18,7 @@ interface TabInterface {
 export type ImgProps = SpaceProps & SizeProps & ImgInterface;
 
 const Img = styled.img<ImgProps>`
-  ${space}
+  ${space};
 
   width: ${({ size }) => size}px;
 `;
