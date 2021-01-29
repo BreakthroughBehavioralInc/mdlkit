@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 import { space, SpaceProps } from 'styled-system';
 import { borders, field, disabled } from './forms/Styles';
@@ -12,6 +12,7 @@ const ClickableIcon = styled(Icon)<IconProps>`
 
 export type SelectProps = {
   disabled?: boolean;
+  icon?: ReactNode;
 } & SpaceProps;
 
 const SelectBase = styled.select<SelectProps>`
@@ -19,14 +20,13 @@ const SelectBase = styled.select<SelectProps>`
   ${field}
 
   ${space}
-
   ${disabled}
 `;
 
-const Select = styled(props => (
+const Select = styled(({ icon, ...rest }) => (
   <Flex width={1} align="center">
-    <SelectBase {...props} />
-    <ClickableIcon size={12} ml={-32} name="chevronDown" />
+    <SelectBase {...rest} />
+    {icon || <ClickableIcon size={12} ml={-32} name="chevronDown" />}
   </Flex>
 ))``;
 

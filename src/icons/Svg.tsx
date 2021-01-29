@@ -4,7 +4,7 @@ import { space, color, SpaceProps, ColorProps } from 'styled-system';
 export type SvgProps = SpaceProps & ColorProps;
 
 const Svg = styled.svg<SvgProps>`
-  flex: 'none';
+  flex: none;
 
   ${space}
   ${color}
