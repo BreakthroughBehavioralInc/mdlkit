@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { FieldRenderProps } from 'react-final-form';
 import Label from '../Label';
 import Radio from '../Radio';
+import { themeGet } from 'styled-system';
 
 type RadioFieldProps = {
   id: string;
@@ -31,6 +32,7 @@ const RadioField: StatelessComponent<RadioFieldProps> = ({
 const StyledLabel = styled(Label)`
   cursor: pointer;
   pointer-events: all;
+  font-weight: ${themeGet('fontWeights.normal')};
 `;
 
 RadioField.displayName = 'RadioField';
