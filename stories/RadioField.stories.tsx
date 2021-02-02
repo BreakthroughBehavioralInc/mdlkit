@@ -7,7 +7,7 @@ export default {
   component: RadioField,
 };
 
-export const RadioFieldStorie = () => (
+export const RadioFieldStory = () => (
   <RadioField
     id="myRadioField"
     label="Label test"
