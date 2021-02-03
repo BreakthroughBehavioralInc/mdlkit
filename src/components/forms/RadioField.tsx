@@ -31,6 +31,7 @@ const RadioField: StatelessComponent<RadioFieldProps> = ({
 const StyledLabel = styled(Label)`
   cursor: pointer;
   pointer-events: all;
+  font-weight: ${({ theme }) => theme.fontWeights.normal};
 `;
 
 RadioField.displayName = 'RadioField';
