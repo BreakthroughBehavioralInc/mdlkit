@@ -24,7 +24,7 @@ export { default as CloseButton } from './components/CloseButton';
 export { default as Hyperlink, HyperlinkProps } from './components/Hyperlink';
 
 // image components
-export { default as Icon } from './components/Icon';
+export { default as Icon, IconProps } from './components/Icon';
 export { default as Image } from './components/Image';
 
 // loading components
@@ -44,6 +44,7 @@ export { default as SelectField } from './components/forms/SelectField';
 export { default as CheckboxField } from './components/forms/CheckboxField';
 export { default as RadioField } from './components/forms/RadioField';
 export { default as RadioButtonField } from './components/forms/RadioButtonField';
+export { borders } from './components/forms/Styles';
 
 // tooltips
 export { default as IconTooltip } from './components/IconTooltip';
@@ -56,3 +57,6 @@ export { default as withError } from './components/forms/withError';
 export { default as theme, ThemeType } from './theme';
 export { default as gridTheme } from './gridTheme';
 export { default as mq } from './utils/mq';
+
+// Icons
+export { default as Svg } from './icons/Svg';

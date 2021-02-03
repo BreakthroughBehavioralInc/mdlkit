@@ -26,6 +26,6 @@
     ],
     "types": []
   },
-  "include": ["src/**/*"],
+  "include": ["src/*", "src/**/*"],
   "exclude": ["node_modules", "build", "dist", "src/components/__tests__/*"]
 }

@@ -84,8 +84,8 @@ const alertGreen = '#e3fcef';
 const alertGreenText = '#177f4b';
 const alertRed = '#ffebe6';
 const alertRedText = '#cb023c';
-const alertYellow = '#fff3cd';
-const alertYellowText = '#856404';
+const alertYellow = '#fffae6';
+const alertYellowText = '#ad5f00';
 const black = '#070707';
 const white = '#fff';
 const lighterBlue = '#f9fdff';
@@ -221,6 +221,7 @@ const shared = {
   margin,
 };
 
+// do not set a type (like DefaultTheme), because styled-system uses additional keys not in the DefaultTheme
 const lightTheme: DefaultTheme = {
   light: true,
   ...shared,
