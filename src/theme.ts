@@ -106,8 +106,8 @@ const transparent = '#00000000';
 
 // color alias
 const primary = blue;
-const primaryDark = darkBlue;
-const secondary = orange;
+const secondary = darkBlue;
+const tertiary = orange;
 const text = black;
 
 export const colors = {
@@ -134,8 +134,8 @@ export const colors = {
   green,
   red,
   primary,
-  primaryDark,
   secondary,
+  tertiary,
   text,
   transparent,
   yellow,
@@ -209,6 +209,7 @@ const shared = {
   colors,
   primary,
   secondary,
+  tertiary,
   text,
   radii,
   radius,

@@ -5,6 +5,7 @@ import RadioField from '../src/components/forms/RadioField';
 export default {
   title: 'RadioField',
   component: RadioField,
+  decorators: [withKnobs],
 };
 
 export const RadioFieldStory = () => (
