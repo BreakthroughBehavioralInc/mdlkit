@@ -102,7 +102,7 @@ const Button = styled.button<ButtonProps>`
 
   &:hover {
     background-color: ${({ theme, disabled }) =>
-      disabled ? null : theme.colors.primaryDark};
+      disabled ? null : theme.colors.secondary};
   }
 
   ${raised}

@@ -48,8 +48,8 @@ declare module 'styled-components' {
       green: string;
       red: string;
       primary: string;
-      primaryDark: string;
       secondary: string;
+      tertiary: string;
       orange: string;
       text: string;
       transparent: string;
@@ -57,6 +57,8 @@ declare module 'styled-components' {
       purple: string;
     };
     primary: string;
+    secondary: string;
+    tertiary: string;
     foreground: string;
     background: string;
     text: string;
