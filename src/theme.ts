@@ -109,6 +109,7 @@ const primary = blue;
 const secondary = darkBlue;
 const tertiary = orange;
 const text = black;
+const primaryText = white;
 
 export const colors = {
   alertBlue,
@@ -137,9 +138,18 @@ export const colors = {
   secondary,
   tertiary,
   text,
+  primaryText,
   transparent,
   yellow,
   purple,
+};
+
+// color schemes
+const colorStyles = {
+  primaryTextOnPrimary: {
+    color: primaryText,
+    background: primary,
+  },
 };
 
 // styled-system's `borderRadius` function can hook into the `radii` object/array
@@ -207,10 +217,12 @@ const shared = {
   lineHeights,
   letterSpacings,
   colors,
+  colorStyles,
   primary,
   secondary,
   tertiary,
   text,
+  primaryText,
   radii,
   radius,
   boxShadows,

@@ -52,9 +52,16 @@ declare module 'styled-components' {
       tertiary: string;
       orange: string;
       text: string;
+      primaryText: string;
       transparent: string;
       yellow: string;
       purple: string;
+    };
+    colorStyles: {
+      primaryTextOnPrimary: {
+        color: string;
+        background: string;
+      };
     };
     primary: string;
     secondary: string;
@@ -62,6 +69,7 @@ declare module 'styled-components' {
     foreground: string;
     background: string;
     text: string;
+    primaryText: string;
     radii: number[];
     radius: string;
     boxShadows: string[];
