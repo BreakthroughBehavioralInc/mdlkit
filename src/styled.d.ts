@@ -69,7 +69,6 @@ declare module 'styled-components' {
     foreground: string;
     background: string;
     text: string;
-    primaryText: string;
     radii: number[];
     radius: string;
     boxShadows: string[];

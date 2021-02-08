@@ -16,6 +16,12 @@ Object {
     1200,
     1440,
   ],
+  "colorStyles": Object {
+    "primaryTextOnPrimary": Object {
+      "background": "#0379CE",
+      "color": "#fff",
+    },
+  },
   "colors": Object {
     "alertBlue": "#cce5ff",
     "alertBlueText": "#004085",
@@ -37,7 +43,7 @@ Object {
     "lighterBlue": "#f9fdff",
     "orange": "#f26522",
     "primary": "#0379CE",
-    "primaryBgText": "#fff",
+    "primaryText": "#fff",
     "purple": "#8A60CD",
     "red": "#EB003B",
     "secondary": "#03275B",
@@ -104,7 +110,6 @@ Object {
     "xLarge": "45px",
   },
   "primary": "#0379CE",
-  "primaryBgText": "#fff",
   "radii": Array [
     0,
     4,
