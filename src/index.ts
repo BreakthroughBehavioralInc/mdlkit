@@ -57,6 +57,7 @@ export { default as withError } from './components/forms/withError';
 export { default as theme, ThemeType } from './theme';
 export { default as gridTheme } from './gridTheme';
 export { default as mq } from './utils/mq';
+export { default as createColorStyles } from './utils/createColorStyles';
 
 // Icons
 export { default as Svg } from './icons/Svg';

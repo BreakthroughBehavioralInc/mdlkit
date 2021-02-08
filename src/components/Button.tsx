@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { themeGet, space, SpaceProps } from 'styled-system';
+import { space, SpaceProps } from 'styled-system';
 import { mq } from '../gridTheme';
 
 type SizeType =
@@ -79,16 +79,15 @@ const Button = styled.button<ButtonProps>`
   text-align: center;
   text-decoration: none;
   font-family: inherit;
-  font-weight: ${themeGet('fontWeights.bold')};
-  line-height: ${themeGet('lineHeights.standard')};
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
+  line-height: ${({ theme }) => theme.lineHeights.standard};
   cursor: pointer;
-  border-radius: ${themeGet('radius')};
-  background-color: ${themeGet('primary')};
-  color: ${themeGet('background')};
+  border-radius: ${({ theme }) => theme.radius};
+  ${({ theme }) => theme.colorStyles.primaryTextOnPrimary};
   border-width: 0;
   border-style: solid;
-  transition: background-color ${themeGet('duration.slow')}
-    ${themeGet('timingFunctions.easeOut')} 0ms;
+  transition: background-color ${({ theme }) => theme.duration.slow}
+    ${({ theme }) => theme.timingFunctions.easeOut} 0ms;
 
   ${({ caps }) =>
     caps &&

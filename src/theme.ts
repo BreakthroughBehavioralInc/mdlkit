@@ -1,5 +1,6 @@
 import { DefaultTheme } from 'styled-components';
 import gridTheme from './gridTheme';
+import createColorStyles from './utils/createColorStyles';
 
 export const createMediaQuery = (n: number) =>
   `@media screen and (min-width:${n}px)`;
@@ -109,6 +110,7 @@ const primary = blue;
 const secondary = darkBlue;
 const tertiary = orange;
 const text = black;
+const primaryText = white;
 
 export const colors = {
   alertBlue,
@@ -137,10 +139,14 @@ export const colors = {
   secondary,
   tertiary,
   text,
+  primaryText,
   transparent,
   yellow,
   purple,
 };
+
+// color styles
+export const colorStyles = createColorStyles({ colors });
 
 // styled-system's `borderRadius` function can hook into the `radii` object/array
 export const radii = [0, 4, 8];
@@ -207,6 +213,7 @@ const shared = {
   lineHeights,
   letterSpacings,
   colors,
+  colorStyles,
   primary,
   secondary,
   tertiary,
