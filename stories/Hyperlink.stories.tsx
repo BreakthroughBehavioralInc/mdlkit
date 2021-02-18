@@ -1,5 +1,5 @@
 import React from 'react';
-import { withKnobs } from '@storybook/addon-knobs';
+import { withKnobs, boolean } from '@storybook/addon-knobs';
 import Hyperlink from '../src/components/Hyperlink';
 
 export default {
@@ -8,4 +8,12 @@ export default {
   decorators: [withKnobs],
 };
 
-export const DefaultHyperlink = () => <Hyperlink href="#">Link here</Hyperlink>;
+export const Knobs = () => (
+  <Hyperlink
+    href="#"
+    bold={boolean('bold', true)}
+    small={boolean('small', false)}
+  >
+    Link here
+  </Hyperlink>
+);
