@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { themeGet, space, SpaceProps } from 'styled-system';
-import { bold, align } from './Text';
+import { bold, align, small } from './Text';
 
 export const hyperlink = css<{ textColor?: string }>`
   color: ${({ textColor }) => textColor || themeGet('colors.primary')};
@@ -9,6 +9,7 @@ export const hyperlink = css<{ textColor?: string }>`
 
 export type HyperlinkProps = {
   bold?: boolean;
+  small?: boolean;
   id?: string;
   align?: 'center' | 'left' | 'right';
   textColor?: string;
@@ -26,6 +27,7 @@ export const Hyperlink = styled.a<HyperlinkProps>`
 
   ${bold}
   ${align}
+  ${small}
 
   ${hyperlink}
 

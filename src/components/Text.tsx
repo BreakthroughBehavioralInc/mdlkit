@@ -31,6 +31,17 @@ export const caps = (props): any =>
       }
     : null;
 
+export const small = props =>
+  props.small
+    ? css`
+        font-size: ${props.theme.fontSizes[0]}px;
+
+        ${props.theme.mediaQueries.md} {
+          font-size: ${props.theme.fontSizes[1]}px;
+        }
+      `
+    : null;
+
 const fullWidth = props => (props.fullWidth ? { width: '100%' } : undefined);
 
 export type TextProps = {
@@ -54,17 +65,8 @@ const Text = styled.p<TextProps>`
   ${bold}
   ${bolder}
   ${caps}
+  ${small}
 
-  ${({ small, theme }) =>
-    small &&
-    css`
-      font-size: ${theme.fontSizes[0]}px;
-
-      ${theme.mediaQueries.md} {
-        font-size: ${theme.fontSizes[1]}px;
-      }
-    `}
-  
   ${fullWidth}
   ${color}
   ${fontSize}
