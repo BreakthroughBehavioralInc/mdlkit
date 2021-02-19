@@ -1,6 +1,8 @@
+import React, { StatelessComponent, ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 import { space, SpaceProps } from 'styled-system';
 import { mq } from '../gridTheme';
+import LoadingIcon from './LoadingIcon';
 
 type SizeType =
   | string
@@ -70,6 +72,9 @@ export type ButtonProps = {
   fullWidth?: boolean;
   raised?: number;
   minWidth?: string | string[];
+  loading?: boolean;
+  disabled?: boolean;
+  children: ReactNode;
 } & SpaceProps;
 
 const Button = styled.button<ButtonProps>`
@@ -112,9 +117,19 @@ const Button = styled.button<ButtonProps>`
   ${space}
 `;
 
-Button.displayName = 'Button';
-Button.defaultProps = {
+const ButtonWrapper: StatelessComponent<ButtonProps> = ({
+  loading,
+  children,
+  ...rest
+}: ButtonProps) => (
+  <Button {...rest}>{loading ? <LoadingIcon /> : children}</Button>
+);
+
+ButtonWrapper.displayName = 'Button';
+ButtonWrapper.defaultProps = {
+  minWidth: '105px',
   fullWidth: false,
+  loading: false,
 };
 
-export default Button;
+export default ButtonWrapper;

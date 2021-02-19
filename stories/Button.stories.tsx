@@ -10,6 +10,8 @@ export default {
 
 export const Knobs = () => (
   <Button
+    loading={boolean('loading', false)}
+    disabled={boolean('disabled', false)}
     fullWidth={boolean('fullWidth', false)}
     size={select('size', ['small', 'medium', 'large'], 'large')}
     raised={select('raised', [1, 2, 3], 2)}
