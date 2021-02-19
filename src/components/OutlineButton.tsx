@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import Button from './Button';
+import Button, { ButtonProps } from './Button';
 
-const OutlineButton = styled(Button)`
+const OutlineButton = styled(Button)<ButtonProps>`
   color: ${({ theme }) => theme.colors.primary};
   background-color: transparent;
   position: relative;
