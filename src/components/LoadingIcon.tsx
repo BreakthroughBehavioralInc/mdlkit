@@ -12,7 +12,7 @@ const spin = keyframes`
 
 const StyledSvg = styled.svg`
   animation: ${spin} 1s linear infinite;
-
+  vertical-align: text-top;
   height: 1rem;
   width: auto;
   line-height: 0;
