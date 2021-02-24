@@ -125,8 +125,8 @@ const ButtonWrapper: StatelessComponent<ButtonProps> = ({
   <Button {...rest}>
     {loading ? (
       <LoadingIcon
-        width="24px"
-        height="24px"
+        width="1.5em"
+        height="auto"
         color="primaryText"
         backgroundColor="primary"
       />
