@@ -122,7 +122,18 @@ const ButtonWrapper: StatelessComponent<ButtonProps> = ({
   children,
   ...rest
 }: ButtonProps) => (
-  <Button {...rest}>{loading ? <LoadingIcon /> : children}</Button>
+  <Button {...rest}>
+    {loading ? (
+      <LoadingIcon
+        width="1.5em"
+        height="auto"
+        color="primaryText"
+        backgroundColor="primary"
+      />
+    ) : (
+      children
+    )}
+  </Button>
 );
 
 ButtonWrapper.displayName = 'Button';

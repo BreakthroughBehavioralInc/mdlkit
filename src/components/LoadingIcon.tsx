@@ -1,54 +1,119 @@
 import React, { StatelessComponent } from 'react';
 import styled, { keyframes } from 'styled-components';
 
-const spin = keyframes`
-  from {
-    transform:rotate(0deg);
-  }
+const heartbeatAnimation = keyframes`
   to {
-    transform:rotate(360deg);
+    stroke-dashoffset: 0;
   }
 `;
 
-const StyledSvg = styled.svg`
-  animation: ${spin} 1s linear infinite;
-  vertical-align: text-top;
-  height: 1rem;
-  width: auto;
-  line-height: 0;
-  opacity: 1;
-  color: ${({ theme }) => theme.colors.primaryText};
+const circleAnimation = keyframes`
+  25% {
+    stroke-dashoffset: 283;
+    transform: rotate(-90deg);
+  }
+  50%,
+  75% {
+    stroke-dashoffset: 0;
+    transform: rotate(-90deg);
+  }
+
+  100% {
+    stroke-dashoffset: 283;
+    transform: rotate(270deg)
+  }
 `;
 
-const StyledCircle = styled.circle`
-  opacity: 0.25;
+const StyledSvg = styled.svg<{ width?: string; height?: string }>`
+  display: block;
+  width: ${({ width }) => width};
+  height: ${({ height }) => height};
+  margin: auto;
 `;
 
-const StyledPath = styled.path`
-  opacity: 0.75;
+const StyledPath = styled.path<{
+  animation?: string;
+  delay?: number;
+  strokeWidth?: number;
+  strokeColor: string;
+}>`
+  animation: 2.5s ${({ animation }) => animation} infinite ${heartbeatAnimation};
+  animation-delay: ${({ delay = 1 }) => delay}s;
+  fill: transparent;
+  stroke: ${({ strokeColor, theme }) =>
+    theme.colors[strokeColor] || strokeColor};
+  stroke-linejoin: round;
+  stroke-width: ${({ strokeWidth = 4 }) => strokeWidth}px;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
 `;
 
-const LoadingIcon: StatelessComponent = () => (
+const StyledCircle = styled.circle<{
+  delay?: number;
+  isOpacity?: boolean;
+  strokeColor: string;
+}>`
+  animation: 2.5s ease-in infinite ${circleAnimation};
+  animation-delay: ${({ delay = 0 }) => delay}s;
+  fill: transparent;
+  stroke: ${({ strokeColor, theme }) =>
+    theme.colors[strokeColor] || strokeColor};
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+  stroke-width: 5px;
+  transform-origin: 50% 50%;
+  transform: rotate(-90deg);
+  ${({ isOpacity }) => isOpacity && 'opacity:0.5;'}
+`;
+
+interface LoadingIconProps {
+  width?: string;
+  height?: string;
+  color: string;
+  backgroundColor: string;
+}
+
+const LoadingIcon: StatelessComponent<LoadingIconProps> = ({
+  width,
+  height,
+  color,
+  backgroundColor,
+}: LoadingIconProps) => (
   <StyledSvg
-    className="animate-spin h-5 w-5 text-white mx-8"
+    viewBox="0 0 100 100"
     xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
+    width={width}
+    height={height}
   >
-    <StyledCircle
-      className="opacity-25"
-      cx="12"
-      cy="12"
-      r="10"
-      stroke="currentColor"
-      strokeWidth="4"
-    ></StyledCircle>
     <StyledPath
-      className="opacity-75"
-      fill="currentColor"
-      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-    ></StyledPath>
+      d="M95,50 L72.5,50 L61.25,27.5 L38.75,72.5 L27.5,50 L5,50"
+      animation="ease"
+      strokeColor={color}
+    />
+    <StyledPath
+      d="M95,50 L72.5,50 L61.25,27.5 L38.75,72.5 L27.5,50 L5,50"
+      animation="ease-in-out"
+      delay={1.2}
+      strokeWidth={6}
+      strokeColor={backgroundColor}
+    />
+    <StyledCircle cx="50" cy="50" r="45" strokeColor={color} />
+    <StyledCircle
+      cx="50"
+      cy="50"
+      r="45"
+      delay={0.1}
+      strokeColor={color}
+      isOpacity
+    />
   </StyledSvg>
 );
+
+LoadingIcon.defaultProps = {
+  width: '100%',
+  height: '100%',
+  color: 'primaryText',
+  backgroundColor: 'primary',
+};
 
 export default LoadingIcon;
