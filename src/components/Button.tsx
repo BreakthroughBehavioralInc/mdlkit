@@ -94,6 +94,18 @@ const Button = styled.button<ButtonProps>`
   transition: background-color ${({ theme }) => theme.duration.slow}
     ${({ theme }) => theme.timingFunctions.easeOut} 0ms;
 
+  ${({ loading, theme }) =>
+    loading &&
+    `
+    position: relative;
+    color: ${theme.colors.transparent};
+
+    & > svg {
+      position: absolute;
+      left: calc(50% - 0.75em);
+    }
+  `}
+
   ${({ caps }) =>
     caps &&
     css`
@@ -122,7 +134,7 @@ const ButtonWrapper: StatelessComponent<ButtonProps> = ({
   children,
   ...rest
 }: ButtonProps) => (
-  <Button {...rest}>
+  <Button loading={loading} {...rest}>
     {loading ? (
       <LoadingIcon
         width="1.5em"
@@ -130,15 +142,13 @@ const ButtonWrapper: StatelessComponent<ButtonProps> = ({
         color="primaryText"
         backgroundColor="primary"
       />
-    ) : (
-      children
-    )}
+    ) : null}
+    {children}
   </Button>
 );
 
 ButtonWrapper.displayName = 'Button';
 ButtonWrapper.defaultProps = {
-  minWidth: '105px',
   fullWidth: false,
   loading: false,
 };
