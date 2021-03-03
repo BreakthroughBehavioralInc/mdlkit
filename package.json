@@ -35,6 +35,7 @@
     "ci": "yarn lint && yarn type-check && yarn test"
   },
   "dependencies": {
+    "react-intl": "^5.13.2",
     "styled-system": "^4.2.2"
   },
   "devDependencies": {

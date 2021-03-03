@@ -1,6 +1,7 @@
 import React, { StatelessComponent } from 'react';
 import styled from 'styled-components';
 import { FieldRenderProps } from 'react-final-form';
+import { FormattedMessage } from 'react-intl';
 import FormField from '../FormField';
 import Label from '../Label';
 import FieldError, { error } from '../FieldError';
@@ -33,6 +34,7 @@ const SelectField: StatelessComponent<SelectFieldProps> = ({
   disabled,
 }: SelectFieldProps) => {
   const hasError = meta.touched && meta.error;
+  const errorValue = meta.error;
   return (
     <FormField>
       {label ? <Label>{label}</Label> : null}
@@ -44,7 +46,18 @@ const SelectField: StatelessComponent<SelectFieldProps> = ({
           </option>
         ))}
       </StyledField>
-      {hasError ? <FieldError>{meta.error}</FieldError> : null}
+      {hasError ? (
+        <FieldError>
+          {errorValue.id ? (
+            <FormattedMessage
+              id={errorValue.id}
+              values={{ ...errorValue.values }}
+            />
+          ) : (
+            errorValue
+          )}
+        </FieldError>
+      ) : null}
     </FormField>
   );
 };

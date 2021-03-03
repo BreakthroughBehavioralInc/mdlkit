@@ -1,5 +1,6 @@
 import React, { PureComponent, ReactNode } from 'react';
 import { FieldRenderProps } from 'react-final-form';
+import { FormattedMessage } from 'react-intl';
 import styled from 'styled-components';
 import FormField from '../FormField';
 import Label from '../Label';
@@ -51,6 +52,7 @@ const withError = FieldComponent => {
         ? hasError
         : Boolean(meta.touched && hasError);
 
+      const errorValue = errorMessage || meta.error || meta.submitError;
       return (
         <StyledBox pt={pt} mr={mr} ml={ml}>
           <FormField>
@@ -62,7 +64,14 @@ const withError = FieldComponent => {
           </FormField>
           {showError ? (
             <FieldError id={`${id}Error`} aria-describedby={id}>
-              {errorMessage || meta.error || meta.submitError}
+              {errorValue.id ? (
+                <FormattedMessage
+                  id={errorValue.id}
+                  values={{ ...errorValue.values }}
+                />
+              ) : (
+                errorValue
+              )}
             </FieldError>
           ) : null}
         </StyledBox>
