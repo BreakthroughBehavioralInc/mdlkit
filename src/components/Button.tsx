@@ -65,8 +65,8 @@ const raised = props => {
   }
 };
 
-interface ButtonInterface extends React.HTMLAttributes<HTMLButtonElement> {
-  as?: any;
+interface ButtonInterface extends React.HTMLAttributes<HTMLElement> {
+  as?: 'a';
   type?: 'button' | 'submit' | 'reset';
   caps?: boolean;
   href?: string;
@@ -76,16 +76,18 @@ interface ButtonInterface extends React.HTMLAttributes<HTMLButtonElement> {
   minWidth?: string | string[];
   loading?: boolean;
   disabled?: boolean;
-  children: ReactNode;
 }
 
 type ButtonT = ButtonInterface & SpaceProps;
 
-export type ButtonProps = { ref?: React.Ref<HTMLButtonElement> } & ButtonT;
+export type ButtonProps = {
+  ref?: React.Ref<any>;
+  children: ReactNode;
+} & ButtonT;
 
-const StyledButton = styled.button<
-  { ref: React.Ref<HTMLButtonElement> } & ButtonT
->`
+type ButtonCombined = { ref: React.Ref<any> } & ButtonT;
+
+const StyledButton = styled.button<ButtonCombined>`
   -webkit-font-smoothing: antialiased;
   display: inline-block;
   vertical-align: middle;
@@ -137,24 +139,23 @@ const StyledButton = styled.button<
   ${space}
 `;
 
-const Button: StatelessComponent<ButtonProps> = React.forwardRef<
-  HTMLButtonElement,
-  ButtonT
->(({ loading, children, ...props }: ButtonT, ref) => {
-  return (
-    <StyledButton loading={loading} {...props} ref={ref}>
-      {loading ? (
-        <LoadingIcon
-          width="1.5em"
-          height="auto"
-          color="primaryText"
-          backgroundColor="primary"
-        />
-      ) : null}
-      {children}
-    </StyledButton>
-  );
-});
+const Button: StatelessComponent<ButtonProps> = React.forwardRef(
+  ({ loading, children, ...props }: ButtonT, ref) => {
+    return (
+      <StyledButton loading={loading} {...props} ref={ref}>
+        {loading ? (
+          <LoadingIcon
+            width="1.5em"
+            height="auto"
+            color="primaryText"
+            backgroundColor="primary"
+          />
+        ) : null}
+        {children}
+      </StyledButton>
+    );
+  }
+);
 
 Button.displayName = 'Button';
 Button.defaultProps = {

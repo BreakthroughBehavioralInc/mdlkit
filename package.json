@@ -1,6 +1,6 @@
 {
   "name": "@BreakthroughBehavioralInc/mdlkit",
-  "version": "0.2.1-alpha.6",
+  "version": "0.2.1-alpha.9",
   "description": "React component kit for MDLIVE design system",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
