@@ -1,8 +1,6 @@
-import React, { StatelessComponent, ReactNode } from 'react';
 import styled, { css } from 'styled-components';
 import { space, SpaceProps } from 'styled-system';
 import { mq } from '../gridTheme';
-import LoadingIcon from './LoadingIcon';
 
 type SizeType =
   | string
@@ -65,29 +63,17 @@ const raised = props => {
   }
 };
 
-interface ButtonInterface extends React.HTMLAttributes<HTMLElement> {
-  as?: 'a';
-  type?: 'button' | 'submit' | 'reset';
+export type ButtonProps = {
   caps?: boolean;
   href?: string;
   size: SizeType;
   fullWidth?: boolean;
   raised?: number;
   minWidth?: string | string[];
-  loading?: boolean;
   disabled?: boolean;
-}
+} & SpaceProps;
 
-type ButtonT = ButtonInterface & SpaceProps;
-
-export type ButtonProps = {
-  ref?: React.Ref<any>;
-  children: ReactNode;
-} & ButtonT;
-
-type ButtonCombined = { ref: React.Ref<any> } & ButtonT;
-
-const StyledButton = styled.button<ButtonCombined>`
+const Button = styled.button<ButtonProps>`
   -webkit-font-smoothing: antialiased;
   display: inline-block;
   vertical-align: middle;
@@ -103,18 +89,6 @@ const StyledButton = styled.button<ButtonCombined>`
   border-style: solid;
   transition: background-color ${({ theme }) => theme.duration.slow}
     ${({ theme }) => theme.timingFunctions.easeOut} 0ms;
-
-  ${({ loading, theme }) =>
-    loading &&
-    `
-    position: relative;
-    color: ${theme.colors.transparent};
-
-    & > svg {
-      position: absolute;
-      left: calc(50% - 0.75em);
-    }
-  `}
 
   ${({ caps }) =>
     caps &&
@@ -139,28 +113,9 @@ const StyledButton = styled.button<ButtonCombined>`
   ${space}
 `;
 
-const Button: StatelessComponent<ButtonProps> = React.forwardRef(
-  ({ loading, children, ...props }: ButtonT, ref) => {
-    return (
-      <StyledButton loading={loading} {...props} ref={ref}>
-        {loading ? (
-          <LoadingIcon
-            width="1.5em"
-            height="auto"
-            color="primaryText"
-            backgroundColor="primary"
-          />
-        ) : null}
-        {children}
-      </StyledButton>
-    );
-  }
-);
-
 Button.displayName = 'Button';
 Button.defaultProps = {
   fullWidth: false,
-  loading: false,
 };
 
 export default Button;
