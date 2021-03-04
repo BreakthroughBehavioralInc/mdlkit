@@ -77,7 +77,7 @@ export type ButtonProps = {
   children: ReactNode;
 } & SpaceProps;
 
-const Button = styled.button<ButtonProps>`
+const StyledButton = styled.button<ButtonProps>`
   -webkit-font-smoothing: antialiased;
   display: inline-block;
   vertical-align: middle;
@@ -129,28 +129,30 @@ const Button = styled.button<ButtonProps>`
   ${space}
 `;
 
-const ButtonWrapper: StatelessComponent<ButtonProps> = ({
-  loading,
-  children,
-  ...rest
-}: ButtonProps) => (
-  <Button loading={loading} {...rest}>
-    {loading ? (
-      <LoadingIcon
-        width="1.5em"
-        height="auto"
-        color="primaryText"
-        backgroundColor="primary"
-      />
-    ) : null}
-    {children}
-  </Button>
+const Button: StatelessComponent<ButtonProps & {
+  ref: React.Ref<HTMLButtonElement>;
+}> = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ loading, children, ...props }: ButtonProps, ref) => {
+    return (
+      <StyledButton loading={loading} {...props} ref={ref}>
+        {loading ? (
+          <LoadingIcon
+            width="1.5em"
+            height="auto"
+            color="primaryText"
+            backgroundColor="primary"
+          />
+        ) : null}
+        {children}
+      </StyledButton>
+    );
+  }
 );
 
-ButtonWrapper.displayName = 'Button';
-ButtonWrapper.defaultProps = {
+Button.displayName = 'Button';
+Button.defaultProps = {
   fullWidth: false,
   loading: false,
 };
 
-export default ButtonWrapper;
+export default Button;

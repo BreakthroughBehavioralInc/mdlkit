@@ -6,7 +6,7 @@ export { default as Container } from './components/Container';
 export { default as Flex } from './components/Flex';
 
 // text components
-export { default as Heading } from './components/Heading';
+export { default as Heading, HeadingProps } from './components/Heading';
 export { default as SubHeading } from './components/SubHeading';
 export { default as Text } from './components/Text';
 
