@@ -77,7 +77,7 @@ interface ButtonT extends React.HTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 }
 
-export type ButtonProps = { ref: React.Ref<HTMLButtonElement> } & ButtonT &
+export type ButtonProps = { ref?: React.Ref<HTMLButtonElement> } & ButtonT &
   SpaceProps;
 
 const StyledButton = styled.button<ButtonProps>`
