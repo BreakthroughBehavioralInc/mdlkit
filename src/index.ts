@@ -6,7 +6,7 @@ export { default as Container } from './components/Container';
 export { default as Flex } from './components/Flex';
 
 // text components
-export { default as Heading } from './components/Heading';
+export { default as Heading, HeadingProps } from './components/Heading';
 export { default as SubHeading } from './components/SubHeading';
 export { default as Text } from './components/Text';
 
@@ -15,6 +15,10 @@ export { default as ListGroup } from './components/ListGroup';
 
 // button components
 export { default as Button, ButtonProps } from './components/Button';
+export {
+  default as LoadingButton,
+  LoadingButtonProps,
+} from './components/LoadingButton';
 export { default as OutlineButton } from './components/OutlineButton';
 export { default as TransparentButton } from './components/TransparentButton';
 export { default as ButtonLink } from './components/ButtonLink';
@@ -29,6 +33,7 @@ export { default as Image } from './components/Image';
 
 // loading components
 export { default as LoadingCircle } from './components/LoadingCircle';
+export { default as LoadingIcon } from './components/LoadingIcon';
 
 // form components
 export { default as FormField } from './components/FormField';
