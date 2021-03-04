@@ -35,7 +35,6 @@
     "ci": "yarn lint && yarn type-check && yarn test"
   },
   "dependencies": {
-    "react-intl": "^5.13.2",
     "styled-system": "^4.2.2"
   },
   "devDependencies": {
@@ -93,6 +92,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-final-form": "^5.1.2",
+    "react-intl": "^5.13.2",
     "styled-components": "^5.1.0"
   },
   "husky": {

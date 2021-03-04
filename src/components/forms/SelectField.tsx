@@ -22,6 +22,7 @@ type SelectFieldProps = {
   options: Option[];
   blank?: boolean;
   disabled?: boolean;
+  errorMessage?: string;
 } & FieldRenderProps<any>;
 
 const SelectField: StatelessComponent<SelectFieldProps> = ({
@@ -32,9 +33,10 @@ const SelectField: StatelessComponent<SelectFieldProps> = ({
   input,
   meta,
   disabled,
+  errorMessage,
 }: SelectFieldProps) => {
   const hasError = meta.touched && meta.error;
-  const errorValue = meta.error;
+  const errorValue = errorMessage || meta.error || meta.submitError;
   return (
     <FormField>
       {label ? <Label>{label}</Label> : null}
