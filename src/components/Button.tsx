@@ -65,7 +65,9 @@ const raised = props => {
   }
 };
 
-interface ButtonT extends React.HTMLAttributes<HTMLButtonElement> {
+interface ButtonInterface extends React.HTMLAttributes<HTMLButtonElement> {
+  as?: any;
+  type?: 'button' | 'submit' | 'reset';
   caps?: boolean;
   href?: string;
   size: SizeType;
@@ -77,10 +79,13 @@ interface ButtonT extends React.HTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 }
 
-export type ButtonProps = { ref?: React.Ref<HTMLButtonElement> } & ButtonT &
-  SpaceProps;
+type ButtonT = ButtonInterface & SpaceProps;
 
-const StyledButton = styled.button<ButtonProps>`
+export type ButtonProps = { ref?: React.Ref<HTMLButtonElement> } & ButtonT;
+
+const StyledButton = styled.button<
+  { ref: React.Ref<HTMLButtonElement> } & ButtonT
+>`
   -webkit-font-smoothing: antialiased;
   display: inline-block;
   vertical-align: middle;
