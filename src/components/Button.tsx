@@ -65,7 +65,7 @@ const raised = props => {
   }
 };
 
-export type ButtonProps = {
+interface ButtonT extends React.HTMLAttributes<HTMLButtonElement> {
   caps?: boolean;
   href?: string;
   size: SizeType;
@@ -75,7 +75,10 @@ export type ButtonProps = {
   loading?: boolean;
   disabled?: boolean;
   children: ReactNode;
-} & SpaceProps;
+}
+
+export type ButtonProps = { ref: React.Ref<HTMLButtonElement> } & ButtonT &
+  SpaceProps;
 
 const StyledButton = styled.button<ButtonProps>`
   -webkit-font-smoothing: antialiased;
@@ -129,25 +132,24 @@ const StyledButton = styled.button<ButtonProps>`
   ${space}
 `;
 
-const Button: StatelessComponent<ButtonProps & {
-  ref: React.Ref<HTMLButtonElement>;
-}> = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ loading, children, ...props }: ButtonProps, ref) => {
-    return (
-      <StyledButton loading={loading} {...props} ref={ref}>
-        {loading ? (
-          <LoadingIcon
-            width="1.5em"
-            height="auto"
-            color="primaryText"
-            backgroundColor="primary"
-          />
-        ) : null}
-        {children}
-      </StyledButton>
-    );
-  }
-);
+const Button: StatelessComponent<ButtonProps> = React.forwardRef<
+  HTMLButtonElement,
+  ButtonT
+>(({ loading, children, ...props }: ButtonT, ref) => {
+  return (
+    <StyledButton loading={loading} {...props} ref={ref}>
+      {loading ? (
+        <LoadingIcon
+          width="1.5em"
+          height="auto"
+          color="primaryText"
+          backgroundColor="primary"
+        />
+      ) : null}
+      {children}
+    </StyledButton>
+  );
+});
 
 Button.displayName = 'Button';
 Button.defaultProps = {
