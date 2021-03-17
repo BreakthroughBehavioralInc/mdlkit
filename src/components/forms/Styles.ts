@@ -25,6 +25,7 @@ export const field = css`
   width: 100%;
   font-family: inherit;
   font-size: ${themeGet('fontSizes.1')}px;
+  line-height: ${themeGet('lineHeights.standard')};
   color: inherit;
   background-color: ${themeGet('background')};
   border-radius: ${themeGet('radius')};
