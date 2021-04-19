@@ -14,6 +14,7 @@ export const Knobs = () => (
     fullWidth={boolean('fullWidth', false)}
     size={select('size', ['small', 'medium', 'large'], 'large')}
     raised={select('raised', [1, 2, 3], 2)}
+    type="submit"
   >
     Button
   </Button>
