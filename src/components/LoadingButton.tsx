@@ -1,11 +1,11 @@
-import React, { StatelessComponent, ReactNode } from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 import styled from 'styled-components';
 import Button, { ButtonProps } from './Button';
 import LoadingIcon from './LoadingIcon';
 
-const StyledButton = styled(Button)<{ loading?: boolean }>`
-  ${({ loading, theme }) =>
-    loading &&
+const StyledButton = styled(Button)<{ isLoading?: boolean }>`
+  ${({ isLoading, theme }) =>
+    isLoading &&
     `
     position: relative;
     color: ${theme.colors.transparent};
@@ -17,22 +17,24 @@ const StyledButton = styled(Button)<{ loading?: boolean }>`
   `}
 `;
 
-export interface LoadingButtonProps extends ButtonProps {
+export interface LoadingButtonProps
+  extends ButtonProps,
+    React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  loading?: boolean;
+  isLoading?: boolean;
 }
 
-const LoadingButton: StatelessComponent<LoadingButtonProps> = ({
-  loading,
+const LoadingButton: FunctionComponent<LoadingButtonProps> = ({
+  isLoading,
   children,
   ...rest
 }: LoadingButtonProps) => {
   return (
-    <StyledButton loading={loading} {...rest}>
-      {loading ? (
+    <StyledButton isLoading={isLoading} {...rest}>
+      {isLoading ? (
         <LoadingIcon
           width="1.5em"
-          height="auto"
+          height="1.5em"
           color="primaryText"
           backgroundColor="primary"
         />
@@ -44,7 +46,7 @@ const LoadingButton: StatelessComponent<LoadingButtonProps> = ({
 
 LoadingButton.displayName = 'LoadingButton';
 LoadingButton.defaultProps = {
-  loading: false,
+  isLoading: false,
 };
 
-export default Button;
+export default LoadingButton;
