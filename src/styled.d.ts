@@ -56,6 +56,7 @@ declare module 'styled-components' {
       transparent: string;
       yellow: string;
       purple: string;
+      eggshellBlue: string;
     };
     colorStyles: {
       primaryTextOnPrimary: {
