@@ -105,6 +105,7 @@ const yellow = '#F8E71C';
 const purple = '#8A60CD';
 const transparent = '#00000000';
 const eggshellBlue = '#c6fdf2';
+const peachOrange = '#ffcf9a';
 
 // color alias
 const primary = blue;
@@ -145,6 +146,7 @@ export const colors = {
   yellow,
   purple,
   eggshellBlue,
+  peachOrange,
 };
 
 // color styles
