@@ -6,6 +6,10 @@ interface SizeProps {
   size?: number;
 }
 
+interface BaseUrlProps {
+  baseUrl?: string;
+}
+
 interface ImgInterface {
   src: string;
   alt: string;
@@ -35,19 +39,19 @@ export interface IconInterface {
   name: IconName;
 }
 
-export type IconProps = IconInterface & SpaceProps & SizeProps & TabInterface;
+export type IconProps = IconInterface &
+  SpaceProps &
+  SizeProps &
+  BaseUrlProps &
+  TabInterface;
 
 const Icon: FunctionComponent<IconProps> = ({
   name,
   size,
+  baseUrl = 'https://mdlivesaprivprod.blob.core.windows.net/affiliations-prod/static_asset',
   ...rest
 }: IconProps) => (
-  <Img
-    src={`https://mdlive.blob.core.windows.net/affiliations-prod/static_asset/${name}.svg`}
-    alt={name}
-    size={size}
-    {...rest}
-  />
+  <Img src={`${baseUrl}/${name}.svg`} alt={name} size={size} {...rest} />
 );
 
 // @ts-ignore
