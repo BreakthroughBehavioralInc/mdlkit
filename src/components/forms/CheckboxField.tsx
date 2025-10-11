@@ -1,4 +1,4 @@
-import React, { StatelessComponent, ReactNode } from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 import styled from 'styled-components';
 import { FieldRenderProps } from 'react-final-form';
 import Flex from '../Flex';
@@ -21,7 +21,7 @@ const StyledLabel = styled(Label)`
   width: 100%;
 `;
 
-const CheckboxField: StatelessComponent<CheckboxFieldProps> = ({
+const CheckboxField: FunctionComponent<CheckboxFieldProps> = ({
   disabled,
   id,
   label,

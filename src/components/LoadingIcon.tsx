@@ -1,4 +1,4 @@
-import React, { StatelessComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const heartbeatAnimation = keyframes`
@@ -73,7 +73,7 @@ interface LoadingIconProps {
   backgroundColor: string;
 }
 
-const LoadingIcon: StatelessComponent<LoadingIconProps> = ({
+const LoadingIcon: FunctionComponent<LoadingIconProps> = ({
   width,
   height,
   color,

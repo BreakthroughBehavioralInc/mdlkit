@@ -1,4 +1,4 @@
-import React, { StatelessComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import { themeGet } from 'styled-system';
 import { hiddenInput } from './forms/Styles';
@@ -60,7 +60,7 @@ interface RadioButtonProps {
   children?: any;
 }
 
-const RadioButton: StatelessComponent<RadioButtonProps> = ({
+const RadioButton: FunctionComponent<RadioButtonProps> = ({
   id,
   checked,
   disabled,

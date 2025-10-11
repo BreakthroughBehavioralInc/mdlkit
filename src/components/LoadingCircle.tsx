@@ -1,4 +1,4 @@
-import React, { StatelessComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import styled, { keyframes } from 'styled-components';
 import Box, { BoxProps } from './Box';
 
@@ -102,7 +102,7 @@ type Props = {
   color?: string;
 } & BoxProps;
 
-const LoadingCircle: StatelessComponent<Props> = ({
+const LoadingCircle: FunctionComponent<Props> = ({
   color,
   ...rest
 }: Props) => (
