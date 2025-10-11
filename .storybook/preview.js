@@ -9,7 +9,7 @@ import Box from '../src/components/Box';
 const preview = {
   decorators: [
     withA11y,
-    (Story) => (
+    Story => (
       <ThemeProvider theme={theme}>
         <Box p="md">
           <GlobalStyle />

@@ -22,7 +22,7 @@ const config = {
     reactDocgen: 'react-docgen-typescript',
     reactDocgenTypescriptOptions: {
       tsconfigPath: path.resolve(__dirname, '../tsconfig.json'),
-      propFilter: (prop) => {
+      propFilter: prop => {
         if (prop.parent == null) {
           return true;
         }
@@ -31,7 +31,7 @@ const config = {
       },
     },
   },
-  webpackFinal: async (config) => {
+  webpackFinal: async config => {
     config.resolve.extensions.push('.ts', '.tsx');
     return config;
   },

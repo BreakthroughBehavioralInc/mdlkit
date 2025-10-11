@@ -102,10 +102,7 @@ type Props = {
   color?: string;
 } & BoxProps;
 
-const LoadingCircle: FunctionComponent<Props> = ({
-  color,
-  ...rest
-}: Props) => (
+const LoadingCircle: FunctionComponent<Props> = ({ color, ...rest }: Props) => (
   <Box {...rest}>
     <Spinner color={color}>
       <div />
