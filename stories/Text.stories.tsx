@@ -1,13 +1,35 @@
 import React from 'react';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
+import { Meta, StoryObj } from '@storybook/react';
 import Text from '../src/components/Text';
 
-export default {
+const meta: Meta<typeof Text> = {
   title: 'Text',
   component: Text,
-  decorators: [withKnobs],
+  parameters: {
+    layout: 'centered',
+  },
+  argTypes: {
+    small: {
+      control: { type: 'boolean' },
+    },
+  },
+  args: {
+    small: false,
+  },
 };
 
-export const Knobs = () => (
-  <Text small={boolean('small', false)}>This is some sample text.</Text>
-);
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    children: 'This is some sample text.',
+  },
+};
+
+export const Small: Story = {
+  args: {
+    children: 'This is small text.',
+    small: true,
+  },
+};

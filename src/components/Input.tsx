@@ -22,8 +22,10 @@ const Input = styled.input<InputProps>`
 Input.displayName = 'Input';
 // @ts-ignore
 Input.isField = true;
-Input.defaultProps = {
-  type: 'text',
-};
+Object.assign(Input, {
+  defaultProps: {
+    type: 'text',
+  },
+});
 
 export default Input;

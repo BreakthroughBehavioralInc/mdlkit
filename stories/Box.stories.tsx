@@ -1,11 +1,20 @@
 import React from 'react';
-import { withKnobs } from '@storybook/addon-knobs';
+import { Meta, StoryObj } from '@storybook/react';
 import Box from '../src/components/Box';
 
-export default {
+const meta: Meta<typeof Box> = {
   title: 'Box',
   component: Box,
-  decorators: [withKnobs],
+  parameters: {
+    layout: 'centered',
+  },
 };
 
-export const DefaultBox = () => <Box>This is text in the Box component.</Box>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    children: 'This is text in the Box component.',
+  },
+};

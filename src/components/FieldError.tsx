@@ -37,12 +37,14 @@ const FieldError = styled.span<FieldErrorProps>`
 FieldError.displayName = 'FieldError';
 // @ts-ignore
 FieldError.isError = true;
-FieldError.defaultProps = {
-  pt: 1,
-  pl: 1,
-  color: 'red',
-  fontSize: [0, 1],
-  lineHeight: 'display',
-};
+Object.assign(FieldError, {
+  defaultProps: {
+    pt: 1,
+    pl: 1,
+    color: 'red',
+    fontSize: [0, 1],
+    lineHeight: 'display',
+  },
+});
 
 export default FieldError;

@@ -1,58 +1,72 @@
 import React from 'react';
+import { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withKnobs, select, boolean } from '@storybook/addon-knobs';
 import OutlineButton from '../src/components/OutlineButton';
 
-export default {
+const meta: Meta<typeof OutlineButton> = {
   title: 'OutlineButton',
   component: OutlineButton,
+  parameters: {
+    layout: 'centered',
+  },
+  argTypes: {
+    fullWidth: {
+      control: { type: 'boolean' },
+    },
+    size: {
+      control: { type: 'select' },
+      options: ['small', 'medium', 'large'],
+    },
+    onClick: { action: 'clicked' },
+  },
+  args: {
+    fullWidth: false,
+    size: 'large',
+  },
 };
 
-export const Knobs = () => (
-  <OutlineButton
-    fullWidth={boolean('fullWidth', false)}
-    size={select('Size', ['small', 'medium', 'large'], 'large')}
-  >
-    Outline Button
-  </OutlineButton>
-);
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Sizes = () => (
-  <>
-    <OutlineButton
-      onClick={action('Small outline button clicked')}
-      size="small"
-      m="sm"
-    >
-      Small Outline Button
-    </OutlineButton>
-    <OutlineButton
-      onClick={action('Medium outliine button clicked')}
-      size="medium"
-      m="sm"
-    >
-      Medium Outline Button
-    </OutlineButton>
-    <OutlineButton
-      onClick={action('Large outline button clicked')}
-      size="large"
-      m="sm"
-    >
-      Large Outline Button
-    </OutlineButton>
-  </>
-);
+export const Default: Story = {
+  args: {
+    children: 'Outline Button',
+  },
+};
 
-export const FullWidth = () => (
-  <OutlineButton
-    onClick={action('Full-Width button clicked')}
-    fullWidth
-    size="large"
-  >
-    Full-Width Outline Button
-  </OutlineButton>
-);
+export const Sizes: Story = {
+  render: () => (
+    <>
+      <OutlineButton
+        onClick={action('Small outline button clicked')}
+        size="small"
+        m="sm"
+      >
+        Small Outline Button
+      </OutlineButton>
+      <OutlineButton
+        onClick={action('Medium outline button clicked')}
+        size="medium"
+        m="sm"
+      >
+        Medium Outline Button
+      </OutlineButton>
+      <OutlineButton
+        onClick={action('Large outline button clicked')}
+        size="large"
+        m="sm"
+      >
+        Large Outline Button
+      </OutlineButton>
+    </>
+  ),
+};
 
-Knobs.story = {
-  decorators: [withKnobs],
+export const FullWidth: Story = {
+  args: {
+    children: 'Full-Width Outline Button',
+    fullWidth: true,
+    size: 'large',
+    onClick: action('Full-Width button clicked'),
+  },
 };

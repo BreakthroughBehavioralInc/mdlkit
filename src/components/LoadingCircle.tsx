@@ -122,8 +122,10 @@ const LoadingCircle: FunctionComponent<Props> = ({ color, ...rest }: Props) => (
 );
 
 LoadingCircle.displayName = 'LoadingCircle';
-LoadingCircle.defaultProps = {
-  color: 'primary',
-};
+Object.assign(LoadingCircle, {
+  defaultProps: {
+    color: 'primary',
+  },
+});
 
 export default LoadingCircle;

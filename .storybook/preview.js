@@ -1,6 +1,5 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import { withA11y } from '@storybook/addon-a11y';
 import GlobalStyle from '../src/shared/GlobalStyle';
 import theme from '../src/theme';
 import Box from '../src/components/Box';
@@ -8,7 +7,6 @@ import Box from '../src/components/Box';
 /** @type { import('@storybook/react').Preview } */
 const preview = {
   decorators: [
-    withA11y,
     Story => (
       <ThemeProvider theme={theme}>
         <Box p="md">
@@ -25,6 +23,9 @@ const preview = {
         color: /(background|color)$/i,
         date: /Date$/,
       },
+    },
+    a11y: {
+      // Minimal configuration - let it use defaults
     },
   },
 };

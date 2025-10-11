@@ -34,9 +34,11 @@ const CheckboxField: FunctionComponent<CheckboxFieldProps> = ({
   return (
     <Flex column {...rest}>
       <StyledLabel p="none" htmlFor={checkboxId} color="text">
-        <Checkbox id={checkboxId} disabled={disabled} {...input} />
-        &nbsp;&nbsp;
-        {label}
+        <>
+          <Checkbox id={checkboxId} disabled={disabled} {...input} />
+          &nbsp;&nbsp;
+          {label}
+        </>
       </StyledLabel>
 
       {hasError ? (

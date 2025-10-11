@@ -109,11 +109,13 @@ const LoadingIcon: FunctionComponent<LoadingIconProps> = ({
   </StyledSvg>
 );
 
-LoadingIcon.defaultProps = {
-  width: '100%',
-  height: '100%',
-  color: 'primaryText',
-  backgroundColor: 'primary',
-};
+Object.assign(LoadingIcon, {
+  defaultProps: {
+    width: '100%',
+    height: '100%',
+    color: 'primaryText',
+    backgroundColor: 'primary',
+  },
+});
 
 export default LoadingIcon;

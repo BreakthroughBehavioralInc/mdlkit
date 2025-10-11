@@ -31,7 +31,7 @@ const Information: FunctionComponent<InformationProps> = ({
         <g
           id="00-lets-get-started-270-member-fails"
           transform="translate(-1044.000000, -496.000000)"
-          fill={color || theme.colors.text}
+          fill={color || (theme as any)?.colors?.text || '#070707'}
           fillRule="nonzero"
         >
           <g

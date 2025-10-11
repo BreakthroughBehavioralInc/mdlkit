@@ -136,10 +136,12 @@ export type TooltipProps = {
   BoxProps;
 
 Tooltip.displayName = 'Tooltip';
-Tooltip.defaultProps = {
-  bg: 'white',
-  color: 'text',
-  zIndex: 'auto',
-};
+Object.assign(Tooltip, {
+  defaultProps: {
+    bg: 'white',
+    color: 'text',
+    zIndex: 'auto',
+  },
+});
 
 export default Tooltip;
