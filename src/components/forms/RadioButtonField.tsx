@@ -1,4 +1,4 @@
-import React, { StatelessComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import { FieldRenderProps } from 'react-final-form';
 import RadioButton from '../RadioButton';
@@ -9,7 +9,7 @@ type RadioFieldProps = {
   disabled?: boolean;
 } & FieldRenderProps<any>;
 
-const RadioButtonField: StatelessComponent<RadioFieldProps> = ({
+const RadioButtonField: FunctionComponent<RadioFieldProps> = ({
   id,
   label,
   input,

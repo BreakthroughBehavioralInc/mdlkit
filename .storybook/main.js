@@ -1,42 +1,44 @@
-const path = require('path');
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-module.exports = {
-  stories: ['../stories/**/*.stories.(ts|tsx|js|jsx|mdx)'],
+/** @type { import('@storybook/react-webpack5').StorybookConfig } */
+const config = {
+  stories: ['../stories/**/*.stories.@(ts|tsx|js|jsx|mdx)'],
   addons: [
+    '@storybook/addon-essentials',
+    '@storybook/addon-controls',
     '@storybook/addon-actions',
     '@storybook/addon-links',
     '@storybook/addon-storysource',
-    '@storybook/addon-knobs',
     '@storybook/addon-a11y',
-    '@storybook/addon-docs',
   ],
+  framework: {
+    name: '@storybook/react-webpack5',
+    options: {},
+  },
+  docs: {
+    autodocs: 'tag',
+  },
+  typescript: {
+    reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      tsconfigPath: path.resolve(
+        path.dirname(fileURLToPath(import.meta.url)),
+        '../tsconfig.json'
+      ),
+      propFilter: prop => {
+        if (prop.parent == null) {
+          return true;
+        }
+        // Filter out props which type definition is placed in react package
+        return prop.parent.fileName.indexOf('node_modules/@types/react') < 0;
+      },
+    },
+  },
   webpackFinal: async config => {
-    config.module.rules.push({
-      test: /\.(ts|tsx)$/,
-      use: [
-        {
-          loader: require.resolve('ts-loader'),
-        },
-        // Optional
-        {
-          loader: require.resolve('react-docgen-typescript-loader'),
-          options: {
-            tsconfigPath: path.resolve(__dirname, './../tsconfig.json'),
-            propFilter: prop => {
-              if (prop.parent == null) {
-                return true;
-              }
-
-              // Filter out props which type definition is placed in react package
-              return (
-                prop.parent.fileName.indexOf('node_modules/@types/react') < 0
-              );
-            },
-          },
-        },
-      ],
-    });
     config.resolve.extensions.push('.ts', '.tsx');
     return config;
   },
 };
+
+export default config;

@@ -14,6 +14,8 @@ export interface CheckboxProps {
   checked?: boolean;
   /** The color of the checkbox, defaults to primary */
   color?: string | null;
+  /** The size of the checkbox */
+  size?: number;
 }
 
 const Checkbox = ({ id, disabled, color, ...rest }: CheckboxProps) => {
@@ -77,8 +79,10 @@ const CheckBoxWrapper = styled(Box)`
 
 Checkbox.displayName = 'Checkbox';
 
-Checkbox.defaultProps = {
-  size: 20,
-};
+Object.assign(Checkbox, {
+  defaultProps: {
+    size: 20,
+  },
+});
 
 export default Checkbox;

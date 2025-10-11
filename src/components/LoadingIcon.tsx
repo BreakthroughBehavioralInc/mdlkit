@@ -1,4 +1,4 @@
-import React, { StatelessComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const heartbeatAnimation = keyframes`
@@ -73,7 +73,7 @@ interface LoadingIconProps {
   backgroundColor: string;
 }
 
-const LoadingIcon: StatelessComponent<LoadingIconProps> = ({
+const LoadingIcon: FunctionComponent<LoadingIconProps> = ({
   width,
   height,
   color,
@@ -109,11 +109,13 @@ const LoadingIcon: StatelessComponent<LoadingIconProps> = ({
   </StyledSvg>
 );
 
-LoadingIcon.defaultProps = {
-  width: '100%',
-  height: '100%',
-  color: 'primaryText',
-  backgroundColor: 'primary',
-};
+Object.assign(LoadingIcon, {
+  defaultProps: {
+    width: '100%',
+    height: '100%',
+    color: 'primaryText',
+    backgroundColor: 'primary',
+  },
+});
 
 export default LoadingIcon;

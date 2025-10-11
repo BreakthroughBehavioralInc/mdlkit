@@ -1,4 +1,4 @@
-import React, { StatelessComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import styled, { keyframes } from 'styled-components';
 import Box, { BoxProps } from './Box';
 
@@ -102,10 +102,7 @@ type Props = {
   color?: string;
 } & BoxProps;
 
-const LoadingCircle: StatelessComponent<Props> = ({
-  color,
-  ...rest
-}: Props) => (
+const LoadingCircle: FunctionComponent<Props> = ({ color, ...rest }: Props) => (
   <Box {...rest}>
     <Spinner color={color}>
       <div />
@@ -125,8 +122,10 @@ const LoadingCircle: StatelessComponent<Props> = ({
 );
 
 LoadingCircle.displayName = 'LoadingCircle';
-LoadingCircle.defaultProps = {
-  color: 'primary',
-};
+Object.assign(LoadingCircle, {
+  defaultProps: {
+    color: 'primary',
+  },
+});
 
 export default LoadingCircle;

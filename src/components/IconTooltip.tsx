@@ -88,17 +88,19 @@ const IconTooltip: FunctionComponent<IconTooltipProps> = ({
         zIndex={100}
         data-testid="tooltipBox"
       >
-        <Box>{children}</Box>
+        <Box>{children as any}</Box>
       </StyledTooltip>
     </StyledIconTooltip>
   );
 };
 
 IconTooltip.displayName = 'IconTooltip';
-IconTooltip.defaultProps = {
-  width: 430,
-  size: 14,
-  position: 'center',
-};
+Object.assign(IconTooltip, {
+  defaultProps: {
+    width: 430,
+    size: 14,
+    position: 'center',
+  },
+});
 
 export default IconTooltip;

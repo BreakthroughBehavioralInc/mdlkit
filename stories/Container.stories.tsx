@@ -1,15 +1,20 @@
 import React from 'react';
-import { withKnobs } from '@storybook/addon-knobs';
-
+import { Meta, StoryObj } from '@storybook/react';
 import Container from '../src/components/Container';
 
-export default {
+const meta: Meta<typeof Container> = {
   title: 'Container',
   component: Container,
+  parameters: {
+    layout: 'centered',
+  },
 };
 
-export const Knobs = () => <Container>Set max width of a container</Container>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-Knobs.story = {
-  decorators: [withKnobs],
+export const Default: Story = {
+  args: {
+    children: 'Set max width of a container',
+  },
 };

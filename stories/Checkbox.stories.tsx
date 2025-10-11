@@ -1,17 +1,51 @@
 import React from 'react';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
+import { Meta, StoryObj } from '@storybook/react';
 import Checkbox from '../src/components/Checkbox';
 
-export default {
+const meta: Meta<typeof Checkbox> = {
   title: 'Checkbox',
   component: Checkbox,
-  decorators: [withKnobs],
+  parameters: {
+    layout: 'centered',
+  },
+  argTypes: {
+    checked: {
+      control: { type: 'boolean' },
+    },
+    disabled: {
+      control: { type: 'boolean' },
+    },
+  },
+  args: {
+    id: 'myCheckbox',
+    checked: true,
+    disabled: false,
+  },
 };
 
-export const Knobs = () => (
-  <Checkbox
-    id="myCheckbox"
-    checked={boolean('checked', true)}
-    disabled={boolean('disabled', false)}
-  />
-);
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    id: 'myCheckbox',
+    checked: true,
+    disabled: false,
+  },
+};
+
+export const Unchecked: Story = {
+  args: {
+    id: 'myCheckbox2',
+    checked: false,
+    disabled: false,
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    id: 'myCheckbox3',
+    checked: true,
+    disabled: true,
+  },
+};
