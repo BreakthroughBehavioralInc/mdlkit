@@ -3,14 +3,14 @@ import Flex from './Flex';
 
 const IconField = ({ children }: { children: any }) => {
   const childrenArray = React.Children.toArray(children).filter(
-    child => child.type.isField || child.type.isIcon
+    (child: any) => child.type?.isField || child.type?.isIcon
   );
 
-  const styledChildren = childrenArray.map((child, i) => {
-    if (child.type.isIcon) {
-      return React.cloneElement(child, {
+  const styledChildren = childrenArray.map((child: any, i) => {
+    if (child.type?.isIcon) {
+      return React.cloneElement(child as React.ReactElement, {
         style: {
-          ...child.props.style,
+          ...child.props?.style,
           flex: 'none',
           alignSelf: 'center',
           marginLeft: i === 0 ? 8 : -32,
@@ -18,16 +18,16 @@ const IconField = ({ children }: { children: any }) => {
         },
       });
     }
-    return React.cloneElement(child, {
+    return React.cloneElement(child as React.ReactElement, {
       style: {
-        ...child.props.style,
+        ...child.props?.style,
         paddingLeft: i === 0 ? undefined : 40,
         paddingRight: i === children.length - 1 ? undefined : 40,
       },
     });
   });
 
-  return <Flex>{styledChildren}</Flex>;
+  return <Flex>{styledChildren as any}</Flex>;
 };
 
 export default IconField;

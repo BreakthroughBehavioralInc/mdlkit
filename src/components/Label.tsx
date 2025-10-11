@@ -27,9 +27,11 @@ const Label = styled.label<LabelProps>`
 Label.displayName = 'Label';
 // @ts-ignore
 Label.isLabel = true;
-Label.defaultProps = {
-  fontSize: [1, 2],
-  color: 'darkGray',
-};
+Object.assign(Label, {
+  defaultProps: {
+    fontSize: [1, 2],
+    color: 'darkGray',
+  },
+});
 
 export default Label;

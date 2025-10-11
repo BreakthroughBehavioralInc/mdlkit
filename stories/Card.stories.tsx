@@ -1,14 +1,20 @@
 import React from 'react';
-import { withKnobs } from '@storybook/addon-knobs';
+import { Meta, StoryObj } from '@storybook/react';
 import Card from '../src/components/Card';
 
-export default {
+const meta: Meta<typeof Card> = {
   title: 'Card',
   component: Card,
+  parameters: {
+    layout: 'centered',
+  },
 };
 
-export const Knobs = () => <Card>Card</Card>;
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-Knobs.story = {
-  decorators: [withKnobs],
+export const Default: Story = {
+  args: {
+    children: 'Card',
+  },
 };

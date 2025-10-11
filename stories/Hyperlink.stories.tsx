@@ -1,19 +1,54 @@
 import React from 'react';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
+import { Meta, StoryObj } from '@storybook/react';
 import Hyperlink from '../src/components/Hyperlink';
 
-export default {
+const meta: Meta<typeof Hyperlink> = {
   title: 'Hyperlink',
   component: Hyperlink,
-  decorators: [withKnobs],
+  parameters: {
+    layout: 'centered',
+  },
+  argTypes: {
+    bold: {
+      control: { type: 'boolean' },
+    },
+    small: {
+      control: { type: 'boolean' },
+    },
+  },
+  args: {
+    href: '#',
+    bold: true,
+    small: false,
+  },
 };
 
-export const Knobs = () => (
-  <Hyperlink
-    href="#"
-    bold={boolean('bold', true)}
-    small={boolean('small', false)}
-  >
-    Link here
-  </Hyperlink>
-);
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    href: '#',
+    bold: true,
+    small: false,
+    children: 'Link here',
+  },
+};
+
+export const Small: Story = {
+  args: {
+    href: '#',
+    bold: false,
+    small: true,
+    children: 'Small link',
+  },
+};
+
+export const Bold: Story = {
+  args: {
+    href: '#',
+    bold: true,
+    small: false,
+    children: 'Bold link',
+  },
+};

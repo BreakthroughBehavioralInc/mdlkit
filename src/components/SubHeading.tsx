@@ -9,11 +9,13 @@ const SubHeading = styled(Text)<HeadingProps>``;
 
 SubHeading.displayName = 'SubHeading';
 
-SubHeading.defaultProps = {
-  fontSize: 2,
-  fontWeight: 'bold',
-  lineHeight: 'display',
-  color: 'text',
-};
+Object.assign(SubHeading, {
+  defaultProps: {
+    fontSize: 2,
+    fontWeight: 'bold',
+    lineHeight: 'display',
+    color: 'text',
+  },
+});
 
 export default SubHeading;

@@ -1,19 +1,21 @@
 import React from 'react';
-import { withKnobs } from '@storybook/addon-knobs';
+import { Meta, StoryObj } from '@storybook/react';
 import Flex from '../src/components/Flex';
 
-export default {
+const meta: Meta<typeof Flex> = {
   title: 'Flex',
   component: Flex,
+  parameters: {
+    layout: 'centered',
+  },
 };
 
-export const Knobs = () => (
-  <Flex>
-    Flex is an extension of Box with &quot;display:flex&quot; and props for
-    flexbox
-  </Flex>
-);
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-Knobs.story = {
-  decorators: [withKnobs],
+export const Default: Story = {
+  args: {
+    children:
+      'Flex is an extension of Box with "display:flex" and props for flexbox',
+  },
 };

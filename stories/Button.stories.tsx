@@ -1,45 +1,75 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
-import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { Meta, StoryObj } from '@storybook/react';
 import Button from '../src/components/Button';
 
-export default {
+const meta: Meta<typeof Button> = {
   title: 'Button',
   component: Button,
+  parameters: {
+    layout: 'centered',
+  },
+  argTypes: {
+    size: {
+      control: { type: 'select' },
+      options: ['small', 'medium', 'large'],
+    },
+    raised: {
+      control: { type: 'select' },
+      options: [1, 2, 3],
+    },
+    disabled: {
+      control: { type: 'boolean' },
+    },
+    fullWidth: {
+      control: { type: 'boolean' },
+    },
+    onClick: { action: 'clicked' },
+  },
+  args: {
+    size: 'large',
+    raised: 2,
+    disabled: false,
+    fullWidth: false,
+    type: 'submit',
+  },
 };
 
-export const Knobs = () => (
-  <Button
-    disabled={boolean('disabled', false)}
-    fullWidth={boolean('fullWidth', false)}
-    size={select('size', ['small', 'medium', 'large'], 'large')}
-    raised={select('raised', [1, 2, 3], 2)}
-    type="submit"
-  >
-    Button
-  </Button>
-);
+export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Sizes = () => (
-  <>
-    <Button onClick={action('Small button clicked')} size="small" m="sm">
-      Small Button
-    </Button>
-    <Button onClick={action('Medium button clicked')} size="medium" m="sm">
-      Medium Button
-    </Button>
-    <Button onClick={action('Large button clicked')} size="large" m="sm">
-      Large Button
-    </Button>
-  </>
-);
+export const Default: Story = {
+  args: {
+    children: 'Button',
+  },
+};
 
-export const FullWidth = () => (
-  <Button onClick={action('Full-Width button clicked')} fullWidth size="large">
-    Full-Width Button
-  </Button>
-);
+export const Sizes: Story = {
+  render: () => (
+    <>
+      <Button onClick={() => {}} size="small" m="sm">
+        Small Button
+      </Button>
+      <Button onClick={() => {}} size="medium" m="sm">
+        Medium Button
+      </Button>
+      <Button onClick={() => {}} size="large" m="sm">
+        Large Button
+      </Button>
+    </>
+  ),
+};
 
-Knobs.story = {
-  decorators: [withKnobs],
+export const FullWidth: Story = {
+  args: {
+    children: 'Full-Width Button',
+    fullWidth: true,
+    size: 'large',
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    children: 'Disabled Button',
+    disabled: true,
+  },
 };
