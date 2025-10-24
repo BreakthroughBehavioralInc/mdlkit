@@ -1,9 +1,9 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import Card from '../src/components/Card';
+import Card from '../../src/components/Card';
 
 const meta: Meta<typeof Card> = {
-  title: 'Card',
+  title: 'v1/Card',
   component: Card,
   parameters: {
     layout: 'centered',

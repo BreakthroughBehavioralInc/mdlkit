@@ -1,10 +1,10 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import LoadingButton from '../src/components/LoadingButton';
+import LoadingButton from '../../src/components/LoadingButton';
 
 const meta: Meta<typeof LoadingButton> = {
-  title: 'LoadingButton',
+  title: 'v1/LoadingButton',
   component: LoadingButton,
   parameters: {
     layout: 'centered',

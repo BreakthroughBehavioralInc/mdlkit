@@ -1,9 +1,9 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import Text from '../src/components/Text';
+import Text from '../../src/components/Text';
 
 const meta: Meta<typeof Text> = {
-  title: 'Text',
+  title: 'v1/Text',
   component: Text,
   parameters: {
     layout: 'centered',

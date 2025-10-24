@@ -1,9 +1,9 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import RadioField from '../src/components/forms/RadioField';
+import RadioField from '../../src/components/forms/RadioField';
 
 const meta: Meta<typeof RadioField> = {
-  title: 'RadioField',
+  title: 'v1/RadioField',
   component: RadioField,
   parameters: {
     layout: 'centered',

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { Container } from '../src';
-import Select from '../src/components/Select';
+import { Container } from '../../src';
+import Select from '../../src/components/Select';
 
 const meta: Meta<typeof Select> = {
-  title: 'Select',
+  title: 'v1/Select',
   component: Select,
   parameters: {
     layout: 'centered',

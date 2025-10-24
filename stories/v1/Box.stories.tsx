@@ -1,10 +1,10 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import Container from '../src/components/Container';
+import Box from '../../src/components/Box';
 
-const meta: Meta<typeof Container> = {
-  title: 'Container',
-  component: Container,
+const meta: Meta<typeof Box> = {
+  title: 'v1/Box',
+  component: Box,
   parameters: {
     layout: 'centered',
   },
@@ -15,6 +15,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    children: 'Set max width of a container',
+    children: 'This is text in the Box component.',
   },
 };

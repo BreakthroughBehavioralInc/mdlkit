@@ -1,10 +1,10 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import Flex from '../src/components/Flex';
+import Container from '../../src/components/Container';
 
-const meta: Meta<typeof Flex> = {
-  title: 'Flex',
-  component: Flex,
+const meta: Meta<typeof Container> = {
+  title: 'v1/Container',
+  component: Container,
   parameters: {
     layout: 'centered',
   },
@@ -15,7 +15,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    children:
-      'Flex is an extension of Box with "display:flex" and props for flexbox',
+    children: 'Set max width of a container',
   },
 };

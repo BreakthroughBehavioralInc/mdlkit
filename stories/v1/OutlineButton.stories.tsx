@@ -1,10 +1,10 @@
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import OutlineButton from '../src/components/OutlineButton';
+import OutlineButton from '../../src/components/OutlineButton';
 
 const meta: Meta<typeof OutlineButton> = {
-  title: 'OutlineButton',
+  title: 'v1/OutlineButton',
   component: OutlineButton,
   parameters: {
     layout: 'centered',
