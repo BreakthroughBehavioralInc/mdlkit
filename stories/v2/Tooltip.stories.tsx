@@ -27,6 +27,7 @@ const meta: Meta<typeof Tooltip> = {
       },
     },
   },
+  tags: ['autodocs'],
   argTypes: {
     title: {
       control: { type: 'text' },
