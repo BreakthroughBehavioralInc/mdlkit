@@ -35,6 +35,7 @@
     "ci": "yarn lint && yarn type-check && yarn test"
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.4",
     "styled-system": "^4.2.2"
   },
   "devDependencies": {
