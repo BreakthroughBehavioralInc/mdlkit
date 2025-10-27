@@ -19,5 +19,6 @@ const Chip: React.FC<ChipProps> = ({ label, color, icon, className = '' }) => {
     </ChipContainer>
   );
 };
+Chip.displayName = 'Chip';
 
 export default Chip;

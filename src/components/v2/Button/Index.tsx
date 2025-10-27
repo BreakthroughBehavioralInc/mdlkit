@@ -104,5 +104,6 @@ const Button: React.FC<ButtonProps> = ({
     </ButtonRoot>
   );
 };
+Button.displayName = 'Button';
 
 export default Button;

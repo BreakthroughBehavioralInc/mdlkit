@@ -1,8 +1,8 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import Image from '../../Image';
-import InfoIcon from '../assets/info-blue-icon.svg';
-import WarningIcon from '../assets/warning-icon.svg';
+import InfoIcon from '../../assets/info-blue-icon.svg';
+import WarningIcon from '../../assets/warning-icon.svg';
 import StyledInfoBox from './styled';
 
 interface InfoBoxProps {
@@ -62,5 +62,6 @@ const InfoBox = ({
     </StyledInfoBox>
   );
 };
+InfoBox.displayName = 'InfoBox';
 
 export default InfoBox;

@@ -75,5 +75,6 @@ const Tooltip: FunctionComponent<Props> = ({
     </MaterialTooltip>
   );
 };
+Tooltip.displayName = 'Tooltip';
 
 export default withTooltipStyles(Tooltip);
