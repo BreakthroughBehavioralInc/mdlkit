@@ -1,3 +1,4 @@
+// @ts-nocheck - Type incompatibility between React 16 and react-intl's bundled React types
 import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import Tooltip, { TooltipTheme } from '../../src/components/v2/Tooltip/Index';
