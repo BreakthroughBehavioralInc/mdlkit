@@ -27,12 +27,4 @@ const LoadingSpinner = ({
   );
 };
 
-LoadingSpinner.defaultProps = {
-  color: '#0379ce',
-  size: 72,
-  speed: '2s',
-  startPosition: 'topRight' as const,
-  direction: 'cw' as const,
-};
-
 export default LoadingSpinner;

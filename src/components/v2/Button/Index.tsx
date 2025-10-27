@@ -105,11 +105,4 @@ const Button: React.FC<ButtonProps> = ({
   );
 };
 
-Button.displayName = 'Button';
-Object.assign(Button, {
-  defaultProps: {
-    full: false,
-  },
-});
-
 export default Button;
