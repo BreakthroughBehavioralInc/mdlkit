@@ -3,7 +3,7 @@ import { fileURLToPath } from 'url';
 
 /** @type { import('@storybook/react-webpack5').StorybookConfig } */
 const config = {
-  stories: ['../stories/**/*.stories.@(ts|tsx|js|jsx|mdx)'],
+  stories: ['../stories/v2/**/*.stories.@(ts|tsx|js|jsx|mdx)'],
   addons: [
     '@storybook/addon-essentials',
     '@storybook/addon-controls',
