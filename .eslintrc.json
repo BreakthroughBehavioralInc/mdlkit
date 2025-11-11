@@ -58,7 +58,8 @@
     "jest/prefer-to-have-length": "warn",
     "jest/valid-expect": "error",
     "jsx-a11y/anchor-is-valid": "off", //don't need href on a tag with Next router
-    "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }] //allow tsx extension
+    "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }], //allow tsx extension
+    "react/require-default-props": "off" // turn off defaultProps requirement since we use default parameters
   },
   "settings": {
     "import/resolver": {

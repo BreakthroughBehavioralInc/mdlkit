@@ -20,8 +20,10 @@ const RadioButtonGroup = styled(Box)<BoxProps>`
 `;
 
 RadioButtonGroup.displayName = 'RadioButtonGroup';
-RadioButtonGroup.defaultProps = {
-  width: 1,
-};
+Object.assign(RadioButtonGroup, {
+  defaultProps: {
+    width: 1,
+  },
+});
 
 export default RadioButtonGroup;

@@ -33,8 +33,10 @@ export const ButtonLink = styled.button<ButtonLinkProps>`
 `;
 
 ButtonLink.displayName = 'ButtonLink';
-ButtonLink.defaultProps = {
-  bold: true,
-};
+Object.assign(ButtonLink, {
+  defaultProps: {
+    bold: true,
+  },
+});
 
 export default ButtonLink;

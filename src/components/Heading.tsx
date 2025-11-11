@@ -17,11 +17,13 @@ const Heading = styled(Text)<HeadingProps>`
 
 Heading.displayName = 'Heading';
 
-Heading.defaultProps = {
-  fontSize: 4,
-  fontWeight: 'bolder',
-  lineHeight: 'display',
-  color: 'primary',
-};
+Object.assign(Heading, {
+  defaultProps: {
+    fontSize: 4,
+    fontWeight: 'bolder',
+    lineHeight: 'display',
+    color: 'primary',
+  },
+});
 
 export default Heading;

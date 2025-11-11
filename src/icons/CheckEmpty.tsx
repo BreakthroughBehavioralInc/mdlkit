@@ -29,7 +29,7 @@ const CheckEmpty: FunctionComponent<Props> = ({ color, ...rest }: Props) => {
         <g
           id="Simplified-Reg-V3"
           transform="translate(-476.000000, -500.000000)"
-          stroke={color || theme.colors.gray}
+          stroke={color || (theme as any)?.colors?.gray || '#626568'}
         >
           <rect x="476.5" y="500.5" width="17" height="17" rx="3" />
         </g>

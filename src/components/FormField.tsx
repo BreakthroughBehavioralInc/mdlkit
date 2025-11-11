@@ -10,30 +10,30 @@ const StyledFlex = styled(Flex)`
 
 const FormField = ({ children }: { children: any }) => {
   const childrenArray = React.Children.toArray(children);
-  // @ts-ignore
-  const [field] = childrenArray.filter(child => child.type.isField);
-  // @ts-ignore
-  const [label] = childrenArray.filter(child => child.type.isLabel);
-  // @ts-ignore
-  const [icon] = childrenArray.filter(child => child.type.isIcon);
-  // @ts-ignore
-  const [error] = childrenArray.filter(child => child.type.isError);
+  const [field] = childrenArray.filter((child: any) => child.type?.isField);
+  const [label] = childrenArray.filter((child: any) => child.type?.isLabel);
+  const [icon] = childrenArray.filter((child: any) => child.type?.isIcon);
+  const [error] = childrenArray.filter((child: any) => child.type?.isError);
 
-  const id = field && (field.props.id || field.props.name);
+  const id = field && ((field as any).props?.id || (field as any).props?.name);
   const styledLabel =
     label &&
-    React.cloneElement(label, {
+    React.cloneElement(label as React.ReactElement, {
       htmlFor: id,
     });
 
   return (
     <StyledFlex column>
-      {styledLabel}
-      <IconField>
-        {field}
-        {icon}
-      </IconField>
-      {error}
+      <>
+        {styledLabel}
+        <IconField>
+          <>
+            {field}
+            {icon}
+          </>
+        </IconField>
+        {error}
+      </>
     </StyledFlex>
   );
 };
