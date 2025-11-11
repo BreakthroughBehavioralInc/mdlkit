@@ -111,10 +111,10 @@ stages:
                 source /home/deployer/.profile
                 NPM_TOKEN=$(NPM_TOKEN) yarn install
                 echo "Creating Symplink to current directory"
-                echo "Creating link ln -s $REL_DIR /home/deployer/apps/mdlnext/releases/current"
-                ln -sfn $REL_DIR /home/deployer/apps/mdlnext/releases/current
-                mv /home/deployer/apps/mdlnext/releases/current /home/deployer/apps/mdlnext
-                cd /home/deployer/apps/mdlnext/releases/
+                echo "Creating link ln -s $REL_DIR /home/deployer/apps/mdlkit/releases/current"
+                ln -sfn $REL_DIR /home/deployer/apps/mdlkit/releases/current
+                mv /home/deployer/apps/mdlkit/releases/current /home/deployer/apps/mdlkit
+                cd /home/deployer/apps/mdlkit/releases/
                 echo "Checking no.of Releases more than 5"
                 num_rel=`ls -l | grep "^d" | wc -l`
                 if [[ $num_rel -gt 5 ]]
@@ -128,7 +128,7 @@ stages:
 
 
           - task: Bash@3
-            displayName: mdlnext App Restart
+            displayName: mdlkit App Restart
             inputs:
               targetType: 'inline'
               script: |
