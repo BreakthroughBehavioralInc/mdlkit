@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { focusRing } from '../../../theme';
+import { focusRing } from '../../../theme/v2';
 
 export const CalendarContainer = styled.div`
   display: flex;

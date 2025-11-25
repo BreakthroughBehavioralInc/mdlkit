@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import lightTheme, { focusRing } from '../../../theme';
+import v2Theme, { focusRing } from '../../../theme/v2';
 
 const PillButton = styled.button<{ isSelected: boolean }>`
   appearance: none;
@@ -13,7 +13,7 @@ const PillButton = styled.button<{ isSelected: boolean }>`
   font-size: 14px;
   line-height: 22px;
   font-weight: 400;
-  transition: ${lightTheme.timingFunctions.easeInOut};
+  transition: ${v2Theme.timingFunctions.easeInOut};
   flex: 1;
 
   &:first-child {
