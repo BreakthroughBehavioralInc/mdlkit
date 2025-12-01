@@ -11,6 +11,7 @@ declare module 'styled-components' {
     headingFont: string;
     textFont: string;
     fontSizes: number[];
+    muiTheme?: any;
     fontWeights: {
       light: number;
       normal: number;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import lightTheme, { focusRing } from '../../../theme';
+import v2Theme, { focusRing } from '../../../theme/v2';
 
 const StyledInfoBox = styled.div<{
   backgroundColor: string;
@@ -34,7 +34,7 @@ const StyledInfoBox = styled.div<{
     &:focus {
       box-shadow: ${focusRing} !important;
       outline: none;
-      transition: ${lightTheme.timingFunctions.easeInOut};
+      transition: ${v2Theme.timingFunctions.easeInOut};
       border-radius: 4px;
     }
   }

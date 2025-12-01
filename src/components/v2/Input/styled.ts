@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import lightTheme, { focusRing } from '../../../theme';
+import v2Theme, { focusRing } from '../../../theme/v2';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -35,7 +35,7 @@ export const InputContainer = styled.div<InputContainerProps>`
   background: transparent;
   padding: 11px 12px;
   gap: 8px;
-  transition: ${lightTheme.timingFunctions.easeOut};
+  transition: ${v2Theme.timingFunctions.easeOut};
   font-family: 'Noto Sans', sans-serif;
   font-size: 16px;
   line-height: 24px;
@@ -129,12 +129,12 @@ export const ClearButton = styled.button<{
   pointer-events: auto;
   padding: 0;
   border-radius: 2px;
-  transition: ${lightTheme.timingFunctions.easeInOut};
+  transition: ${v2Theme.timingFunctions.easeInOut};
   opacity: ${props => (props.visible ? 1 : 0)};
   visibility: ${props => (props.visible ? 'visible' : 'hidden')};
   svg {
     &:hover path {
-      transition: ${lightTheme.timingFunctions.easeInOut};
+      transition: ${v2Theme.timingFunctions.easeInOut};
       fill: #0379ce;
     }
   }

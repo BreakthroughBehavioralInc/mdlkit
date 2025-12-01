@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import lightTheme, { focusRing } from '../../../theme';
+import v2Theme, { focusRing } from '../../../theme/v2';
 
 const baseStyles = css`
   font-family: 'Noto Sans', sans-serif;
@@ -10,7 +10,7 @@ const baseStyles = css`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: ${lightTheme.timingFunctions.easeOut}, scale 150ms ease-out;
+  transition: ${v2Theme.timingFunctions.easeOut}, scale 150ms ease-out;
   font-weight: 500;
   line-height: 22px;
   text-align: center;
@@ -151,7 +151,7 @@ export const IconWrapper = styled.span<IconWrapperProps>`
 
   svg,
   img {
-    transition: ${lightTheme.timingFunctions.easeInOut};
+    transition: ${v2Theme.timingFunctions.easeInOut};
     width: ${({ size }) => size};
     height: ${({ size }) => size};
   }

@@ -1,6 +1,7 @@
 import { withStyles } from '@material-ui/core/styles';
+import v2Theme from '../../../theme/v2';
 
-const styles = (theme: any) => ({
+const styles = (theme: any = v2Theme.muiTheme) => ({
   lightTooltip: {
     background: theme.palette.common.white,
     color: theme.palette.text.primary,
