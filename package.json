@@ -18,6 +18,11 @@
       "default": "./dist/v2.js"
     }
   },
+  "typesVersions": {
+    "*": {
+      "v2": ["dist/v2.d.ts"]
+    }
+  },
   "author": "Zachary Namyat",
   "repository": {
     "type": "git",
