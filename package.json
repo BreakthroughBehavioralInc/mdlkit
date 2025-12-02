@@ -8,6 +8,16 @@
   "files": [
     "dist/"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./v2": {
+      "types": "./dist/v2.d.ts",
+      "default": "./dist/v2.js"
+    }
+  },
   "author": "Zachary Namyat",
   "repository": {
     "type": "git",
