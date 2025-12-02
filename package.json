@@ -1,6 +1,6 @@
 {
   "name": "@BreakthroughBehavioralInc/mdlkit",
-  "version": "0.4.0-alpha.4",
+  "version": "0.4.0-alpha.5",
   "description": "React component kit for MDLIVE design system",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -8,23 +8,6 @@
   "files": [
     "dist/"
   ],
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    },
-    "./v2": {
-      "types": "./dist/v2.d.ts",
-      "default": "./dist/v2.js"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      "v2": [
-        "dist/v2.d.ts"
-      ]
-    }
-  },
   "author": "Zachary Namyat",
   "repository": {
     "type": "git",
@@ -53,7 +36,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.12.4",
-    "@radix-ui/react-accordion": "^1.2.12",
+    "@radix-ui/react-accordion": "^1.2.3",
     "moment-timezone": "^0.5.33",
     "react-datepicker": "^3.4.1",
     "styled-system": "^4.2.2"
