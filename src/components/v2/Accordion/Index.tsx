@@ -8,24 +8,42 @@ import {
   ContentWrapper,
 } from './styled';
 
+// Custom prop types to avoid React version conflicts
+interface AccordionItemProps {
+  value: string;
+  disabled?: boolean;
+  className?: string;
+  children?: React.ReactNode;
+}
+
+interface AccordionTriggerProps {
+  className?: string;
+  children?: React.ReactNode;
+}
+
+interface AccordionContentProps {
+  className?: string;
+  children?: React.ReactNode;
+  forceMount?: true;
+}
+
 const Accordion = AccordionPrimitive.Root;
 
-const AccordionItem = React.forwardRef<
-  React.ElementRef<typeof AccordionPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
->((props, ref) => (
-  <StyledAccordionItem
-    // eslint-disable-next-line react/prop-types
-    className={`acc-item ${props.className ? props.className : ''}`}
-    ref={ref}
-    {...props}
-  />
-));
+const AccordionItem = React.forwardRef<HTMLDivElement, AccordionItemProps>(
+  (props, ref) => (
+    <StyledAccordionItem
+      // eslint-disable-next-line react/prop-types
+      className={`acc-item ${props.className ? props.className : ''}`}
+      ref={ref}
+      {...props}
+    />
+  )
+);
 AccordionItem.displayName = 'AccordionItem';
 
 const AccordionTrigger = React.forwardRef<
-  React.ElementRef<typeof AccordionPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
+  HTMLButtonElement,
+  AccordionTriggerProps
 >(({ children, ...props }, ref) => (
   <StyledAccordionHeader>
     <StyledAccordionTrigger
@@ -60,8 +78,8 @@ const AccordionTrigger = React.forwardRef<
 AccordionTrigger.displayName = 'AccordionTrigger';
 
 const AccordionContent = React.forwardRef<
-  React.ElementRef<typeof AccordionPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
+  HTMLDivElement,
+  AccordionContentProps
 >(({ children, ...props }, ref) => (
   <StyledAccordionContent // eslint-disable-next-line react/prop-types
     className={`acc-content ${props.className ? props.className : ''}`}
