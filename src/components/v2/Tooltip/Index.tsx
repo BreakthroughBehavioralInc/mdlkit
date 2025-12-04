@@ -1,8 +1,10 @@
 import React, { FunctionComponent, ReactNode, useState } from 'react';
-import MaterialTooltip from '@material-ui/core/Tooltip';
-
+import MaterialTooltipOrig from '@material-ui/core/Tooltip';
 import Button from '../Button/Index';
 import { withTooltipStyles } from './styled';
+
+// Work around React types version conflict between @types/react and react-intl's bundled types
+const MaterialTooltip = (MaterialTooltipOrig as unknown) as React.FC<any>;
 
 export enum TooltipTheme {
   Light = 'lightTooltip',
