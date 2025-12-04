@@ -70,6 +70,8 @@ export { default as Svg } from './icons/Svg';
 // v2
 export { default as ButtonV2 } from './components/v2/Button/Index';
 export { default as ChipV2 } from './components/v2/Chip/Index';
+export { default as PillV2 } from './components/v2/Pill/Index';
+export { default as CalendarV2 } from './components/v2/Calendar/Index';
 export { default as DatePickerV2 } from './components/v2/DatePicker/Index';
 export { default as FlexV2 } from './components/v2/Flex/Index';
 export { default as InfoBoxV2 } from './components/v2/InfoBox/Index';

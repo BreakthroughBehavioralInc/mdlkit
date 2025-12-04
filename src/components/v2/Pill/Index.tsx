@@ -15,7 +15,7 @@ interface PillGroupProps {
   disabled?: boolean;
 }
 
-export const PillGroup: React.FC<PillGroupProps> = ({
+const PillGroup: React.FC<PillGroupProps> = ({
   options,
   value,
   onValueChange,
@@ -82,3 +82,5 @@ export const PillGroup: React.FC<PillGroupProps> = ({
     </PillGroupContainer>
   );
 };
+
+export default PillGroup;
