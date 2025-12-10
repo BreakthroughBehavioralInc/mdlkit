@@ -247,13 +247,6 @@ export const AvailabilityContainer = styled.div`
   margin-top: 16px;
 `;
 
-export const AvailabilityLabel = styled.p`
-  font-size: 16px;
-  color: #333;
-  margin-bottom: 12px;
-  font-weight: 400;
-`;
-
 export const DateDisplayContainer = styled.div`
   display: flex;
   align-items: center;
@@ -271,79 +264,4 @@ export const DateText = styled.span`
   font-size: 16px;
   color: #333;
   font-weight: 500;
-`;
-
-export const SlotsContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-bottom: 24px;
-`;
-
-export const TimeSlot = styled.button`
-  padding: 12px 24px;
-  background-color: white;
-  border: 2px solid #0066cc;
-  border-radius: 24px;
-  color: #0066cc;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: 'Noto Sans', sans-serif;
-
-  &:hover {
-    background-color: #0066cc;
-    color: white;
-  }
-
-  &:focus {
-    outline: none;
-    box-shadow: ${focusRing};
-  }
-
-  &:active {
-    transform: scale(0.98);
-  }
-`;
-
-export const NoDateMessage = styled.div`
-  text-align: center;
-  padding: 20px 0;
-  margin-top: 16px;
-
-  p {
-    color: #333;
-    font-size: 16px;
-    margin: 0;
-  }
-`;
-
-export const RequestAppointmentButton = styled.a`
-  display: inline-block;
-  padding: 12px 32px;
-  background-color: white;
-  border: 2px solid #0066cc;
-  border-radius: 24px;
-  color: #0066cc;
-  font-size: 16px;
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: 'Noto Sans', sans-serif;
-
-  &:hover {
-    background-color: #0066cc;
-    color: white;
-  }
-
-  &:focus {
-    outline: none;
-    box-shadow: ${focusRing};
-  }
-
-  &:active {
-    transform: scale(0.98);
-  }
 `;

@@ -84,3 +84,4 @@ export {
   AccordionTrigger as AccordionTriggerV2,
   AccordionContent as AccordionContentV2,
 } from './components/v2/Accordion/Index';
+export { default as Timeslots } from './components/v2/Timeslots/Index';

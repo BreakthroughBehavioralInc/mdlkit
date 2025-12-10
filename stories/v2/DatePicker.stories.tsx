@@ -60,6 +60,11 @@ const meta: Meta<typeof Datepicker> = {
       control: { type: 'boolean' },
       description: 'Whether the date picker is disabled',
     },
+    ariaLabel: {
+      control: { type: 'text' },
+      description:
+        'Accessible label for screen readers (e.g., "Date of birth"). The component will append ", date picker, format month month slash day day slash year year year year" to provide full context.',
+    },
   },
   args: {
     name: 'datepicker',
@@ -83,6 +88,22 @@ export const Default: Story = {
   args: {
     onChange: () => {},
     name: 'birthdate',
+  },
+};
+
+export const WithAccessibleLabel: Story = {
+  args: {
+    onChange: () => {},
+    name: 'birthdate',
+    ariaLabel: 'Date of birth',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Use the `ariaLabel` prop to provide context for screen reader users. VoiceOver will announce: "Date of birth, date picker, format month month slash day day slash year year year year".',
+      },
+    },
   },
 };
 
@@ -267,6 +288,7 @@ export const FormValidation: Story = {
             onBlur={handleBlur}
             placeholder="Select a future date"
             icon={CalendarIcon}
+            ariaLabel="Appointment date"
             errorMessage={error}
             minDate={new Date().toISOString().split('T')[0]}
           />
@@ -321,6 +343,7 @@ export const MultipleDatePickers: Story = {
             onChange={e => setStartDate(e.target.value)}
             placeholder="mm/dd/yyyy"
             icon={CalendarIcon}
+            ariaLabel="Start date"
             max={
               endDate
                 ? new Date(endDate).toISOString().split('T')[0]
@@ -339,6 +362,7 @@ export const MultipleDatePickers: Story = {
             onChange={e => setEndDate(e.target.value)}
             placeholder="mm/dd/yyyy"
             icon={CalendarIcon}
+            ariaLabel="End date"
             minDate={
               startDate
                 ? new Date(startDate).toISOString().split('T')[0]

@@ -39,6 +39,8 @@ interface Props {
   max?: string;
   onBlur?: () => any;
   disabled?: boolean;
+  /** Accessible label for screen readers (e.g., "Date of birth") */
+  ariaLabel?: string;
 }
 
 const Datepicker = ({
@@ -53,6 +55,7 @@ const Datepicker = ({
   max,
   onBlur,
   disabled,
+  ariaLabel,
   ...props
 }: Props) => {
   const [formattedDate, setFormattedDate] = useState(defaultValue);
@@ -60,6 +63,7 @@ const Datepicker = ({
     formatDateString(defaultValue, 'YYYY-MM-DD')
   );
   const [isFocused, setIsFocused] = useState(false);
+  const [isPickerOpen, setIsPickerOpen] = useState(false);
   const hiddenDateRef = useRef<any>(null);
   const visibleDateRef = useRef<any>(null);
 
@@ -92,27 +96,46 @@ const Datepicker = ({
     onChange({ target: { value: formatted } }, name);
   };
 
-  const handleFocus = () => {
-    if (hiddenDateRef.current) {
+  const openDatePicker = () => {
+    if (hiddenDateRef.current && !isPickerOpen) {
       hiddenDateRef.current.showPicker();
-      setIsFocused(true);
+      setIsPickerOpen(true);
+    }
+  };
+
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleClick = () => {
+    openDatePicker();
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    // Open picker on Enter or Space key
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      openDatePicker();
     }
   };
 
   const handleBlur = () => {
     if (!nativeDate) {
       setIsFocused(false);
+      setIsPickerOpen(false);
       onBlur?.();
       return;
     }
     setFormattedDate(formattedDateValue(nativeDate));
     setIsFocused(false);
+    setIsPickerOpen(false);
     onBlur?.();
   };
 
   const closePicker = () => {
     if (hiddenDateRef.current) {
       hiddenDateRef.current.style.display = 'none';
+      setIsPickerOpen(false);
       setTimeout(() => {
         if (hiddenDateRef.current) {
           hiddenDateRef.current.style.display = 'inline-block';
@@ -135,14 +158,25 @@ const Datepicker = ({
           ref={visibleDateRef}
           value={formattedDate}
           onFocus={handleFocus}
+          onClick={handleClick}
+          onKeyDown={handleKeyDown}
           onChange={handleVisibleInputChange}
           onBlur={handleBlur}
-          iconRight={icon}
+          iconLeft={icon}
           placeholder={placeholder}
           maxLength={10}
           disabled={disabled}
           className={`${className} ${errorMessage ? 'input-error' : ''} `}
           errorMessage={errorMessage}
+          role="combobox"
+          aria-haspopup="dialog"
+          aria-expanded={isPickerOpen}
+          aria-label={
+            ariaLabel
+              ? `${ariaLabel}, date picker, format month month slash day day slash year year year year`
+              : 'Date picker, format month month slash day day slash year year year year'
+          }
+          autoComplete="off"
           {...props}
         />
       </StyledCalendarInputWrapper>
@@ -153,6 +187,7 @@ const Datepicker = ({
         value={nativeDate}
         onChange={handleDatePickerChange}
         tabIndex={-1}
+        aria-hidden="true"
         min={minDate}
         max={max}
         disabled={disabled}

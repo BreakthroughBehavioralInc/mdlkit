@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
-import { PillGroup } from '../../src/components/v2/Pill/Index';
+import PillGroup from '../../src/components/v2/Pill/Index';
 
 const meta: Meta<typeof PillGroup> = {
   title: 'v2/Pill',

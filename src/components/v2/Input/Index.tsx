@@ -140,7 +140,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           error={Boolean(errorMessage)}
         >
           {iconLeft && (
-            <IconImage src={iconLeft} alt="Left Icon" iconSize={iconSize} />
+            <IconImage
+              src={iconLeft}
+              alt="Left Icon"
+              iconSize={iconSize}
+              aria-hidden="true"
+            />
           )}
           <StyledInput
             type={type}
@@ -162,7 +167,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             </ClearButton>
           )}
           {!clearButton && iconRight && (
-            <IconImage src={iconRight} alt="Right Icon" iconSize={iconSize} />
+            <IconImage
+              src={iconRight}
+              alt="Right Icon"
+              iconSize={iconSize}
+              aria-hidden="true"
+            />
           )}
         </InputContainer>
         {errorMessage &&
