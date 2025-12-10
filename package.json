@@ -1,6 +1,6 @@
 {
   "name": "@BreakthroughBehavioralInc/mdlkit",
-  "version": "0.4.0-alpha.1",
+  "version": "0.4.0-alpha.9",
   "description": "React component kit for MDLIVE design system",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -35,10 +35,10 @@
     "ci": "yarn lint && yarn type-check && yarn test"
   },
   "dependencies": {
+    "@material-ui/core": "^1.5.1",
+    "@radix-ui/react-accordion": "^1.2.3",
     "moment-timezone": "^0.5.33",
     "react-datepicker": "^3.4.1",
-    "@material-ui/core": "^4.12.4",
-    "@radix-ui/react-accordion": "^1.2.12",
     "styled-system": "^4.2.2"
   },
   "devDependencies": {

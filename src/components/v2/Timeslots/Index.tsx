@@ -1,0 +1,168 @@
+import React, { useState, useRef } from 'react';
+import {
+  TimeslotsWrapper,
+  TimeslotsContainer,
+  SlotButton,
+  ToggleButton,
+  ToggleButtonText,
+} from './styled';
+
+export interface Timeslot {
+  timeslot: string;
+  phys_availability_id?: number;
+  availability_type?: string;
+  start_date?: string;
+  end_date?: string;
+}
+
+export interface TimeslotsProps {
+  /** Array of available timeslots */
+  slots: Timeslot[];
+  /** Currently selected timeslot value */
+  selectedSlot?: string;
+  /** Callback when a slot is selected */
+  onSlotSelect?: (slot: Timeslot) => void;
+  /** Number of slots to show initially before "See more" */
+  initialVisibleCount?: number;
+  /** Label for "See more" button */
+  seeMoreLabel?: string;
+  /** Label for "See less" button */
+  seeLessLabel?: string;
+  /** Custom time formatter function */
+  formatTime?: (timeslot: string) => string;
+  /** Additional CSS class name */
+  className?: string;
+  /** Custom styles */
+  style?: React.CSSProperties;
+  /** Whether the component is disabled */
+  disabled?: boolean;
+}
+
+/**
+ * Formats a timeslot string to a human-readable time (e.g., "2:30 PM")
+ */
+const defaultFormatTime = (timeslot: string): string => {
+  const date = new Date(timeslot);
+  return date.toLocaleTimeString('en-US', {
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+  });
+};
+
+/**
+ * Maps availability_type to a method number (for data attributes)
+ * - video: 1
+ * - phone: 2
+ * - video or phone (or multiple): 3
+ */
+const getAvailabilityMethod = (
+  availabilityType?: string
+): number | undefined => {
+  if (!availabilityType) return undefined;
+
+  const types = availabilityType.split(' or ');
+  if (types.length > 1) return 3;
+  if (types[0] === 'video') return 1;
+  return 2;
+};
+
+const Timeslots: React.FC<TimeslotsProps> = ({
+  slots,
+  selectedSlot,
+  onSlotSelect,
+  initialVisibleCount = 8,
+  seeMoreLabel = 'See more times',
+  seeLessLabel = 'See less times',
+  formatTime = defaultFormatTime,
+  className = '',
+  style,
+  disabled = false,
+}) => {
+  const [showAll, setShowAll] = useState(false);
+  const slotRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const toggleRef = useRef<HTMLButtonElement | null>(null);
+
+  const hasMoreSlots = slots.length > initialVisibleCount;
+  const visibleSlots = showAll ? slots : slots.slice(0, initialVisibleCount);
+
+  const handleSlotClick = (slot: Timeslot) => {
+    if (!disabled && onSlotSelect) {
+      onSlotSelect(slot);
+    }
+  };
+
+  const handleKeyDown = (
+    event: React.KeyboardEvent<HTMLButtonElement>,
+    index: number
+  ) => {
+    if (disabled) return;
+
+    const totalVisible = visibleSlots.length;
+
+    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+      event.preventDefault();
+      const nextIndex = (index + 1) % totalVisible;
+      slotRefs.current[nextIndex]?.focus();
+    } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      const nextIndex = (index - 1 + totalVisible) % totalVisible;
+      slotRefs.current[nextIndex]?.focus();
+    }
+  };
+
+  const handleToggle = () => {
+    setShowAll(prev => !prev);
+  };
+
+  return (
+    <TimeslotsWrapper className={`timeslots ${className}`.trim()} style={style}>
+      <TimeslotsContainer>
+        {visibleSlots.map((slot, index) => {
+          const isSelected = selectedSlot === slot.timeslot;
+          const availabilityMethod = getAvailabilityMethod(
+            slot.availability_type
+          );
+
+          return (
+            <SlotButton
+              key={slot.timeslot}
+              isSelected={isSelected}
+              onClick={() => handleSlotClick(slot)}
+              onKeyDown={e => handleKeyDown(e, index)}
+              disabled={disabled}
+              ref={(el: HTMLButtonElement | null) => {
+                slotRefs.current[index] = el;
+              }}
+              tabIndex={0}
+              data-timeslot={slot.timeslot}
+              data-availability-method={availabilityMethod}
+              data-phys-availability-id={slot.phys_availability_id}
+              aria-pressed={isSelected}
+              type="button"
+            >
+              {formatTime(slot.timeslot)}
+            </SlotButton>
+          );
+        })}
+      </TimeslotsContainer>
+
+      {hasMoreSlots && (
+        <ToggleButton
+          onClick={handleToggle}
+          ref={toggleRef}
+          type="button"
+          aria-expanded={showAll}
+        >
+          <ToggleButtonText tabIndex={0}>
+            {showAll ? seeLessLabel : seeMoreLabel}
+          </ToggleButtonText>
+        </ToggleButton>
+      )}
+    </TimeslotsWrapper>
+  );
+};
+
+Timeslots.displayName = 'Timeslots';
+
+export default Timeslots;

@@ -1,9 +1,14 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import Image from '../../Image';
-import InfoIcon from '../../assets/info-blue-icon.svg';
-import WarningIcon from '../../assets/warning-icon.svg';
 import StyledInfoBox from './styled';
+
+// Inline SVG data URLs to avoid asset bundling issues in npm packages
+const InfoIcon =
+  'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiIGZpbGw9IiMwMDc4RDQiLz4KPHBhdGggZD0iTTEyIDExVjE3IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8Y2lyY2xlIGN4PSIxMiIgY3k9IjgiIHI9IjEiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPg==';
+
+const WarningIcon =
+  'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJMMiAyMEgyMkwxMiAyWiIgZmlsbD0iI0ZGQjAyRSIvPgo8cGF0aCBkPSJNMTIgMTBWMTQiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CjxjaXJjbGUgY3g9IjEyIiBjeT0iMTciIHI9IjEiIGZpbGw9ImJsYWNrIi8+Cjwvc3ZnPg==';
 
 interface InfoBoxProps {
   title?: string;

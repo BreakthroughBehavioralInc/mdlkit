@@ -5,6 +5,7 @@ export { default as Flex } from './components/v2/Flex/Index';
 export { default as InfoBox } from './components/v2/InfoBox/Index';
 export { Input } from './components/v2/Input/Index';
 export { default as LoadingSpinner } from './components/v2/LoadingSpinner/Index';
+export { default as Timeslots } from './components/v2/Timeslots/Index';
 export { default as Tooltip } from './components/v2/Tooltip/Index';
 export {
   Accordion,
