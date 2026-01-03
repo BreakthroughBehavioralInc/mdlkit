@@ -306,3 +306,36 @@ export const ManySlots: Story = {
     },
   },
 };
+
+export const ResponsiveView: Story = {
+  render: args => (
+    <div style={{ width: '100%', maxWidth: '100%' }}>
+      <p style={{ marginBottom: '16px', fontSize: '14px', color: '#666' }}>
+        Resize the viewport to see how the timeslots wrap and adapt to different
+        screen sizes. On mobile devices (320px-480px), the slots stack nicely in
+        a responsive grid.
+      </p>
+      <Timeslots
+        {...args}
+        selectedSlot={undefined}
+        onSlotSelect={slot => {
+          args.onSlotSelect?.(slot);
+        }}
+      />
+    </div>
+  ),
+  args: {
+    slots: sampleSlots,
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: 'mobile1',
+    },
+    docs: {
+      description: {
+        story:
+          "The Timeslots component is fully responsive and adapts to different viewport sizes. The slots wrap gracefully using flexbox, making it accessible on mobile devices, tablets, and desktops. Try using Storybook's viewport toolbar to switch between different device sizes.",
+      },
+    },
+  },
+};

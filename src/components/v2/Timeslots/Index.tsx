@@ -80,11 +80,12 @@ const Timeslots: React.FC<TimeslotsProps> = ({
   disabled = false,
 }) => {
   const [showAll, setShowAll] = useState(false);
-  const slotRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const slotRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const toggleRef = useRef<HTMLButtonElement | null>(null);
 
   const hasMoreSlots = slots.length > initialVisibleCount;
-  const visibleSlots = showAll ? slots : slots.slice(0, initialVisibleCount);
+  const initialSlots = slots.slice(0, initialVisibleCount);
+  const additionalSlots = slots.slice(initialVisibleCount);
 
   const handleSlotClick = (slot: Timeslot) => {
     if (!disabled && onSlotSelect) {
@@ -98,16 +99,24 @@ const Timeslots: React.FC<TimeslotsProps> = ({
   ) => {
     if (disabled) return;
 
-    const totalVisible = visibleSlots.length;
+    const isInInitialSection = index < initialVisibleCount;
+    const totalInSection = isInInitialSection
+      ? initialSlots.length
+      : additionalSlots.length;
+    const sectionStartIndex = isInInitialSection ? 0 : initialVisibleCount;
 
     if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
       event.preventDefault();
-      const nextIndex = (index + 1) % totalVisible;
+      const nextIndexInSection =
+        (index - sectionStartIndex + 1) % totalInSection;
+      const nextIndex = sectionStartIndex + nextIndexInSection;
       slotRefs.current[nextIndex]?.focus();
     } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
       event.preventDefault();
-      const nextIndex = (index - 1 + totalVisible) % totalVisible;
-      slotRefs.current[nextIndex]?.focus();
+      const prevIndexInSection =
+        (index - sectionStartIndex - 1 + totalInSection) % totalInSection;
+      const prevIndex = sectionStartIndex + prevIndexInSection;
+      slotRefs.current[prevIndex]?.focus();
     }
   };
 
@@ -115,36 +124,48 @@ const Timeslots: React.FC<TimeslotsProps> = ({
     setShowAll(prev => !prev);
   };
 
+  const renderSlotButton = (
+    slot: Timeslot,
+    index: number,
+    isInInitialSection: boolean
+  ) => {
+    const isSelected = selectedSlot === slot.timeslot;
+    const availabilityMethod = getAvailabilityMethod(slot.availability_type);
+
+    // Use roving tabindex pattern:
+    // - First slot in each section is tabbable (tabIndex={0})
+    // - All other slots are not tabbable (tabIndex={-1})
+    const isFirstInSection = isInInitialSection
+      ? index === 0
+      : index === initialVisibleCount;
+    const tabIndex = isFirstInSection ? 0 : -1;
+
+    return (
+      <SlotButton
+        key={slot.timeslot}
+        isSelected={isSelected}
+        onClick={() => handleSlotClick(slot)}
+        onKeyDown={e => handleKeyDown(e, index)}
+        disabled={disabled}
+        ref={(el: HTMLButtonElement | null) => {
+          slotRefs.current[index] = el;
+        }}
+        tabIndex={tabIndex}
+        data-timeslot={slot.timeslot}
+        data-availability-method={availabilityMethod}
+        data-phys-availability-id={slot.phys_availability_id}
+        aria-pressed={isSelected}
+        type="button"
+      >
+        {formatTime(slot.timeslot)}
+      </SlotButton>
+    );
+  };
+
   return (
     <TimeslotsWrapper className={`timeslots ${className}`.trim()} style={style}>
       <TimeslotsContainer>
-        {visibleSlots.map((slot, index) => {
-          const isSelected = selectedSlot === slot.timeslot;
-          const availabilityMethod = getAvailabilityMethod(
-            slot.availability_type
-          );
-
-          return (
-            <SlotButton
-              key={slot.timeslot}
-              isSelected={isSelected}
-              onClick={() => handleSlotClick(slot)}
-              onKeyDown={e => handleKeyDown(e, index)}
-              disabled={disabled}
-              ref={(el: HTMLButtonElement | null) => {
-                slotRefs.current[index] = el;
-              }}
-              tabIndex={0}
-              data-timeslot={slot.timeslot}
-              data-availability-method={availabilityMethod}
-              data-phys-availability-id={slot.phys_availability_id}
-              aria-pressed={isSelected}
-              type="button"
-            >
-              {formatTime(slot.timeslot)}
-            </SlotButton>
-          );
-        })}
+        {initialSlots.map((slot, index) => renderSlotButton(slot, index, true))}
       </TimeslotsContainer>
 
       {hasMoreSlots && (
@@ -153,11 +174,20 @@ const Timeslots: React.FC<TimeslotsProps> = ({
           ref={toggleRef}
           type="button"
           aria-expanded={showAll}
+          tabIndex={-1}
         >
           <ToggleButtonText tabIndex={0}>
             {showAll ? seeLessLabel : seeMoreLabel}
           </ToggleButtonText>
         </ToggleButton>
+      )}
+
+      {showAll && hasMoreSlots && (
+        <TimeslotsContainer>
+          {additionalSlots.map((slot, index) =>
+            renderSlotButton(slot, index + initialVisibleCount, false)
+          )}
+        </TimeslotsContainer>
       )}
     </TimeslotsWrapper>
   );

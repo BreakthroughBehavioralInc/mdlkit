@@ -16,29 +16,30 @@ export const TimeslotsContainer = styled.div`
 export const SlotButton = styled.button<{ isSelected: boolean }>`
   appearance: none;
   box-sizing: border-box;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 36px;
   width: 96px;
-  line-height: 36px;
   padding: 0;
-  border: 1.5px solid '#0379ce';
+  border: 1.5px solid ${v2Theme.colors.primary};
   border-radius: 21.5px;
   font-family: 'Noto Sans', sans-serif;
   font-size: 12px;
   font-weight: 400;
   letter-spacing: 0;
-  text-align: center;
   cursor: pointer;
   transition: background-color ${v2Theme.duration.fast}
       ${v2Theme.timingFunctions.easeInOut},
     color ${v2Theme.duration.fast} ${v2Theme.timingFunctions.easeInOut};
 
   background-color: ${({ isSelected }) =>
-    isSelected ? '#0379ce' : 'transparent'};
-  color: ${({ isSelected }) => (isSelected ? v2Theme.colors.white : '#0379ce')};
+    isSelected ? v2Theme.colors.primary : 'transparent'};
+  color: ${({ isSelected }) =>
+    isSelected ? v2Theme.colors.white : v2Theme.colors.primary};
 
   &:hover {
-    background-color: '#0379ce';
+    background-color: ${v2Theme.colors.primary};
     color: ${v2Theme.colors.white};
     text-decoration: none;
   }
@@ -49,7 +50,7 @@ export const SlotButton = styled.button<{ isSelected: boolean }>`
   }
 
   &:active {
-    background-color: '#0379ce';
+    background-color: ${v2Theme.colors.primary};
     color: ${v2Theme.colors.white};
   }
 
