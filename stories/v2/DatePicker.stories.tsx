@@ -65,6 +65,11 @@ const meta: Meta<typeof Datepicker> = {
       description:
         'Accessible label for screen readers (e.g., "Date of birth"). The component will append ", date picker, format month month slash day day slash year year year year" to provide full context.',
     },
+    enabledDates: {
+      control: { type: 'object' },
+      description:
+        'Array of enabled dates in YYYY-MM-DD format (e.g., ["2026-01-05", "2026-01-10"]). If provided, only these specific dates will be selectable and all other dates will be disabled. Useful for appointment booking or event registration systems.',
+    },
   },
   args: {
     name: 'datepicker',
@@ -140,6 +145,105 @@ export const WithDateRange: Story = {
     minDate: '2025-10-01',
     max: '2025-12-31',
     placeholder: 'Select between Oct-Dec 2025',
+  },
+};
+
+export const WithSpecificEnabledDates: Story = {
+  args: {
+    onChange: () => {},
+    name: 'appointmentDate',
+    enabledDates: [
+      '2026-01-05',
+      '2026-01-07',
+      '2026-01-10',
+      '2026-01-12',
+      '2026-01-15',
+      '2026-01-20',
+      '2026-01-22',
+      '2026-01-25',
+      '2026-01-28',
+    ],
+    placeholder: 'Only specific dates available',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Use the `enabledDates` prop to specify an array of dates (in YYYY-MM-DD format) that should be selectable. All other dates will be disabled. This is useful for appointment booking systems where only certain dates have availability.',
+      },
+    },
+  },
+};
+
+export const WithSpecificWeekdays: Story = {
+  render: () => {
+    // Generate enabled dates for the next 60 days, only Mondays and Wednesdays
+    const generateEnabledDates = () => {
+      const dates: string[] = [];
+      const today = new Date();
+
+      for (let i = 0; i < 60; i++) {
+        const date = new Date(today);
+        date.setDate(today.getDate() + i);
+        const dayOfWeek = date.getDay();
+
+        // Only Mondays (1) and Wednesdays (3)
+        if (dayOfWeek === 1 || dayOfWeek === 3) {
+          const year = date.getFullYear();
+          const month = String(date.getMonth() + 1).padStart(2, '0');
+          const day = String(date.getDate()).padStart(2, '0');
+          dates.push(`${year}-${month}-${day}`);
+        }
+      }
+
+      return dates;
+    };
+
+    const [selectedDate, setSelectedDate] = useState('');
+    const enabledDates = generateEnabledDates();
+
+    return (
+      <div style={{ width: '400px' }}>
+        <p
+          style={{
+            marginBottom: '16px',
+            fontSize: '14px',
+            color: '#666',
+            lineHeight: '1.5',
+          }}
+        >
+          This example shows only Mondays and Wednesdays for the next 60 days.
+        </p>
+        <Datepicker
+          name="weekdayDate"
+          onChange={e => setSelectedDate(e.target.value)}
+          placeholder="Select Monday or Wednesday"
+          icon={CalendarIcon}
+          enabledDates={enabledDates}
+          ariaLabel="Available appointment date"
+        />
+        {selectedDate && (
+          <p
+            style={{
+              marginTop: '12px',
+              fontSize: '14px',
+              color: '#0066cc',
+              fontWeight: 500,
+            }}
+          >
+            Selected: {selectedDate}
+          </p>
+        )}
+      </div>
+    );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'This example dynamically generates enabled dates for specific weekdays (Mondays and Wednesdays). This pattern is useful for businesses that only operate on certain days of the week.',
+      },
+    },
   },
 };
 
@@ -378,5 +482,332 @@ export const MultipleDatePickers: Story = {
         )}
       </div>
     );
+  },
+};
+
+// Responsive layout example
+export const ResponsiveLayout: Story = {
+  render: () => {
+    const [mobileDate, setMobileDate] = useState('');
+    const [tabletDate, setTabletDate] = useState('');
+    const [desktopDate, setDesktopDate] = useState('');
+
+    return (
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '48px',
+          width: '100%',
+          maxWidth: '1200px',
+        }}
+      >
+        {/* Mobile View (320px) */}
+        <div>
+          <h3
+            style={{
+              marginBottom: '12px',
+              fontSize: '18px',
+              fontWeight: 600,
+              color: '#333',
+            }}
+          >
+            Mobile View (320px)
+          </h3>
+          <p
+            style={{
+              marginBottom: '16px',
+              fontSize: '14px',
+              color: '#666',
+              lineHeight: '1.5',
+            }}
+          >
+            Calendar automatically centers and scales to fit small screens
+          </p>
+          <div style={{ width: '100%', maxWidth: '320px' }}>
+            <Datepicker
+              name="mobileDate"
+              onChange={e => setMobileDate(e.target.value)}
+              placeholder="mm/dd/yyyy"
+              icon={CalendarIcon}
+              ariaLabel="Mobile date picker"
+            />
+            {mobileDate && (
+              <p
+                style={{
+                  marginTop: '8px',
+                  fontSize: '14px',
+                  color: '#0066cc',
+                  fontWeight: 500,
+                }}
+              >
+                Selected: {mobileDate}
+              </p>
+            )}
+          </div>
+        </div>
+
+        {/* Tablet View (768px) */}
+        <div>
+          <h3
+            style={{
+              marginBottom: '12px',
+              fontSize: '18px',
+              fontWeight: 600,
+              color: '#333',
+            }}
+          >
+            Tablet View (768px)
+          </h3>
+          <p
+            style={{
+              marginBottom: '16px',
+              fontSize: '14px',
+              color: '#666',
+              lineHeight: '1.5',
+            }}
+          >
+            Two-column layout for side-by-side date selection
+          </p>
+          <div style={{ width: '100%', maxWidth: '768px' }}>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: '16px',
+              }}
+            >
+              <div>
+                <label
+                  style={{
+                    display: 'block',
+                    marginBottom: '8px',
+                    fontWeight: 500,
+                    fontSize: '14px',
+                  }}
+                >
+                  Check-in Date
+                </label>
+                <Datepicker
+                  name="tabletDate1"
+                  onChange={e => setTabletDate(e.target.value)}
+                  placeholder="mm/dd/yyyy"
+                  icon={CalendarIcon}
+                  ariaLabel="Check-in date"
+                />
+              </div>
+              <div>
+                <label
+                  style={{
+                    display: 'block',
+                    marginBottom: '8px',
+                    fontWeight: 500,
+                    fontSize: '14px',
+                  }}
+                >
+                  Check-out Date
+                </label>
+                <Datepicker
+                  name="tabletDate2"
+                  onChange={() => {}}
+                  placeholder="mm/dd/yyyy"
+                  icon={CalendarIcon}
+                  ariaLabel="Check-out date"
+                  minDate={
+                    tabletDate
+                      ? new Date(tabletDate).toISOString().split('T')[0]
+                      : undefined
+                  }
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop View (1200px) */}
+        <div>
+          <h3
+            style={{
+              marginBottom: '12px',
+              fontSize: '18px',
+              fontWeight: 600,
+              color: '#333',
+            }}
+          >
+            Desktop View (1200px)
+          </h3>
+          <p
+            style={{
+              marginBottom: '16px',
+              fontSize: '14px',
+              color: '#666',
+              lineHeight: '1.5',
+            }}
+          >
+            Three-column grid layout for complex forms
+          </p>
+          <div style={{ width: '100%', maxWidth: '1200px' }}>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, 1fr)',
+                gap: '24px',
+              }}
+            >
+              <div>
+                <label
+                  style={{
+                    display: 'block',
+                    marginBottom: '8px',
+                    fontWeight: 500,
+                    fontSize: '14px',
+                  }}
+                >
+                  Departure Date
+                </label>
+                <Datepicker
+                  name="desktopDate1"
+                  onChange={e => setDesktopDate(e.target.value)}
+                  placeholder="mm/dd/yyyy"
+                  icon={CalendarIcon}
+                  ariaLabel="Departure date"
+                />
+              </div>
+              <div>
+                <label
+                  style={{
+                    display: 'block',
+                    marginBottom: '8px',
+                    fontWeight: 500,
+                    fontSize: '14px',
+                  }}
+                >
+                  Return Date
+                </label>
+                <Datepicker
+                  name="desktopDate2"
+                  onChange={() => {}}
+                  placeholder="mm/dd/yyyy"
+                  icon={CalendarIcon}
+                  ariaLabel="Return date"
+                  minDate={
+                    desktopDate
+                      ? new Date(desktopDate).toISOString().split('T')[0]
+                      : undefined
+                  }
+                />
+              </div>
+              <div>
+                <label
+                  style={{
+                    display: 'block',
+                    marginBottom: '8px',
+                    fontWeight: 500,
+                    fontSize: '14px',
+                  }}
+                >
+                  Booking Deadline
+                </label>
+                <Datepicker
+                  name="desktopDate3"
+                  onChange={() => {}}
+                  placeholder="mm/dd/yyyy"
+                  icon={CalendarIcon}
+                  ariaLabel="Booking deadline"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'This story demonstrates how the DatePicker component adapts to different screen sizes. The calendar popup automatically adjusts its size and position to stay within the viewport. Try opening the calendar on each size to see the responsive behavior.',
+      },
+    },
+  },
+};
+
+// Full-width responsive example
+export const FullWidthResponsive: Story = {
+  render: () => {
+    const [date, setDate] = useState('');
+
+    return (
+      <div style={{ width: '100%', maxWidth: '100%', padding: '16px' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '16px',
+            width: '100%',
+          }}
+        >
+          <div>
+            <label
+              style={{ display: 'block', marginBottom: '8px', fontWeight: 500 }}
+            >
+              Event Date
+            </label>
+            <Datepicker
+              name="eventDate"
+              onChange={e => setDate(e.target.value)}
+              placeholder="mm/dd/yyyy"
+              icon={CalendarIcon}
+              ariaLabel="Event date"
+            />
+          </div>
+          <div>
+            <label
+              style={{ display: 'block', marginBottom: '8px', fontWeight: 500 }}
+            >
+              Registration Deadline
+            </label>
+            <Datepicker
+              name="registrationDate"
+              onChange={() => {}}
+              placeholder="mm/dd/yyyy"
+              icon={CalendarIcon}
+              ariaLabel="Registration deadline"
+              max={
+                date ? new Date(date).toISOString().split('T')[0] : undefined
+              }
+            />
+          </div>
+          <div>
+            <label
+              style={{ display: 'block', marginBottom: '8px', fontWeight: 500 }}
+            >
+              Payment Due Date
+            </label>
+            <Datepicker
+              name="paymentDate"
+              onChange={() => {}}
+              placeholder="mm/dd/yyyy"
+              icon={CalendarIcon}
+              ariaLabel="Payment due date"
+            />
+          </div>
+        </div>
+        {date && (
+          <p style={{ marginTop: '16px', fontSize: '14px', color: '#666' }}>
+            Selected event date: <strong>{date}</strong>
+          </p>
+        )}
+      </div>
+    );
+  },
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        story:
+          'This story shows the DatePicker in a responsive grid layout that automatically adjusts columns based on available space. Try resizing your browser to see how the layout adapts.',
+      },
+    },
   },
 };
