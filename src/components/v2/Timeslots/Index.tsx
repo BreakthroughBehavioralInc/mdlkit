@@ -13,6 +13,7 @@ export interface Timeslot {
   availability_type?: string;
   start_date?: string;
   end_date?: string;
+  ariaProvider?: string;
 }
 
 export interface TimeslotsProps {
@@ -36,6 +37,8 @@ export interface TimeslotsProps {
   style?: React.CSSProperties;
   /** Whether the component is disabled */
   disabled?: boolean;
+  /** Optional provider name to append to ARIA labels (e.g., "Dr. Alan Smith") */
+  ariaProvider?: string;
 }
 
 /**
@@ -78,6 +81,7 @@ const Timeslots: React.FC<TimeslotsProps> = ({
   className = '',
   style,
   disabled = false,
+  ariaProvider,
 }) => {
   const [showAll, setShowAll] = useState(false);
   const slotRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -140,6 +144,19 @@ const Timeslots: React.FC<TimeslotsProps> = ({
       : index === initialVisibleCount;
     const tabIndex = isFirstInSection ? 0 : -1;
 
+    // Calculate position within the section for screen readers
+    const positionInSection = isInInitialSection
+      ? index + 1
+      : index - initialVisibleCount + 1;
+    const totalInSection = isInInitialSection
+      ? initialSlots.length
+      : additionalSlots.length;
+
+    const formattedTime = formatTime(slot.timeslot);
+    const provider = slot.ariaProvider || ariaProvider;
+    const providerText = provider ? ` with ${provider}` : '';
+    const ariaLabel = `${formattedTime}${providerText}, ${positionInSection} of ${totalInSection}`;
+
     return (
       <SlotButton
         key={slot.timeslot}
@@ -155,12 +172,18 @@ const Timeslots: React.FC<TimeslotsProps> = ({
         data-availability-method={availabilityMethod}
         data-phys-availability-id={slot.phys_availability_id}
         aria-pressed={isSelected}
+        aria-label={ariaLabel}
         type="button"
       >
         {formatTime(slot.timeslot)}
       </SlotButton>
     );
   };
+
+  const toggleButtonLabel = showAll ? seeLessLabel : seeMoreLabel;
+  const toggleAriaLabel = ariaProvider
+    ? `${toggleButtonLabel} for ${ariaProvider}`
+    : toggleButtonLabel;
 
   return (
     <TimeslotsWrapper className={`timeslots ${className}`.trim()} style={style}>
@@ -176,8 +199,8 @@ const Timeslots: React.FC<TimeslotsProps> = ({
           aria-expanded={showAll}
           tabIndex={-1}
         >
-          <ToggleButtonText tabIndex={0}>
-            {showAll ? seeLessLabel : seeMoreLabel}
+          <ToggleButtonText tabIndex={0} aria-label={toggleAriaLabel}>
+            {toggleButtonLabel}
           </ToggleButtonText>
         </ToggleButton>
       )}

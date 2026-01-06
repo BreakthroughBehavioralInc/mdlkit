@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment-timezone';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -75,6 +75,7 @@ const Datepicker = ({
   const datePickerRef = useRef<DatePicker>(null);
   const visibleDateRef = useRef<any>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const yearButtonRef = useRef<HTMLSpanElement>(null);
 
   const minDateObj = minDate
     ? moment(minDate, 'YYYY-MM-DD').toDate()
@@ -157,6 +158,13 @@ const Datepicker = ({
     triggerRef: visibleDateRef,
   });
 
+  // Focus the year button when switching to months view for better accessibility
+  useEffect(() => {
+    if (viewMode === 'months' && yearButtonRef.current) {
+      yearButtonRef.current.focus();
+    }
+  }, [viewMode]);
+
   // Custom header for the datepicker (same as Calendar component)
   const CustomHeader = ({
     date,
@@ -174,6 +182,32 @@ const Datepicker = ({
 
     const years = Array.from({ length: 12 }, (_, i) => currentYear - 5 + i);
     const months = moment.months();
+
+    // Helper functions to check if a year or month is disabled
+    const isYearDisabled = (year: number) => {
+      if (minDateObj && year < moment(minDateObj).year()) return true;
+      if (maxDateObj && year > moment(maxDateObj).year()) return true;
+      return false;
+    };
+
+    const isMonthDisabled = (monthIndex: number) => {
+      const dateToCheck = moment()
+        .year(currentYear)
+        .month(monthIndex)
+        .startOf('month');
+
+      if (minDateObj) {
+        const minMoment = moment(minDateObj).startOf('month');
+        if (dateToCheck.isBefore(minMoment)) return true;
+      }
+
+      if (maxDateObj) {
+        const maxMoment = moment(maxDateObj).startOf('month');
+        if (dateToCheck.isAfter(maxMoment)) return true;
+      }
+
+      return false;
+    };
 
     if (viewMode === 'years') {
       return (
@@ -220,33 +254,39 @@ const Datepicker = ({
             </button>
           </div>
           <div className="year-grid">
-            {years.map(year => (
-              <div
-                key={year}
-                role="button"
-                tabIndex={0}
-                className={`year-cell ${
-                  year === currentYear ? 'selected' : ''
-                }`}
-                onClick={() => {
-                  changeYear(year);
-                  setViewMode('months');
-                }}
-                onKeyDown={e => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    changeYear(year);
-                    setViewMode('months');
-                  }
-                }}
-                aria-label={`Select year ${year}${
-                  year === currentYear ? ', currently selected' : ''
-                }`}
-                style={{ outline: 'none' }}
-              >
-                {year}
-              </div>
-            ))}
+            {years.map(year => {
+              const disabled = isYearDisabled(year);
+              return (
+                <div
+                  key={year}
+                  role="button"
+                  tabIndex={disabled ? -1 : 0}
+                  className={`year-cell ${
+                    year === currentYear ? 'selected' : ''
+                  } ${disabled ? 'disabled' : ''}`}
+                  onClick={() => {
+                    if (!disabled) {
+                      changeYear(year);
+                      setViewMode('months');
+                    }
+                  }}
+                  onKeyDown={e => {
+                    if (!disabled && (e.key === 'Enter' || e.key === ' ')) {
+                      e.preventDefault();
+                      changeYear(year);
+                      setViewMode('months');
+                    }
+                  }}
+                  aria-label={`Select year ${year}${
+                    year === currentYear ? ', currently selected' : ''
+                  }${disabled ? ', disabled' : ''}`}
+                  aria-disabled={disabled}
+                  style={{ outline: 'none' }}
+                >
+                  {year}
+                </div>
+              );
+            })}
           </div>
         </div>
       );
@@ -265,6 +305,7 @@ const Datepicker = ({
               {'<'}
             </button>
             <span
+              ref={yearButtonRef}
               role="button"
               tabIndex={0}
               onClick={() => setViewMode('years')}
@@ -289,33 +330,39 @@ const Datepicker = ({
             </button>
           </div>
           <div className="month-grid">
-            {months.map((month, index) => (
-              <div
-                key={month}
-                role="button"
-                tabIndex={0}
-                className={`month-cell ${
-                  index === currentMonth ? 'selected' : ''
-                }`}
-                onClick={() => {
-                  changeMonth(index);
-                  setViewMode('days');
-                }}
-                onKeyDown={e => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    changeMonth(index);
-                    setViewMode('days');
-                  }
-                }}
-                aria-label={`Select ${month}${
-                  index === currentMonth ? ', currently selected' : ''
-                }`}
-                style={{ outline: 'none' }}
-              >
-                {month.substring(0, 3)}
-              </div>
-            ))}
+            {months.map((month, index) => {
+              const disabled = isMonthDisabled(index);
+              return (
+                <div
+                  key={month}
+                  role="button"
+                  tabIndex={disabled ? -1 : 0}
+                  className={`month-cell ${
+                    index === currentMonth ? 'selected' : ''
+                  } ${disabled ? 'disabled' : ''}`}
+                  onClick={() => {
+                    if (!disabled) {
+                      changeMonth(index);
+                      setViewMode('days');
+                    }
+                  }}
+                  onKeyDown={e => {
+                    if (!disabled && (e.key === 'Enter' || e.key === ' ')) {
+                      e.preventDefault();
+                      changeMonth(index);
+                      setViewMode('days');
+                    }
+                  }}
+                  aria-label={`Select ${month}${
+                    index === currentMonth ? ', currently selected' : ''
+                  }${disabled ? ', disabled' : ''}`}
+                  aria-disabled={disabled}
+                  style={{ outline: 'none' }}
+                >
+                  {month.substring(0, 3)}
+                </div>
+              );
+            })}
           </div>
         </div>
       );

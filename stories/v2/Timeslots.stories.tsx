@@ -126,6 +126,11 @@ const meta: Meta<typeof Timeslots> = {
       control: { type: 'boolean' },
       description: 'Whether the component is disabled',
     },
+    ariaProvider: {
+      control: { type: 'text' },
+      description:
+        'Optional provider name to append to ARIA labels for screen readers (e.g., "Dr. Alan Smith")',
+    },
     className: {
       control: { type: 'text' },
       description: 'Additional CSS class name',
@@ -335,6 +340,164 @@ export const ResponsiveView: Story = {
       description: {
         story:
           "The Timeslots component is fully responsive and adapts to different viewport sizes. The slots wrap gracefully using flexbox, making it accessible on mobile devices, tablets, and desktops. Try using Storybook's viewport toolbar to switch between different device sizes.",
+      },
+    },
+  },
+};
+
+export const WithSingleProvider: Story = {
+  render: args => (
+    <div style={{ maxWidth: '400px' }}>
+      <p style={{ marginBottom: '16px', fontSize: '14px', color: '#666' }}>
+        For accessibility, the <code>ariaProvider</code> prop adds provider
+        information to screen reader announcements. When a timeslot is focused,
+        screen readers will announce: "9:00 AM with Dr. Alan Smith, 1 of 4,
+        toggle button".
+      </p>
+      <InteractiveTimeslots {...args} />
+      <p
+        style={{
+          marginTop: '16px',
+          fontSize: '12px',
+          color: '#999',
+          fontStyle: 'italic',
+        }}
+      >
+        💡 Tip: Use a screen reader (VoiceOver, NVDA, JAWS) to hear the provider
+        name announced with each timeslot.
+      </p>
+    </div>
+  ),
+  args: {
+    slots: sampleSlots.slice(0, 4),
+    ariaProvider: 'Dr. Alan Smith',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The `ariaProvider` prop improves accessibility for blind users by including provider information in the ARIA label. This is useful when booking appointments with specific doctors or service providers.',
+      },
+    },
+  },
+};
+
+export const WithAriaProvider: Story = {
+  render: args => (
+    <div style={{ maxWidth: '400px' }}>
+      <p style={{ marginBottom: '16px', fontSize: '14px', color: '#666' }}>
+        For accessibility, the <code>ariaProvider</code> prop adds provider
+        information to screen reader announcements. When a timeslot is focused,
+        screen readers will announce: "8:00 AM with Dr. Alan Smith, 1 of 8,
+        toggle button".
+      </p>
+      <InteractiveTimeslots {...args} />
+      <p
+        style={{
+          marginTop: '16px',
+          fontSize: '12px',
+          color: '#999',
+          fontStyle: 'italic',
+        }}
+      >
+        💡 Tip: Use a screen reader (VoiceOver, NVDA, JAWS) to hear the provider
+        name announced with each timeslot.
+      </p>
+    </div>
+  ),
+  args: {
+    slots: sampleSlots,
+    ariaProvider: 'Dr. Alan Smith',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The `ariaProvider` prop improves accessibility for blind users by including provider information in the ARIA label. This is useful when booking appointments with specific doctors or service providers.',
+      },
+    },
+  },
+};
+
+export const WithPerSlotAriaProvider: Story = {
+  render: args => (
+    <div style={{ maxWidth: '400px' }}>
+      <p style={{ marginBottom: '16px', fontSize: '14px', color: '#666' }}>
+        Each timeslot can have its own provider using the{' '}
+        <code>ariaProvider</code> property on individual slots. This is useful
+        when different timeslots are available with different doctors.
+      </p>
+      <InteractiveTimeslots {...args} />
+      <p
+        style={{
+          marginTop: '16px',
+          fontSize: '12px',
+          color: '#999',
+          fontStyle: 'italic',
+        }}
+      >
+        💡 The first 3 slots are with Dr. Alan Smith, the next 3 with Dr. Jane
+        Doe, and the remaining slots with Dr. Michael Chen.
+      </p>
+    </div>
+  ),
+  args: {
+    slots: [
+      {
+        ...sampleSlots[0],
+        ariaProvider: 'Dr. Alan Smith',
+      },
+      {
+        ...sampleSlots[1],
+        ariaProvider: 'Dr. Alan Smith',
+      },
+      {
+        ...sampleSlots[2],
+        ariaProvider: 'Dr. Alan Smith',
+      },
+      {
+        ...sampleSlots[3],
+        ariaProvider: 'Dr. Jane Doe',
+      },
+      {
+        ...sampleSlots[4],
+        ariaProvider: 'Dr. Jane Doe',
+      },
+      {
+        ...sampleSlots[5],
+        ariaProvider: 'Dr. Jane Doe',
+      },
+      {
+        ...sampleSlots[6],
+        ariaProvider: 'Dr. Michael Chen',
+      },
+      {
+        ...sampleSlots[7],
+        ariaProvider: 'Dr. Michael Chen',
+      },
+      {
+        ...sampleSlots[8],
+        ariaProvider: 'Dr. Michael Chen',
+      },
+      {
+        ...sampleSlots[9],
+        ariaProvider: 'Dr. Michael Chen',
+      },
+      {
+        ...sampleSlots[10],
+        ariaProvider: 'Dr. Michael Chen',
+      },
+      {
+        ...sampleSlots[11],
+        ariaProvider: 'Dr. Michael Chen',
+      },
+    ],
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'You can set the `ariaProvider` property on individual `Timeslot` objects to have different providers for different timeslots. The per-slot `ariaProvider` takes precedence over the component-level prop.',
       },
     },
   },
