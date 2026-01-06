@@ -541,7 +541,7 @@ export const StyledDatePickerWrapper = styled.div`
         font-size: 12px;
       }
 
-      &:hover {
+      &:hover:not(.disabled) {
         background-color: #e8f4fc;
         color: #0066cc;
       }
@@ -550,6 +550,18 @@ export const StyledDatePickerWrapper = styled.div`
         background-color: #0066cc;
         color: white;
         font-weight: 600;
+      }
+
+      &.disabled {
+        color: #ccc;
+        cursor: not-allowed;
+        pointer-events: none;
+        opacity: 0.5;
+
+        &:hover {
+          background-color: transparent;
+          color: #ccc;
+        }
       }
 
       &:focus {
