@@ -131,6 +131,11 @@ const meta: Meta<typeof Timeslots> = {
       description:
         'Optional provider name to append to ARIA labels for screen readers (e.g., "Dr. Alan Smith")',
     },
+    columnsPerRow: {
+      control: { type: 'select' },
+      options: [3, 4, 5],
+      description: 'Number of columns per row in the grid layout',
+    },
     className: {
       control: { type: 'text' },
       description: 'Additional CSS class name',
@@ -498,6 +503,88 @@ export const WithPerSlotAriaProvider: Story = {
       description: {
         story:
           'You can set the `ariaProvider` property on individual `Timeslot` objects to have different providers for different timeslots. The per-slot `ariaProvider` takes precedence over the component-level prop.',
+      },
+    },
+  },
+};
+
+export const ThreeColumns: Story = {
+  render: args => (
+    <div style={{ maxWidth: '400px', margin: '0 auto' }}>
+      <p style={{ marginBottom: '16px', fontSize: '14px', color: '#666' }}>
+        With <code>columnsPerRow=&#123;3&#125;</code>, timeslots are displayed
+        in 3 columns per row. This layout works well for narrow containers or
+        when you want larger, more prominent timeslots.
+      </p>
+      <InteractiveTimeslots {...args} />
+    </div>
+  ),
+  args: {
+    slots: sampleSlots.slice(0, 9),
+    columnsPerRow: 3,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Use 3 columns per row for a more spacious layout with fewer options per row.',
+      },
+    },
+  },
+};
+
+export const FourColumns: Story = {
+  render: args => (
+    <div style={{ maxWidth: '420px', margin: '0 auto' }}>
+      <p style={{ marginBottom: '16px', fontSize: '14px', color: '#666' }}>
+        With <code>columnsPerRow=&#123;4&#125;</code> (default), timeslots are
+        displayed in 4 columns per row. This is the standard layout that
+        balances space efficiency with readability.
+      </p>
+      <InteractiveTimeslots {...args} />
+    </div>
+  ),
+  args: {
+    slots: sampleSlots,
+    columnsPerRow: 4,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'The default 4-column layout provides a good balance between space efficiency and usability.',
+      },
+    },
+  },
+};
+
+export const FiveColumns: Story = {
+  render: args => (
+    <div style={{ maxWidth: '540px', margin: '0 auto' }}>
+      <p
+        style={{
+          marginBottom: '16px',
+          fontSize: '14px',
+          color: '#666',
+          textAlign: 'center',
+        }}
+      >
+        With <code>columnsPerRow=&#123;5&#125;</code>, timeslots are displayed
+        in 5 columns per row. This compact layout is ideal for wider containers
+        when you have many timeslots to display.
+      </p>
+      <InteractiveTimeslots {...args} />
+    </div>
+  ),
+  args: {
+    slots: sampleSlots.slice(0, 10),
+    columnsPerRow: 5,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Use 5 columns per row for a more compact layout when displaying many timeslots in a wider container.',
       },
     },
   },

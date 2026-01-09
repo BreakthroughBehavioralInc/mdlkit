@@ -39,6 +39,8 @@ export interface TimeslotsProps {
   disabled?: boolean;
   /** Optional provider name to append to ARIA labels (e.g., "Dr. Alan Smith") */
   ariaProvider?: string;
+  /** Number of columns per row in the grid layout (3, 4, or 5) */
+  columnsPerRow?: 3 | 4 | 5;
 }
 
 /**
@@ -82,6 +84,7 @@ const Timeslots: React.FC<TimeslotsProps> = ({
   style,
   disabled = false,
   ariaProvider,
+  columnsPerRow = 4,
 }) => {
   const [showAll, setShowAll] = useState(false);
   const slotRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -187,7 +190,7 @@ const Timeslots: React.FC<TimeslotsProps> = ({
 
   return (
     <TimeslotsWrapper className={`timeslots ${className}`.trim()} style={style}>
-      <TimeslotsContainer>
+      <TimeslotsContainer columnsPerRow={columnsPerRow}>
         {initialSlots.map((slot, index) => renderSlotButton(slot, index, true))}
       </TimeslotsContainer>
 
@@ -206,7 +209,7 @@ const Timeslots: React.FC<TimeslotsProps> = ({
       )}
 
       {showAll && hasMoreSlots && (
-        <TimeslotsContainer>
+        <TimeslotsContainer columnsPerRow={columnsPerRow}>
           {additionalSlots.map((slot, index) =>
             renderSlotButton(slot, index + initialVisibleCount, false)
           )}

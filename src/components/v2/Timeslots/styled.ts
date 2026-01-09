@@ -3,14 +3,30 @@ import v2Theme, { focusRing } from '../../../theme/v2';
 
 export const TimeslotsWrapper = styled.div`
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-export const TimeslotsContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+export const TimeslotsContainer = styled.div<{ columnsPerRow?: 3 | 4 | 5 }>`
+  display: grid;
+  grid-template-columns: repeat(${props => props.columnsPerRow || 4}, 96px);
   justify-content: center;
   gap: 8px;
   margin: 20px 0 15px;
+  width: 100%;
+
+  /* Responsive adjustments for smaller screens */
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(
+      ${props => Math.min(props.columnsPerRow || 4, 3)},
+      96px
+    );
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(2, 96px);
+  }
 `;
 
 export const SlotButton = styled.button<{ isSelected: boolean }>`
@@ -21,13 +37,15 @@ export const SlotButton = styled.button<{ isSelected: boolean }>`
   justify-content: center;
   height: 36px;
   width: 96px;
-  padding: 0;
+  padding: 0 12px;
   border: 1.5px solid ${v2Theme.colors.primary};
   border-radius: 21.5px;
   font-family: 'Noto Sans', sans-serif;
-  font-size: 12px;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 600;
   letter-spacing: 0;
+  line-height: 1;
+  white-space: nowrap;
   cursor: pointer;
   transition: background-color ${v2Theme.duration.fast}
       ${v2Theme.timingFunctions.easeInOut},
