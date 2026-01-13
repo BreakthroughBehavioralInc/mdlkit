@@ -32,7 +32,7 @@ const SophieIcon = ({ size = '20px' }: { size?: string }) => (
 );
 
 const meta: Meta<typeof Button> = {
-  title: 'v2/Button',
+  title: 'v2/Button (WIP)',
   component: Button,
   parameters: {
     layout: 'centered',

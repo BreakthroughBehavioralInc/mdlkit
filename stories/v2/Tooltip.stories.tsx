@@ -17,7 +17,7 @@ const HelpIcon = () => (
 );
 
 const meta: Meta<typeof Tooltip> = {
-  title: 'v2/Tooltip',
+  title: 'v2/Tooltip (WIP)',
   component: Tooltip,
   parameters: {
     layout: 'centered',

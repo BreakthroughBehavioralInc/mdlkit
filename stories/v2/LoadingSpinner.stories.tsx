@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import LoadingSpinner from '../../src/components/v2/LoadingSpinner/Index';
 
 const meta: Meta<typeof LoadingSpinner> = {
-  title: 'v2/LoadingSpinner',
+  title: 'v2/LoadingSpinner (WIP)',
   component: LoadingSpinner,
   parameters: {
     layout: 'centered',

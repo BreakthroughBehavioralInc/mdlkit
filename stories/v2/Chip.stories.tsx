@@ -57,7 +57,7 @@ const StarIcon = () => (
 );
 
 const meta: Meta<typeof Chip> = {
-  title: 'v2/Chip',
+  title: 'v2/Chip (WIP)',
   component: Chip,
   parameters: {
     layout: 'centered',
