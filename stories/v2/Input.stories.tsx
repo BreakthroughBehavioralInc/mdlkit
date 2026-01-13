@@ -13,7 +13,7 @@ const EmailIcon =
   'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIwIDRINEMyLjkgNCAyLjAxIDQuOSAyLjAxIDZMMiAxOEMyIDE5LjEgMi45IDIwIDQgMjBIMjBDMjEuMSAyMCAyMiAxOS4xIDIyIDE4VjZDMjIgNC45IDIxLjEgNCAyMCA0Wk0yMCA4TDEyIDEzTDQgOFY2TDEyIDExTDIwIDZWOFoiIGZpbGw9IiM3NTc2NzgiLz4KPC9zdmc+Cg==';
 
 const meta: Meta<typeof Input> = {
-  title: 'v2/Input',
+  title: 'v2/Input (WIP)',
   component: Input,
   parameters: {
     layout: 'centered',

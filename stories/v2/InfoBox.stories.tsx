@@ -11,7 +11,7 @@ const IntlWrapper = ({ children }: { children: React.ReactNode }) => (
 );
 
 const meta: Meta<typeof InfoBox> = {
-  title: 'v2/InfoBox',
+  title: 'v2/InfoBox (WIP)',
   component: InfoBox,
   parameters: {
     layout: 'centered',

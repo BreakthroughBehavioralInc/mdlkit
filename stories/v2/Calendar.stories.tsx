@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import Calendar from '../../src/components/v2/Calendar/Index';
 
 const meta: Meta<typeof Calendar> = {
-  title: 'v2/Calendar',
+  title: 'v2/Calendar (WIP)',
   component: Calendar,
   parameters: {
     layout: 'centered',
