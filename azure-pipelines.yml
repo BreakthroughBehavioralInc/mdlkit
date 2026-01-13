@@ -1,0 +1,139 @@
+# Starter pipeline to deploy to qa7
+trigger:
+ branches:
+   include:
+     - qa7
+
+pr: none
+
+pool:
+  name: mdlive-test
+
+variables:
+  - group: mdlive-qa
+
+stages:
+- stage: 'getAppConfig'
+  displayName: 'getAppConfig'
+  jobs:
+  - job: "getAppConfig"
+    steps:
+
+    - task: CopyFiles@2
+      displayName: 'Copy the source file to Staging directory'
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectory)'
+        Contents: |
+          **/*
+          !**/db/migrate/.#*
+          !.git/**/*
+          !.gitignore
+          !**/spec/**
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+        CleanTargetFolder: true
+
+    - task: ArchiveFiles@2
+      displayName: 'Archive Files'
+      inputs:
+        rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
+        includeRootFolder: false
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        replaceExistingArchive: true
+
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish the Zip file'
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
+        Parallel: true
+        ParallelCount: 8
+
+- stage: 'DeploytoQA7'
+  displayName: 'Deploy to qa7'
+  jobs:
+  - deployment : deploymentjob
+    displayName: deploymentjob
+    environment:
+     name: mdlive-qa
+     resourceType: VirtualMachine
+     resourceName: mdlqa7-vm
+    strategy:
+     runOnce:
+       deploy:
+         steps:
+          - task: Bash@3
+            displayName: "App-Install"
+            inputs:
+              targetType: 'inline'
+              script: |
+                #!/bin/bash
+                set -e
+                echo "Deploying to $HOSTNAME"
+                QA_ENV=`echo $HOSTNAME | cut -d'-' -f1`
+                REL_VER="$(Build.BuildId)"
+                ART_NAME="$(Build.BuildId).zip"
+                REL_DIR="/home/deployer/apps/mdlkit/releases/$REL_VER"
+                REL_TMP_DIR="/home/deployer/apps/mdlkit/releases/$REL_VER/tmp"
+                APP_DIR="/home/deployer/apps/mdlkit/current"
+                echo "RELEASE VERSION: $REL_VER"
+                echo "RELEASE DIRECTORY: $REL_DIR"
+                echo "APPLICATION DIRECTORY: $APP_DIR"
+                echo "ARTIFACT NAME: $ART_NAME"
+                echo "**********************************************************"
+                echo "*      Creating required Directories                     *"
+                echo "**********************************************************"
+                mkdir -p /home/deployer/apps/mdlkit/shared/log
+                mkdir -p /home/deployer/apps/mdlkit/shared/pids
+                mkdir -p /home/deployer/apps/mdlkit/shared/cache
+                echo "Creating new release Direcory $REL_DIR"
+                mkdir -p $REL_DIR
+                echo "Creating new release Direcory $REL_DIR/tmp"
+                mkdir -p $REL_TMP_DIR
+                cp "$(Pipeline.Workspace)/drop/$(Build.BuildId).zip" $REL_DIR
+                cd $REL_DIR
+                echo 'unziping the file'
+                unzip -o $ART_NAME
+                rm -f $ART_NAME
+
+          - task: Bash@3
+            displayName: "Yarn - Install"
+            inputs:
+              targetType: 'inline'
+              script: |
+                #!/bin/bash
+                set -e
+                REL_VER="$(Build.BuildId)"
+                ART_NAME="$(Build.BuildId).zip"
+                REL_DIR="/home/deployer/apps/mdlkit/releases/$REL_VER"
+                cd $REL_DIR
+                source /home/deployer/.profile
+                NPM_TOKEN=$(NPM_TOKEN) yarn install
+                echo "Creating Symplink to current directory"
+                echo "Creating link ln -s $REL_DIR /home/deployer/apps/mdlkit/releases/current"
+                ln -sfn $REL_DIR /home/deployer/apps/mdlkit/releases/current
+                mv /home/deployer/apps/mdlkit/releases/current /home/deployer/apps/mdlkit
+                cd /home/deployer/apps/mdlkit/releases/
+                echo "Checking no.of Releases more than 5"
+                num_rel=`ls -l | grep "^d" | wc -l`
+                if [[ $num_rel -gt 5 ]]
+                then
+                  del_rel=`ls -tr | head -n -5`
+                  echo "Deleting the Release $del_rel Keeping 5 of 6 deployed releases"
+                  ls -tr | head -n -5 | xargs --no-run-if-empty rm -r
+                else
+                  echo "Currently we have only 5 Releases"
+                fi
+
+
+          - task: Bash@3
+            displayName: mdlkit App Restart
+            inputs:
+              targetType: 'inline'
+              script: |
+                #!/bin/bash
+                set -e
+                echo "sudo systemctl restart mdlkit"
+                sudo systemctl restart mdlkit
+              failOnStderr: true

@@ -29,7 +29,7 @@ const CheckActive: FunctionComponent<Props> = ({ color, ...rest }: Props) => {
         <g
           id="Simplified-Reg-V3-Filled-calendar"
           transform="translate(-476.000000, -499.000000)"
-          fill={color || theme.colors.primary}
+          fill={color || (theme as any)?.colors?.primary || '#0379CE'}
         >
           <g
             id="checkboxes/active"

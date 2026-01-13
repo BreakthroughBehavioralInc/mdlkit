@@ -31,22 +31,26 @@ const LoadingButton: FunctionComponent<LoadingButtonProps> = ({
 }: LoadingButtonProps) => {
   return (
     <StyledButton isLoading={isLoading} {...rest}>
-      {isLoading ? (
-        <LoadingIcon
-          width="1.5em"
-          height="1.5em"
-          color="primaryText"
-          backgroundColor="primary"
-        />
-      ) : null}
-      {children}
+      <>
+        {isLoading ? (
+          <LoadingIcon
+            width="1.5em"
+            height="1.5em"
+            color="primaryText"
+            backgroundColor="primary"
+          />
+        ) : null}
+        {children}
+      </>
     </StyledButton>
   );
 };
 
 LoadingButton.displayName = 'LoadingButton';
-LoadingButton.defaultProps = {
-  isLoading: false,
-};
+Object.assign(LoadingButton, {
+  defaultProps: {
+    isLoading: false,
+  },
+});
 
 export default LoadingButton;

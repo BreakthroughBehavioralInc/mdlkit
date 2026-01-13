@@ -13,7 +13,7 @@ const RadioEmpty: FunctionComponent<Props> = ({
   ...rest
 }: Props) => {
   const theme = useTheme();
-  const fillColor: string = color || theme.colors.black;
+  const fillColor: string = color || (theme as any)?.colors?.black || '#070707';
 
   return (
     <Svg

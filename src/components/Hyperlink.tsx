@@ -35,8 +35,10 @@ export const Hyperlink = styled.a<HyperlinkProps>`
 `;
 
 Hyperlink.displayName = 'Hyperlink';
-Hyperlink.defaultProps = {
-  bold: true,
-};
+Object.assign(Hyperlink, {
+  defaultProps: {
+    bold: true,
+  },
+});
 
 export default Hyperlink;

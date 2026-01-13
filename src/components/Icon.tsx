@@ -56,9 +56,11 @@ const Icon: FunctionComponent<IconProps> = ({
 
 // @ts-ignore
 Icon.isIcon = true;
-Icon.defaultProps = {
-  size: 24,
-};
+Object.assign(Icon, {
+  defaultProps: {
+    size: 24,
+  },
+});
 
 // @ts-ignore
 export default Icon;
