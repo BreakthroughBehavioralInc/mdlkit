@@ -224,48 +224,11 @@ export const StyledDatePickerWrapper = styled.div`
 
     .react-datepicker__day-name {
       color: #666;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 600;
       width: 2rem;
       line-height: 1.8rem;
       margin: 0.1rem;
-
-      @media (max-width: 768px) {
-        width: 1.9rem;
-        line-height: 1.7rem;
-        font-size: 12px;
-        margin: 0.08rem;
-      }
-
-      @media (max-width: 400px) {
-        width: 1.75rem;
-        line-height: 1.6rem;
-        font-size: 11px;
-        margin: 0.06rem;
-      }
-
-      @media (max-width: 360px) {
-        width: 1.6rem;
-        line-height: 1.5rem;
-        font-size: 10px;
-        margin: 0.05rem;
-      }
-    }
-
-    .react-datepicker__week {
-      display: flex;
-      justify-content: space-around;
-    }
-
-    .react-datepicker__day {
-      width: 2rem;
-      line-height: 1.8rem;
-      margin: 0.1rem;
-      color: #333;
-      font-size: 14px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all 0.2s ease;
 
       @media (max-width: 768px) {
         width: 1.9rem;
@@ -285,6 +248,43 @@ export const StyledDatePickerWrapper = styled.div`
         width: 1.6rem;
         line-height: 1.5rem;
         font-size: 11px;
+        margin: 0.05rem;
+      }
+    }
+
+    .react-datepicker__week {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .react-datepicker__day {
+      width: 2rem;
+      line-height: 1.8rem;
+      margin: 0.1rem;
+      color: #333;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      @media (max-width: 768px) {
+        width: 1.9rem;
+        line-height: 1.7rem;
+        font-size: 15px;
+        margin: 0.08rem;
+      }
+
+      @media (max-width: 400px) {
+        width: 1.75rem;
+        line-height: 1.6rem;
+        font-size: 14px;
+        margin: 0.06rem;
+      }
+
+      @media (max-width: 360px) {
+        width: 1.6rem;
+        line-height: 1.5rem;
+        font-size: 13px;
         margin: 0.05rem;
       }
 
@@ -440,17 +440,17 @@ export const StyledDatePickerWrapper = styled.div`
       }
 
       span {
-        font-size: 16px;
+        font-size: 18px;
         font-weight: 600;
         color: #333;
         user-select: none;
 
         @media (max-width: 768px) {
-          font-size: 15px;
+          font-size: 17px;
         }
 
         @media (max-width: 400px) {
-          font-size: 14px;
+          font-size: 16px;
         }
       }
     }

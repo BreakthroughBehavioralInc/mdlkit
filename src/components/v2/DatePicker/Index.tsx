@@ -72,6 +72,7 @@ const Datepicker = ({
   );
   const [isPickerOpen, setIsPickerOpen] = useState(false);
   const [viewMode, setViewMode] = useState<'days' | 'months' | 'years'>('days');
+  const [liveRegionMessage, setLiveRegionMessage] = useState('');
   const datePickerRef = useRef<DatePicker>(null);
   const visibleDateRef = useRef<any>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -114,6 +115,7 @@ const Datepicker = ({
       onChange({ target: { value: '' } }, name);
       setIsPickerOpen(false);
       setViewMode('days');
+      setLiveRegionMessage('Date cleared');
       return;
     }
 
@@ -121,6 +123,7 @@ const Datepicker = ({
     const formatted = formattedDateValue(moment(date).format('YYYY-MM-DD'));
     setFormattedDate(formatted);
     onChange({ target: { value: formatted } }, name);
+    setLiveRegionMessage(`Selected ${moment(date).format('MMMM D, YYYY')}`);
     setIsPickerOpen(false);
     setViewMode('days');
   };
@@ -128,6 +131,13 @@ const Datepicker = ({
   const openDatePicker = () => {
     if (!disabled && !isPickerOpen) {
       setIsPickerOpen(true);
+      // Announce the current date or that calendar is opened
+      setTimeout(() => {
+        const currentDate = selectedDate
+          ? moment(selectedDate).format('MMMM YYYY')
+          : moment().format('MMMM YYYY');
+        setLiveRegionMessage(`Calendar opened, ${currentDate}`);
+      }, 100);
     }
   };
 
@@ -149,6 +159,7 @@ const Datepicker = ({
   const closePicker = () => {
     setIsPickerOpen(false);
     setViewMode('days');
+    setLiveRegionMessage('');
   };
 
   useOutsideClick({
@@ -210,15 +221,34 @@ const Datepicker = ({
     };
 
     if (viewMode === 'years') {
+      const handlePreviousYearRange = () => {
+        const newYears = years.map(y => y - 12);
+        changeYear(newYears[5]);
+        // Announce the new year range after navigation
+        setTimeout(() => {
+          setLiveRegionMessage(
+            `Year range ${newYears[0]} to ${newYears[newYears.length - 1]}`
+          );
+        }, 100);
+      };
+
+      const handleNextYearRange = () => {
+        const newYears = years.map(y => y + 12);
+        changeYear(newYears[5]);
+        // Announce the new year range after navigation
+        setTimeout(() => {
+          setLiveRegionMessage(
+            `Year range ${newYears[0]} to ${newYears[newYears.length - 1]}`
+          );
+        }, 100);
+      };
+
       return (
         <div className="custom-header-years">
           <div className="custom-header-years-navigation">
             <button
               type="button"
-              onClick={() => {
-                const newYears = years.map(y => y - 12);
-                changeYear(newYears[5]);
-              }}
+              onClick={handlePreviousYearRange}
               disabled={prevMonthButtonDisabled}
               aria-label="Previous year range"
             >
@@ -243,10 +273,7 @@ const Datepicker = ({
             </span>
             <button
               type="button"
-              onClick={() => {
-                const newYears = years.map(y => y + 12);
-                changeYear(newYears[5]);
-              }}
+              onClick={handleNextYearRange}
               disabled={nextMonthButtonDisabled}
               aria-label="Next year range"
             >
@@ -256,6 +283,16 @@ const Datepicker = ({
           <div className="year-grid">
             {years.map(year => {
               const disabled = isYearDisabled(year);
+              const handleYearSelect = () => {
+                if (!disabled) {
+                  changeYear(year);
+                  setViewMode('months');
+                  // Announce the selected year
+                  setTimeout(() => {
+                    setLiveRegionMessage(`Year ${year} selected`);
+                  }, 100);
+                }
+              };
               return (
                 <div
                   key={year}
@@ -264,17 +301,11 @@ const Datepicker = ({
                   className={`year-cell ${
                     year === currentYear ? 'selected' : ''
                   } ${disabled ? 'disabled' : ''}`}
-                  onClick={() => {
-                    if (!disabled) {
-                      changeYear(year);
-                      setViewMode('months');
-                    }
-                  }}
+                  onClick={handleYearSelect}
                   onKeyDown={e => {
                     if (!disabled && (e.key === 'Enter' || e.key === ' ')) {
                       e.preventDefault();
-                      changeYear(year);
-                      setViewMode('months');
+                      handleYearSelect();
                     }
                   }}
                   aria-label={`Select year ${year}${
@@ -293,12 +324,34 @@ const Datepicker = ({
     }
 
     if (viewMode === 'months') {
+      const handlePreviousYear = () => {
+        decreaseYear();
+        // Announce the new year after navigation
+        setTimeout(() => {
+          const newYear = moment(date)
+            .subtract(1, 'year')
+            .year();
+          setLiveRegionMessage(`Year ${newYear}`);
+        }, 100);
+      };
+
+      const handleNextYear = () => {
+        increaseYear();
+        // Announce the new year after navigation
+        setTimeout(() => {
+          const newYear = moment(date)
+            .add(1, 'year')
+            .year();
+          setLiveRegionMessage(`Year ${newYear}`);
+        }, 100);
+      };
+
       return (
         <div className="custom-header-months">
           <div className="custom-header-months-navigation">
             <button
               type="button"
-              onClick={decreaseYear}
+              onClick={handlePreviousYear}
               disabled={prevMonthButtonDisabled}
               aria-label="Previous year"
             >
@@ -322,7 +375,7 @@ const Datepicker = ({
             </span>
             <button
               type="button"
-              onClick={increaseYear}
+              onClick={handleNextYear}
               disabled={nextMonthButtonDisabled}
               aria-label="Next year"
             >
@@ -332,6 +385,16 @@ const Datepicker = ({
           <div className="month-grid">
             {months.map((month, index) => {
               const disabled = isMonthDisabled(index);
+              const handleMonthSelect = () => {
+                if (!disabled) {
+                  changeMonth(index);
+                  setViewMode('days');
+                  // Announce the selected month
+                  setTimeout(() => {
+                    setLiveRegionMessage(`${month} ${currentYear} selected`);
+                  }, 100);
+                }
+              };
               return (
                 <div
                   key={month}
@@ -340,17 +403,11 @@ const Datepicker = ({
                   className={`month-cell ${
                     index === currentMonth ? 'selected' : ''
                   } ${disabled ? 'disabled' : ''}`}
-                  onClick={() => {
-                    if (!disabled) {
-                      changeMonth(index);
-                      setViewMode('days');
-                    }
-                  }}
+                  onClick={handleMonthSelect}
                   onKeyDown={e => {
                     if (!disabled && (e.key === 'Enter' || e.key === ' ')) {
                       e.preventDefault();
-                      changeMonth(index);
-                      setViewMode('days');
+                      handleMonthSelect();
                     }
                   }}
                   aria-label={`Select ${month}${
@@ -368,11 +425,29 @@ const Datepicker = ({
       );
     }
 
+    const handlePreviousMonth = () => {
+      decreaseMonth();
+      // Announce the new month after navigation
+      setTimeout(() => {
+        const newDate = moment(date).subtract(1, 'month');
+        setLiveRegionMessage(`${newDate.format('MMMM YYYY')}`);
+      }, 100);
+    };
+
+    const handleNextMonth = () => {
+      increaseMonth();
+      // Announce the new month after navigation
+      setTimeout(() => {
+        const newDate = moment(date).add(1, 'month');
+        setLiveRegionMessage(`${newDate.format('MMMM YYYY')}`);
+      }, 100);
+    };
+
     return (
       <div className="custom-header-days">
         <button
           type="button"
-          onClick={decreaseMonth}
+          onClick={handlePreviousMonth}
           disabled={prevMonthButtonDisabled}
           aria-label="Previous month"
         >
@@ -397,7 +472,7 @@ const Datepicker = ({
         </span>
         <button
           type="button"
-          onClick={increaseMonth}
+          onClick={handleNextMonth}
           disabled={nextMonthButtonDisabled}
           aria-label="Next month"
         >
@@ -436,6 +511,21 @@ const Datepicker = ({
         />
         {isPickerOpen && (
           <StyledDatePickerWrapper ref={wrapperRef}>
+            {/* Screen reader announcement for month/year changes */}
+            <div
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+              style={{
+                position: 'absolute',
+                left: '-10000px',
+                width: '1px',
+                height: '1px',
+                overflow: 'hidden',
+              }}
+            >
+              {liveRegionMessage}
+            </div>
             <DatePicker
               ref={datePickerRef}
               selected={selectedDate}
