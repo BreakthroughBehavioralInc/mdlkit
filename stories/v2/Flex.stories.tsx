@@ -26,7 +26,7 @@ const DemoBox = ({
 );
 
 const meta: Meta<typeof Flex> = {
-  title: 'v2/Flex',
+  title: 'v2/Flex (WIP)',
   component: Flex,
   parameters: {
     layout: 'centered',
