@@ -114,8 +114,10 @@ const Button = styled.button<ButtonProps>`
 `;
 
 Button.displayName = 'Button';
-Button.defaultProps = {
-  fullWidth: false,
-};
+Object.assign(Button, {
+  defaultProps: {
+    fullWidth: false,
+  },
+});
 
 export default Button;

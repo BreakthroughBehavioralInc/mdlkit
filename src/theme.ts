@@ -166,6 +166,9 @@ export const boxShadows = [
   `0 0 2px 0 rgba(0,0,0,.08),0 8px 32px 0 rgba(0,0,0,.16)`,
 ];
 
+// focus styles
+export const focusRing = '0 0 0 2px #ffffff, 0 0 0 4px #000000';
+
 // animation easing curves
 const easeInOut = 'cubic-bezier(0.5, 0, 0.25, 1)';
 const easeOut = 'cubic-bezier(0, 0, 0.25, 1)';
@@ -225,6 +228,7 @@ const shared = {
   radii,
   radius,
   boxShadows,
+  focusRing,
   maxContainerWidth,
   timingFunctions,
   duration,

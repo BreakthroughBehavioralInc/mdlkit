@@ -76,11 +76,13 @@ const Text = styled.p<TextProps>`
   ${maxWidth}
 `;
 
-Text.defaultProps = {
-  bold: false,
-  caps: false,
-  fullWidth: false,
-  lineHeight: 'standard',
-};
+Object.assign(Text, {
+  defaultProps: {
+    bold: false,
+    caps: false,
+    fullWidth: false,
+    lineHeight: 'standard',
+  },
+});
 
 export default Text;

@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "module": "commonjs",
-    "lib": ["es6", "dom"],
+    "lib": ["es6", "es2019", "dom"],
     "sourceMap": true,
     "allowJs": true,
     "jsx": "react",
@@ -14,7 +14,6 @@
     "noImplicitThis": true,
     "noImplicitAny": false,
     "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
     "skipLibCheck": true,
     "noUnusedLocals": true,
     "allowSyntheticDefaultImports": true,

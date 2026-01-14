@@ -41,11 +41,13 @@ const Card = styled(Box)<CardProps>`
   ${borderRadius}
 `;
 
-Card.defaultProps = {
-  borderColor: 'borderGray',
-  borderRadius: 1,
-  borderWidth: 1,
-};
+Object.assign(Card, {
+  defaultProps: {
+    borderColor: 'borderGray',
+    borderRadius: 1,
+    borderWidth: 1,
+  },
+});
 
 Card.displayName = 'Card';
 

@@ -1,4 +1,4 @@
-import React, { StatelessComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
 import { FieldRenderProps } from 'react-final-form';
 import { FormattedMessage } from 'react-intl';
@@ -25,7 +25,7 @@ type SelectFieldProps = {
   errorMessage?: string;
 } & FieldRenderProps<any>;
 
-const SelectField: StatelessComponent<SelectFieldProps> = ({
+const SelectField: FunctionComponent<SelectFieldProps> = ({
   id,
   label,
   options,
