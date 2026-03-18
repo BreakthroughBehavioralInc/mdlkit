@@ -48,7 +48,7 @@ export type IconProps = IconInterface &
 const Icon: FunctionComponent<IconProps> = ({
   name,
   size,
-  baseUrl = 'https://mdlivesaprivprod.blob.core.windows.net/affiliations-prod/static_asset',
+  baseUrl = 'https://mdlfdprod.mdlive.com/affiliations-prod/static_asset',
   ...rest
 }: IconProps) => (
   <Img src={`${baseUrl}/${name}.svg`} alt={name} size={size} {...rest} />
